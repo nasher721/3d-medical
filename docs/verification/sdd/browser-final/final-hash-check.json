@@ -1,0 +1,31 @@
+{
+  "source": {
+    "src/anatomy.js": true,
+    "src/app.js": true,
+    "src/content.js": true,
+    "src/math3d.js": true,
+    "src/monitors.js": true,
+    "src/organ-assets.js": true,
+    "src/physiology.js": true,
+    "src/session.js": true,
+    "src/styles.css": true,
+    "src/ui.js": true
+  },
+  "build": {
+    "dist/assets/favicon.svg": true,
+    "dist/assets/organs/README.md": true,
+    "dist/assets/organs/manifest.json": true,
+    "dist/index.html": true,
+    "dist/src/anatomy.js": true,
+    "dist/src/app.js": true,
+    "dist/src/content.js": true,
+    "dist/src/math3d.js": true,
+    "dist/src/monitors.js": true,
+    "dist/src/organ-assets.js": true,
+    "dist/src/physiology.js": true,
+    "dist/src/session.js": true,
+    "dist/src/styles.css": true,
+    "dist/src/ui.js": true
+  },
+  "allMatch": true
+}

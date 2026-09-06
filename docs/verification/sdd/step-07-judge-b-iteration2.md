@@ -1,0 +1,10 @@
+# Step 7 judge B — iteration 2
+
+2026-09-05. **PASS — 4.550/5**, standard threshold 4.0. No mandatory failure found. No judge-A material read.
+
+- Behavioral correctness **4.5** (weight .35): Inspected actual desktop/narrow browser captures. Brain shows all 19 anatomical markers with connected schematic circle; key exposes venous and capillary names. Kidney image traces distinct yellow collecting/calyces/pelvis/ureter/bladder/outlet with separate renal blood routes. Opaque-versus-transparent brain/lung captures retain visible shells and reveal internal routes. Fresh narrow capture has collapsed key; explicit opening produces readable scrolling labels.
+- Contract correctness **4.7** (.25): Fresh anatomical suite **12/12 PASS**. Independent renderer-prototype harness verified all 24 named edges have exact shared node endpoints; all route names/groups/semantics survive brain→kidney→lung→whole view changes. Nine bilateral urine segments remain urine-only and reach the outlet. Cerebral/renal/urine routes freeze at zero regional flow; restoring urine alone moves only urine routes. Independent fetch interception verified unresolved provenance requests only manifest, never GLB.
+- Educational boundary **4.6** (.20): Canonical topology, schematic tissue beds, distinct flow units and explicit no-flow text are present. Deformed fallback shells are labeled schematic; no patient-specific morphology or calibrated-flow claim added.
+- Evidence **4.4** (.20): Reviewed `anatomy-browser/brain-narrow-final.png`, transparent comparison, opened key, kidney image, and lung desktop pair. Existing actual-WebGL zero-flow evidence reports finite particles, GL error 0, frozen phases and isolated opacity. Source confirms depth-writing opaque/routes before depth-disabled sorted translucent shells. Independent harness complements recorded browser captures; no fresh device-FPS claim made.
+
+Remaining limitation: detailed morphology and device-specific GPU/frame behavior belong to later browser gate. No source edits or completion markers.

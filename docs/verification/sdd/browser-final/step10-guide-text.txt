@@ -1,0 +1,66 @@
+Flowstate is a connected, lumped-parameter teaching simulation. Its purpose is to make physiological relationships visible.
+
+For education, not clinical decisions.
+
+Drug responses, disease severity, gas exchange and anatomy are simplified. This model is not clinically validated, patient-calibrated or a dosing tool.
+
+CO = HR × SV / 1000
+
+Cardiac output follows heart rate and stroke volume.
+
+MAP = CVP + CO × SVR / 80
+
+Resistance connects pressure to flow.
+
+CPP = MAP − ICP
+
+Cerebral perfusion depends on the pressure gradient.
+
+CaO₂ = 1.34 × Hb × SaO₂ + 0.003 × PaO₂
+
+SaO₂ is a fraction here. Content is mL O₂/dL.
+
+DO₂ = CO × CaO₂ × 10
+
+Oxygen delivery depends on both flow and content.
+
+SvO₂ ≈ (CaO₂ − VO₂ / (10 × CO)) / (1.34 × Hb)
+
+A simplified Fick estimate neglecting venous dissolved oxygen.
+
+How to read the circulation
+
+Particles travel along schematic pulmonary and systemic paths. Their speed follows flow; oxygenation coloring changes between the arterial and venous sides. Pressure and flow color modes emphasize different parts of the circuit. Heart size and pulmonary congestion respond to model estimates. Visual changes are exaggerated for teaching.
+
+What is simplified
+Blood flow uses a bounded compartment approximation, not computational fluid dynamics. Circuit connections are schematic.
+Drug dose-response curves and organ flow are qualitative approximations. There is no drug pharmacokinetic model.
+Fluid is retained volume. Redistribution, urine output, bleeding over time and cumulative drug toxicity are not simulated.
+ECG, pressure traces and pressure–volume loops are illustrative shapes driven by model values, not simulated electrophysiology.
+The arterial saturation estimate is displayed as SaO₂; a pulse-oximeter sensor and measurement error are not modeled.
+Time controls alter simulated time. Dialogs pause the session; background-tab time is capped rather than caught up.
+Anatomical model credits
+
+Organ surfaces use code-owned procedural schematic shells. BodyParts3D provenance is blocked because the archived README and current license conflict, so no derived BodyParts3D asset is distributed. Organ spacing, vessel routes, tissue colors, and motion are illustrative. Urine output is a bounded educational collecting-system proxy, separate from renal perfusion; it is not GFR or clearance.
+
+Physiology references
+01
+Cardiovascular physiology: cardiac output
+Cardiac output, stroke volume and determinants of forward flow.
+02
+Mean arterial pressure — CV Physiology
+Relationship between arterial pressure, cardiac output and resistance.
+03
+Clinical review: positive end-expiratory pressure and cardiac output
+Heart–lung interactions, venous return and right ventricular afterload.
+04
+Increased intracranial pressure — NCBI Bookshelf
+Cerebral perfusion pressure and downstream venous pressure.
+05
+Physiology, oxygen transport — NCBI Bookshelf
+Oxygen content, delivery and extraction.
+06
+Oxygen transport in normal and pathological situations
+The Fick principle and oxygenation in shunt physiology.
+
+References support the physiological principles; they do not validate the simulator’s parameterization.

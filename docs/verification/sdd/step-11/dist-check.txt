@@ -1,0 +1,24 @@
+dist_file_inventory
+dist/assets/favicon.svg
+dist/assets/organs/README.md
+dist/assets/organs/manifest.json
+dist/index.html
+dist/src/anatomy.js
+dist/src/app.js
+dist/src/content.js
+dist/src/math3d.js
+dist/src/monitors.js
+dist/src/organ-assets.js
+dist/src/physiology.js
+dist/src/session.js
+dist/src/styles.css
+dist/src/ui.js
+
+required module checks
+session.js absent
+monitors.js absent
+blocked GLB omitted (expected)
+
+required module checks (actual dist/src paths)
+dist/src/session.js present
+dist/src/monitors.js present

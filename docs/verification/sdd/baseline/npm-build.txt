@@ -1,0 +1,2 @@
+> node scripts/build.js
+Built standalone static application in dist/. No bundler or network dependencies.

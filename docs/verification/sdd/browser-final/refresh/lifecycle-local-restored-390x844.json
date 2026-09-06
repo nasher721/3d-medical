@@ -1,0 +1,242 @@
+{
+  "format": "flowstate-session",
+  "version": 2,
+  "schemaVersion": 2,
+  "exportedAt": "2026-09-05T18:43:04.831Z",
+  "scenarioId": "healthy",
+  "timeS": 0,
+  "patient": {
+    "weight": 70,
+    "hemoglobin": 12,
+    "contractility": 100,
+    "vascularTone": 100,
+    "volume": 100,
+    "metabolicDemand": 100,
+    "autoregulation": true
+  },
+  "interventions": {
+    "vasoactive": {
+      "norepinephrine": 0.27,
+      "dobutamine": 7,
+      "epinephrine": 0.61,
+      "phenylephrine": 0.13,
+      "vasopressin": 0.89
+    },
+    "ventilator": {
+      "mode": "volume-controlled",
+      "fio2": 88,
+      "peep": 17,
+      "respiratoryRate": 31,
+      "tidalVolume": 9,
+      "heartRate": 72,
+      "icp": 5
+    },
+    "fluid": 0,
+    "hypertonicSolution": null
+  },
+  "visual": {
+    "opacity": {
+      "brain": 1,
+      "lungs": 1,
+      "kidneys": 1
+    }
+  },
+  "metrics": {
+    "hr": 72,
+    "map": 87.4,
+    "sbp": 119.13333333333334,
+    "dbp": 71.53333333333333,
+    "co": 5.04,
+    "sv": 70,
+    "svr": 1300,
+    "cvp": 5.5,
+    "spo2": 97.63509909722804,
+    "svo2": 67.85047976526253,
+    "pao2": 91.98355469387023,
+    "paco2": 40,
+    "cpp": 82.4,
+    "icp": 5,
+    "pvr": 96,
+    "do2": 805.1740001712126,
+    "vo2": 250,
+    "lactate": 1,
+    "ef": 58.333333333333336,
+    "lungWater": 0,
+    "oxygenDebt": 0,
+    "brainFlow": 50,
+    "renalFlow": 1006.7707317073172,
+    "urineOutput": 110.60936585365855,
+    "edv": 120,
+    "esv": 50,
+    "tidalVolumeMl": 420,
+    "minuteVentilation": 6720,
+    "alveolarVentilation": 4480,
+    "inotropy": 1,
+    "afterload": 1,
+    "rateFilling": 1,
+    "rvLoad": 1,
+    "obstructionFactor": 1,
+    "cerebralTerritories": {
+      "aca": 18,
+      "mca": 22,
+      "pca": 10
+    }
+  },
+  "frankStarling": {
+    "label": "Schematic Frank–Starling relationship",
+    "units": {
+      "preload": "mL EDV",
+      "strokeVolume": "mL",
+      "contractility": "relative inotropy",
+      "afterload": "dimensionless penalty"
+    },
+    "samples": [
+      {
+        "edv": 50,
+        "sv": 29.166666666666668
+      },
+      {
+        "edv": 70,
+        "sv": 40.833333333333336
+      },
+      {
+        "edv": 90,
+        "sv": 52.5
+      },
+      {
+        "edv": 110,
+        "sv": 64.16666666666666
+      },
+      {
+        "edv": 130,
+        "sv": 75.83333333333333
+      },
+      {
+        "edv": 150,
+        "sv": 87.5
+      },
+      {
+        "edv": 170,
+        "sv": 99.16666666666667
+      },
+      {
+        "edv": 190,
+        "sv": 110.83333333333333
+      },
+      {
+        "edv": 210,
+        "sv": 122.5
+      }
+    ],
+    "contractility": 1,
+    "afterload": 1,
+    "operatingPoint": {
+      "preload": 120,
+      "strokeVolume": 70
+    }
+  },
+  "ventilatorCycle": {
+    "phase": "inspiration",
+    "cycleDurationS": 3.75,
+    "timeInCycleS": 0,
+    "inspiratoryTimeS": 1.25,
+    "expiratoryTimeS": 2.5,
+    "tidalVolumeMl": 420,
+    "volumeMl": 0,
+    "flowMlS": 336,
+    "pressureCmH2O": 1.68,
+    "elasticPressureCmH2O": 0,
+    "complianceMlCmH2O": 50,
+    "resistanceCmH2OSL": 5,
+    "minuteVentilationMlMin": 6720,
+    "alveolarVentilationMlMin": 4480
+  },
+  "calibration": {
+    "modelVersion": "2",
+    "hypertonic": [
+      {
+        "id": "hypertonic-3",
+        "calibrationStatus": "unreviewed",
+        "calibrationVersion": null
+      },
+      {
+        "id": "hypertonic-7-5",
+        "calibrationStatus": "unreviewed",
+        "calibrationVersion": null
+      },
+      {
+        "id": "hypertonic-23-4",
+        "calibrationStatus": "unreviewed",
+        "calibrationVersion": null
+      }
+    ]
+  },
+  "baseline": null,
+  "history": [
+    {
+      "time": 0,
+      "hr": 72,
+      "map": 87.4,
+      "sbp": 119.13333333333334,
+      "dbp": 71.53333333333333,
+      "co": 5.04,
+      "sv": 70,
+      "svr": 1300,
+      "cvp": 5.5,
+      "spo2": 97.63509909722804,
+      "svo2": 67.85047976526253,
+      "pao2": 91.98355469387023,
+      "paco2": 40,
+      "cpp": 82.4,
+      "icp": 5,
+      "pvr": 96,
+      "do2": 805.1740001712126,
+      "vo2": 250,
+      "lactate": 1,
+      "ef": 58.333333333333336,
+      "lungWater": 0,
+      "oxygenDebt": 0,
+      "brainFlow": 50,
+      "renalFlow": 1006.7707317073172,
+      "urineOutput": 110.60936585365855,
+      "edv": 120,
+      "esv": 50,
+      "tidalVolumeMl": 420,
+      "minuteVentilation": 6720,
+      "alveolarVentilation": 4480,
+      "inotropy": 1,
+      "afterload": 1,
+      "rateFilling": 1,
+      "rvLoad": 1,
+      "obstructionFactor": 1,
+      "cerebralTerritories": {
+        "aca": 18,
+        "mca": 22,
+        "pca": 10
+      },
+      "airwayPressureCmH2O": 1.68,
+      "airwayFlowMlS": 336,
+      "lungVolumeMl": 0,
+      "cycleDurationS": 3.75,
+      "respiratoryRate": 16,
+      "peep": 0,
+      "fio2": 21,
+      "tidalVolumeMlKg": 6,
+      "preloadEDV": 120,
+      "strokeVolume": 70,
+      "contractilityRelative": 1,
+      "afterloadDimensionless": 1
+    }
+  ],
+  "events": [],
+  "layers": {
+    "particles": true,
+    "labels": true,
+    "vessels": true,
+    "transparent": false
+  },
+  "colorMode": "oxygenation",
+  "selectedOrgan": "whole",
+  "speed": 5,
+  "model": "Educational lumped-parameter approximation. Not clinically validated."
+}

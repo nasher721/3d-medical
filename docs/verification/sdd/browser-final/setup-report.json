@@ -1,0 +1,60 @@
+{
+  "phase": "setup-only",
+  "startedUTC": "2026-09-05T17:50:35Z",
+  "host": {
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.13.2"
+  },
+  "sourceBefore": {
+    "src/anatomy.js": "bce59e5e9b7cc7dd3570cfd6e571ab07ff2cd28000cf52cd31be9c80fb6be31b",
+    "src/app.js": "91f5c74bf7760f2e22c180cd0ceba2f730a070b9cc73caba7a471167d5ea82a5",
+    "src/content.js": "0546bc8a91a1641db41da72fc2352b8a5a519dc24b8a57667e5ad06166eb80fd",
+    "src/math3d.js": "3313b2b87777b0695eb6e3acb09989c1d017e206f57e5e5e093debc840a9c0b9",
+    "src/monitors.js": "ad584ee9c99df191d1c62b4f8253329c2b5a0a48ab7034582cc0cd643e75419a",
+    "src/organ-assets.js": "aeeb5bed2b049851d835892708b41d8f4dedf4fe9cd19d16621ef997b4f6f443",
+    "src/physiology.js": "3aac2682bf00404007145114fe1fb6aafad814d725bda222f4604b798bc7bbd8",
+    "src/session.js": "5daa7258f58c088b3f2b242ddd8b702e651f6128c723908b8389297630bed5e1",
+    "src/styles.css": "147dfd9ad8cb2afb5941c3f8b7c9cb8242728f507b982449f407799faf88ad05",
+    "src/ui.js": "0e871eed2a78d72a56cfd90f55900060b1ba894e363afa024c029fdf9bdea68e"
+  },
+  "errors": [],
+  "consoleErrors": [],
+  "requestFailures": [],
+  "cases": [],
+  "fpsTarget": null,
+  "scope": "Isolated headless Chromium with SwiftShader on this host; not native Chrome/GPU or clinical validation.",
+  "browserVersion": "145.0.7632.6",
+  "devices": [
+    {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "platform": "MacIntel",
+      "hardwareConcurrency": 11,
+      "deviceMemory": 8,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "dpr": 1,
+      "webglVersion": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "vendor": "Google Inc. (Google)",
+      "glError": 0
+    }
+  ],
+  "setupReady": true,
+  "sourceAfter": {
+    "src/anatomy.js": "bce59e5e9b7cc7dd3570cfd6e571ab07ff2cd28000cf52cd31be9c80fb6be31b",
+    "src/app.js": "91f5c74bf7760f2e22c180cd0ceba2f730a070b9cc73caba7a471167d5ea82a5",
+    "src/content.js": "0546bc8a91a1641db41da72fc2352b8a5a519dc24b8a57667e5ad06166eb80fd",
+    "src/math3d.js": "3313b2b87777b0695eb6e3acb09989c1d017e206f57e5e5e093debc840a9c0b9",
+    "src/monitors.js": "ad584ee9c99df191d1c62b4f8253329c2b5a0a48ab7034582cc0cd643e75419a",
+    "src/organ-assets.js": "aeeb5bed2b049851d835892708b41d8f4dedf4fe9cd19d16621ef997b4f6f443",
+    "src/physiology.js": "3aac2682bf00404007145114fe1fb6aafad814d725bda222f4604b798bc7bbd8",
+    "src/session.js": "5daa7258f58c088b3f2b242ddd8b702e651f6128c723908b8389297630bed5e1",
+    "src/styles.css": "147dfd9ad8cb2afb5941c3f8b7c9cb8242728f507b982449f407799faf88ad05",
+    "src/ui.js": "0e871eed2a78d72a56cfd90f55900060b1ba894e363afa024c029fdf9bdea68e"
+  },
+  "sourceStable": true
+}

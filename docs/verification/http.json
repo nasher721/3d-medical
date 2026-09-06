@@ -1,0 +1,46 @@
+{
+  "/": {
+    "status": 200,
+    "bytes": 736,
+    "contentType": "text/html; charset=utf-8"
+  },
+  "/src/app.js": {
+    "status": 200,
+    "bytes": 38606,
+    "contentType": "text/javascript; charset=utf-8"
+  },
+  "/src/anatomy.js": {
+    "status": 200,
+    "bytes": 24697,
+    "contentType": "text/javascript; charset=utf-8"
+  },
+  "/src/physiology.js": {
+    "status": 200,
+    "bytes": 12805,
+    "contentType": "text/javascript; charset=utf-8"
+  },
+  "/dist/index.html": {
+    "status": 200,
+    "bytes": 736,
+    "contentType": "text/html; charset=utf-8"
+  },
+  "/dist/src/app.js": {
+    "status": 200,
+    "bytes": 38606,
+    "contentType": "text/javascript; charset=utf-8"
+  },
+  "/dist/assets/favicon.svg": {
+    "status": 200,
+    "bytes": 253,
+    "contentType": "image/svg+xml"
+  },
+  "/.git/config": {
+    "status": 403
+  },
+  "/.omx/state/flowstate/ralph-progress.json": {
+    "status": 403
+  },
+  "/nonexistent": {
+    "status": 404
+  }
+}

@@ -1,0 +1,1073 @@
+{
+  "url": "http://127.0.0.1:5199/",
+  "errors": [],
+  "consoleErrors": [],
+  "requestFailures": [],
+  "viewports": {
+    "1440x900": {
+      "csvRows": 23,
+      "csvColumns": 39,
+      "historicalValuesExact": true,
+      "invalidImports": [
+        {
+          "case": "unknown-root",
+          "statePreserved": true,
+          "feedback": "Could not import: Unknown session key: unknown"
+        },
+        {
+          "case": "unknown-visual",
+          "statePreserved": true,
+          "feedback": "Could not import: Unknown visual key: unknown"
+        },
+        {
+          "case": "invalid-mode",
+          "statePreserved": true,
+          "feedback": "Could not import: Unsupported ventilator mode"
+        },
+        {
+          "case": "uncalibrated",
+          "statePreserved": true,
+          "feedback": "Could not import: Hypertonic solution is uncalibrated"
+        }
+      ],
+      "fiveAgentsAndVentilatorRestored": true,
+      "canonicalReset": true,
+      "finiteArchiveNotRestoredAsLive": true,
+      "freshInitialHistoryTime": 0,
+      "freshInitialCO": 5.04,
+      "resumedImportTimeS": 1,
+      "resumedImportSpeed": 5,
+      "localSaveRestore": true
+    },
+    "390x844": {
+      "csvRows": 26,
+      "csvColumns": 39,
+      "historicalValuesExact": true,
+      "invalidImports": [
+        {
+          "case": "unknown-root",
+          "statePreserved": true,
+          "feedback": "Could not import: Unknown session key: unknown"
+        },
+        {
+          "case": "unknown-visual",
+          "statePreserved": true,
+          "feedback": "Could not import: Unknown visual key: unknown"
+        },
+        {
+          "case": "invalid-mode",
+          "statePreserved": true,
+          "feedback": "Could not import: Unsupported ventilator mode"
+        },
+        {
+          "case": "uncalibrated",
+          "statePreserved": true,
+          "feedback": "Could not import: Hypertonic solution is uncalibrated"
+        }
+      ],
+      "fiveAgentsAndVentilatorRestored": true,
+      "canonicalReset": true,
+      "finiteArchiveNotRestoredAsLive": true,
+      "freshInitialHistoryTime": 0,
+      "freshInitialCO": 5.04,
+      "resumedImportTimeS": 1.3666666666666667,
+      "resumedImportSpeed": 5,
+      "localSaveRestore": true
+    }
+  },
+  "browser": "145.0.7632.6",
+  "zeroFlowRendererFixture": {
+    "stablePhases": true,
+    "allRatesZero": true,
+    "evidence": {
+      "assetSource": "schematic-fallback-provenance-blocked",
+      "view": "brain",
+      "opacity": {
+        "brain": 1,
+        "lungs": 1,
+        "kidneys": 1
+      },
+      "routes": [
+        {
+          "name": null,
+          "group": "systemic",
+          "semantic": "arterial",
+          "phase": 0.05233060306464662,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "systemic",
+          "semantic": "venous",
+          "phase": 0.09734939908646775,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.1479764900181035,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.17229224127401288,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.07836884366884816,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.155445526628403,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.1001137965313156,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.21867116536013204,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.14071522551195098,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.20389189150626646,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.23924210961117054,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.1457226857671215,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.3413890919621572,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.10346682934526816,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.1805899140590534,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.07627299436926058,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.1245089666812118,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.1991808503298331,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-in-0",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.17571946006845315,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-return-0",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.13897441444746242,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-in-1",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.16146336674031225,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-return-1",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.13868693106182245,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-in-2",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.1691917969949018,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-return-2",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.15475813906927413,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-in-3",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.22952852435366794,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-return-3",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.23671690357406436,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-in-4",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.24536988243021163,
+          "rate": 0
+        },
+        {
+          "name": "-1-renal-capillary-return-4",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.3690661002549154,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "systemic",
+          "semantic": "arterial",
+          "phase": 0.09422618746821042,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "systemic",
+          "semantic": "venous",
+          "phase": 0.10052888580180491,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.1379219528641046,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.2876979591104091,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.07836884366884816,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.155445526628403,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.1001137965313156,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.21867116536013204,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.14071522551195098,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.20389189150626646,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.23924210961117054,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.1457226857671215,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.3413890919621572,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.10346682934526816,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "arterial",
+          "phase": 0.1805899140590534,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "pulmonary",
+          "semantic": "venous",
+          "phase": 0.07627299436926058,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.18476027208983306,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.12488303181120682,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-in-0",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.17571946006845315,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-return-0",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.13897441444746242,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-in-1",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.16146336674031225,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-return-1",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.13868693106182245,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-in-2",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.1691917969949018,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-return-2",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.15475813906927413,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-in-3",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.22952852435366794,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-return-3",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.23671690357406436,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-in-4",
+          "group": "renal",
+          "semantic": "arterial",
+          "phase": 0.24536988243021163,
+          "rate": 0
+        },
+        {
+          "name": "1-renal-capillary-return-4",
+          "group": "renal",
+          "semantic": "venous",
+          "phase": 0.3690661002549154,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "systemic",
+          "semantic": "arterial",
+          "phase": 0.12267148998276337,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "systemic",
+          "semantic": "venous",
+          "phase": 0.08305882931734958,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "heart",
+          "semantic": "venous",
+          "phase": 0.4002642588303185,
+          "rate": 0
+        },
+        {
+          "name": null,
+          "group": "heart",
+          "semantic": "arterial",
+          "phase": 0.46166628951414834,
+          "rate": 0
+        },
+        {
+          "name": "left-internal-carotid->left-aca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.503390428074396,
+          "rate": 0
+        },
+        {
+          "name": "right-internal-carotid->right-aca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.503390428074396,
+          "rate": 0
+        },
+        {
+          "name": "left-aca->anterior-communicating",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.7678846153846149,
+          "rate": 0
+        },
+        {
+          "name": "anterior-communicating->right-aca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.7678846153846149,
+          "rate": 0
+        },
+        {
+          "name": "left-internal-carotid->left-mca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.49896909651345456,
+          "rate": 0
+        },
+        {
+          "name": "right-internal-carotid->right-mca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.49896909651345456,
+          "rate": 0
+        },
+        {
+          "name": "left-internal-carotid->left-posterior-communicating",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.17238516826110284,
+          "rate": 0
+        },
+        {
+          "name": "right-internal-carotid->right-posterior-communicating",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.17238516826110284,
+          "rate": 0
+        },
+        {
+          "name": "left-posterior-communicating->left-pca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.9065639502408483,
+          "rate": 0
+        },
+        {
+          "name": "right-posterior-communicating->right-pca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.9065639502408483,
+          "rate": 0
+        },
+        {
+          "name": "left-vertebral->basilar",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.5995198146145122,
+          "rate": 0
+        },
+        {
+          "name": "right-vertebral->basilar",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.5995198146145122,
+          "rate": 0
+        },
+        {
+          "name": "basilar->left-pca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.5649214892630882,
+          "rate": 0
+        },
+        {
+          "name": "basilar->right-pca",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.5649214892630882,
+          "rate": 0
+        },
+        {
+          "name": "left-aca->aca-capillary-bed",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.5074389927817418,
+          "rate": 0
+        },
+        {
+          "name": "right-aca->aca-capillary-bed",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.5074389927817418,
+          "rate": 0
+        },
+        {
+          "name": "left-mca->mca-capillary-bed",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.5272234744870612,
+          "rate": 0
+        },
+        {
+          "name": "right-mca->mca-capillary-bed",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.10590655055574343,
+          "rate": 0
+        },
+        {
+          "name": "left-pca->pca-capillary-bed",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.16021293243924,
+          "rate": 0
+        },
+        {
+          "name": "right-pca->pca-capillary-bed",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.3204774624158717,
+          "rate": 0
+        },
+        {
+          "name": "aca-capillary-bed->dural-venous-sinuses",
+          "group": "brain",
+          "semantic": "venous",
+          "phase": 0.6884482758620691,
+          "rate": 0
+        },
+        {
+          "name": "mca-capillary-bed->dural-venous-sinuses",
+          "group": "brain",
+          "semantic": "venous",
+          "phase": 0.18721118616349514,
+          "rate": 0
+        },
+        {
+          "name": "pca-capillary-bed->dural-venous-sinuses",
+          "group": "brain",
+          "semantic": "venous",
+          "phase": 0.1384390236027484,
+          "rate": 0
+        },
+        {
+          "name": "dural-venous-sinuses->internal-jugular-return",
+          "group": "brain",
+          "semantic": "venous",
+          "phase": 0.11607361964847925,
+          "rate": 0
+        },
+        {
+          "name": "-1-carotid-inflow",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.21102405390401846,
+          "rate": 0
+        },
+        {
+          "name": "1-carotid-inflow",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.2270961351219883,
+          "rate": 0
+        },
+        {
+          "name": "jugular-systemic-return",
+          "group": "brain",
+          "semantic": "venous",
+          "phase": 0.13899923415249216,
+          "rate": 0
+        },
+        {
+          "name": "aca-capillary-bed-0",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.27224999999999977,
+          "rate": 0
+        },
+        {
+          "name": "aca-capillary-bed-1",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.27224999999999977,
+          "rate": 0
+        },
+        {
+          "name": "aca-capillary-bed-2",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.27224999999999977,
+          "rate": 0
+        },
+        {
+          "name": "mca-capillary-bed-0",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.27224999999999977,
+          "rate": 0
+        },
+        {
+          "name": "mca-capillary-bed-1",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.27224999999999977,
+          "rate": 0
+        },
+        {
+          "name": "mca-capillary-bed-2",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.27224999999999977,
+          "rate": 0
+        },
+        {
+          "name": "pca-capillary-bed-0",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.2722500000000001,
+          "rate": 0
+        },
+        {
+          "name": "pca-capillary-bed-1",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.2722500000000001,
+          "rate": 0
+        },
+        {
+          "name": "pca-capillary-bed-2",
+          "group": "brain",
+          "semantic": "arterial",
+          "phase": 0.2722500000000001,
+          "rate": 0
+        },
+        {
+          "name": "-1:collecting-ducts->calyces",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.6070854939473734,
+          "rate": 0
+        },
+        {
+          "name": "-1:calyces->renal-pelvis",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.532505781202247,
+          "rate": 0
+        },
+        {
+          "name": "-1:renal-pelvis->ureter",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.32591873144446526,
+          "rate": 0
+        },
+        {
+          "name": "-1:ureter->bladder",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.1486228796238389,
+          "rate": 0
+        },
+        {
+          "name": "1:collecting-ducts->calyces",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.6070854939473734,
+          "rate": 0
+        },
+        {
+          "name": "1:calyces->renal-pelvis",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.532505781202247,
+          "rate": 0
+        },
+        {
+          "name": "1:renal-pelvis->ureter",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.32591873144446526,
+          "rate": 0
+        },
+        {
+          "name": "1:ureter->bladder",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.1486228796238389,
+          "rate": 0
+        },
+        {
+          "name": "1:bladder->outlet",
+          "group": "urine",
+          "semantic": "urine",
+          "phase": 0.4950000000000007,
+          "rate": 0
+        }
+      ],
+      "labels": [
+        {
+          "id": "left-internal-carotid",
+          "text": "Left internal carotid artery",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.12,
+          "anchorX": 0.34560000948556424,
+          "anchorY": 0.5358222626076481,
+          "visible": true,
+          "index": 1
+        },
+        {
+          "id": "right-internal-carotid",
+          "text": "Right internal carotid artery",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.155,
+          "anchorX": 0.510070460736329,
+          "anchorY": 0.5348557752207206,
+          "visible": true,
+          "index": 2
+        },
+        {
+          "id": "left-aca",
+          "text": "Left anterior cerebral artery (ACA)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.19,
+          "anchorX": 0.38309802852251074,
+          "anchorY": 0.3962586333367627,
+          "visible": true,
+          "index": 3
+        },
+        {
+          "id": "right-aca",
+          "text": "Right anterior cerebral artery (ACA)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.225,
+          "anchorX": 0.4725868090752415,
+          "anchorY": 0.3965935209240814,
+          "visible": true,
+          "index": 4
+        },
+        {
+          "id": "anterior-communicating",
+          "text": "Anterior communicating artery (ACom)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.26,
+          "anchorX": 0.4279810452055161,
+          "anchorY": 0.3964265959023012,
+          "visible": true,
+          "index": 5
+        },
+        {
+          "id": "left-mca",
+          "text": "Left middle cerebral artery (MCA)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.29500000000000004,
+          "anchorX": 0.2802297826761757,
+          "anchorY": 0.5016101179524934,
+          "visible": true,
+          "index": 6
+        },
+        {
+          "id": "right-mca",
+          "text": "Right middle cerebral artery (MCA)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.33,
+          "anchorX": 0.5746697972775323,
+          "anchorY": 0.5005780808946849,
+          "visible": true,
+          "index": 7
+        },
+        {
+          "id": "left-pca",
+          "text": "Left posterior cerebral artery (PCA)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.365,
+          "anchorX": 0.37380566904701484,
+          "anchorY": 0.6655117330302875,
+          "visible": true,
+          "index": 8
+        },
+        {
+          "id": "right-pca",
+          "text": "Right posterior cerebral artery (PCA)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.4,
+          "anchorX": 0.4829891532885501,
+          "anchorY": 0.6638920768686274,
+          "visible": true,
+          "index": 9
+        },
+        {
+          "id": "left-posterior-communicating",
+          "text": "Left posterior communicating artery (PCom)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.43500000000000005,
+          "anchorX": 0.344228328606918,
+          "anchorY": 0.6073210993686191,
+          "visible": true,
+          "index": 10
+        },
+        {
+          "id": "right-posterior-communicating",
+          "text": "Right posterior communicating artery (PCom)",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.47000000000000003,
+          "anchorX": 0.5117371796663835,
+          "anchorY": 0.6055123355609912,
+          "visible": true,
+          "index": 11
+        },
+        {
+          "id": "basilar",
+          "text": "Basilar artery",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.505,
+          "anchorX": 0.42874817603145743,
+          "anchorY": 0.7269054064533204,
+          "visible": true,
+          "index": 12
+        },
+        {
+          "id": "left-vertebral",
+          "text": "Left vertebral artery",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.54,
+          "anchorX": 0.39027563157019174,
+          "anchorY": 0.8102484337088744,
+          "visible": true,
+          "index": 13
+        },
+        {
+          "id": "right-vertebral",
+          "text": "Right vertebral artery",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.5750000000000001,
+          "anchorX": 0.46987593365037833,
+          "anchorY": 0.8082706072787536,
+          "visible": true,
+          "index": 14
+        },
+        {
+          "id": "aca-capillary-bed",
+          "text": "ACA territory \u2014 schematic capillary bed",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.6100000000000001,
+          "anchorX": 0.43021910017365,
+          "anchorY": 0.2936001837978275,
+          "visible": true,
+          "index": 15
+        },
+        {
+          "id": "mca-capillary-bed",
+          "text": "MCA territory \u2014 schematic capillary bed",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.645,
+          "anchorX": 0.27230900902413535,
+          "anchorY": 0.3715248435644919,
+          "visible": true,
+          "index": 16
+        },
+        {
+          "id": "pca-capillary-bed",
+          "text": "PCA territory \u2014 schematic capillary bed",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.68,
+          "anchorX": 0.5759493853022721,
+          "anchorY": 0.6491566223889906,
+          "visible": true,
+          "index": 17
+        },
+        {
+          "id": "dural-venous-sinuses",
+          "text": "Dural venous sinuses \u2014 schematic venous return",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.7150000000000001,
+          "anchorX": 0.4332396803051625,
+          "anchorY": 0.22291479464952002,
+          "visible": true,
+          "index": 18
+        },
+        {
+          "id": "internal-jugular-return",
+          "text": "Internal jugular venous return",
+          "organ": "brain",
+          "kind": "anatomy",
+          "x": 0.02,
+          "y": 0.7500000000000001,
+          "anchorX": 0.5942310166175541,
+          "anchorY": 0.7005832943027706,
+          "visible": true,
+          "index": 19
+        },
+        {
+          "id": "brain-flow",
+          "text": "Cerebral proxy: 0.0 mL/100 g/min \u00b7 \u25a0 No flow",
+          "organ": "brain",
+          "kind": "flow",
+          "x": 0.02,
+          "y": 0.785,
+          "anchorX": 0.42825482229608114,
+          "anchorY": 0.5143693563630156,
+          "visible": true,
+          "index": 20
+        }
+      ],
+      "finite": true,
+      "glError": 0
+    }
+  }
+}

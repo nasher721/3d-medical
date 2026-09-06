@@ -1,0 +1,7 @@
+{
+  "exitCode": 1,
+  "expectedProvenanceRejection": true,
+  "previewUnchanged": true,
+  "previewFiles": 14,
+  "stderr": "file:///Users/Nash/Documents/ChatGPT/3d%20project/src/organ-assets.js:14\n  if (blocked) throw new Error(`Organ asset release blocked by provenance record: ${blocked.name || 'unnamed organ'}.`);\n                     ^\n\nError: Organ asset release blocked by provenance record: brain.\n    at assertAssetReleaseAllowed (file:///Users/Nash/Documents/ChatGPT/3d%20project/src/organ-assets.js:14:22)\n    at file:///Users/Nash/Documents/ChatGPT/3d%20project/scripts/build.js:7:3\n\nNode.js v24.13.0\n"
+}

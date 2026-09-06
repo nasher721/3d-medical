@@ -1,0 +1,12 @@
+69146 540.2  2.8 /Users/Nash/Library/Caches/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-mac-arm64/chrome-headless-shell
+54339 106.7  0.6 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/152.0.7977.76/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper
+54425  56.6  1.0 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/152.0.7977.76/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+57847  50.5  1.0 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/152.0.7977.76/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+60103  45.6  0.9 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/152.0.7977.76/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+15386  27.1  4.2 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/152.0.7977.64/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+15373  23.5  3.7 /Applications/ChatGPT.app/Contents/Resources/codex
+61140  21.8  0.9 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/152.0.7977.76/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+  487  17.1  0.6 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+  767   9.1  0.2 /System/Library/CoreServices/MenuBarAgent.app/Contents/MacOS/MenuBarAgent
+17001   4.8  0.3 /Applications/ChatGPT.app/Contents/Resources/codex-code-mode-host
+69156   4.6  1.0 /Users/Nash/Library/Caches/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-mac-arm64/chrome-headless-shell

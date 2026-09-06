@@ -1,0 +1,406 @@
+[
+  {
+    "name": "brain",
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceArchiveContentLengthBytes": 134113358,
+    "sourceArchiveLastModified": "2011-09-11",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "baked organ center",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm",
+      "layout": "exploded teaching centers; source-relative sizes and bilateral height offsets"
+    },
+    "source": [
+      "BP49.obj",
+      "BP50.obj",
+      "BP51.obj",
+      "FMA67943.obj",
+      "FMA72653.obj",
+      "FMA72654.obj",
+      "FMA72655.obj",
+      "FMA72656.obj",
+      "FMA72661.obj",
+      "FMA72662.obj",
+      "FMA72665.obj",
+      "FMA72666.obj",
+      "FMA72667.obj",
+      "FMA72668.obj",
+      "FMA72669.obj",
+      "FMA72670.obj",
+      "FMA72685.obj",
+      "FMA72686.obj",
+      "FMA72687.obj",
+      "FMA72688.obj",
+      "FMA72689.obj",
+      "FMA72690.obj",
+      "FMA72701.obj",
+      "FMA72702.obj",
+      "FMA72705.obj",
+      "FMA72706.obj",
+      "FMA72717.obj",
+      "FMA72718.obj",
+      "FMA72800.obj",
+      "FMA72801.obj",
+      "FMA72804.obj",
+      "FMA72805.obj",
+      "FMA72975.obj",
+      "FMA72976.obj",
+      "FMA72977.obj",
+      "FMA72978.obj",
+      "FMA67944.obj",
+      "FMA61993nsn.obj",
+      "FMA62004.obj"
+    ],
+    "vertices": 126722,
+    "triangles": 253294,
+    "min": [
+      -0.7921884475697397,
+      2.6878007881925656,
+      -1.0121949586585275
+    ],
+    "max": [
+      0.7921884475697397,
+      4.552199211807435,
+      1.0121949586585275
+    ],
+    "center": [
+      0,
+      3.62,
+      0
+    ],
+    "sourceSHA256": {
+      "BP49.obj": "e38cd3361c7d349d4f0a1641f0347f80c1d769ced59101c74d72ab69adbb84e8",
+      "BP50.obj": "20639e91caa187932d6aa9815496c2afd9592dda81902d15bdfdbca17b5b1b95",
+      "BP51.obj": "2ec186a17ae7969de87ef1934b4dcb78392d14a555604640351d024878093d30",
+      "FMA67943.obj": "24506e97d51d1d6f9d5bbd2a1f7659c2f9ea6d6c2878504e6f6e63f72698e397",
+      "FMA72653.obj": "2a5f0383cb80a1b2c64bb0206eda6559b1ed62d4ec927c405ed48cad9cedd49c",
+      "FMA72654.obj": "cc2f151b03c70e44e953b622698ad8596c93c5d94c0910aab5792ff33f5f7f05",
+      "FMA72655.obj": "afcdf4e50a698b55ec9fe0c43806d7348abdd839d5a222c320f1edcb4e15a961",
+      "FMA72656.obj": "64aa68fb223a02e1243366680f2bad0e4c0843d022f5a94523f963936b571ab6",
+      "FMA72661.obj": "4a4570a75df780adb3b03655dd06fb9fcb2271a8f52cb6256eb08a6a5572c574",
+      "FMA72662.obj": "8ca3ae1a905d4b61f6f65fb84334014af2bdebdb2d7e7000e129ed0c1146c268",
+      "FMA72665.obj": "34d256bf0dab4b9eb0a34444150533eeaf700bdf1376675a308d385e441ed38c",
+      "FMA72666.obj": "a777c1d1b06d9ca890befd4f3ae32897727f3f136b221ca7939e4ae5669dfe01",
+      "FMA72667.obj": "fae0848cebadf13b5ff8f7f9f32e2aa97482b08234dd7762288197efc6f5f48b",
+      "FMA72668.obj": "c35f6b57c01bf521600dd5045fb5ed66772924f9fb474339c8136c275a11bc2b",
+      "FMA72669.obj": "3d5ff4106845bc2b75d33bdbe23d3cf921a481a2cfde4b7063b7d9528234da4d",
+      "FMA72670.obj": "2106c9fe6b27aa0eb96368341a6d7930f22087a7a7cbb9863e0fed9ee7e2487c",
+      "FMA72685.obj": "85fcf18272bc81e2c1410f17899ece7088965a713dc8c30726cea9a7ccdd1178",
+      "FMA72686.obj": "b1242b83837f708f3db5c82c1a5469e2aa90e8666fce3bdfd69c442fb985aa80",
+      "FMA72687.obj": "f2321de892a9b4b97f1ae822e9a02d636ac002877cd1c6c9604c1dfee6d1ef27",
+      "FMA72688.obj": "dc2e8eb89e1f62a73c2a2b295a7556a69ac9041a1511fbb07c4ea17c5b755fc8",
+      "FMA72689.obj": "476da7a33679bdb94db6d7d4e2839f7f85bdb5ce5e137f2be6649ac2e37e3276",
+      "FMA72690.obj": "f5359a3013623a07d5f371871d2b65c5df7a3eb8a621b44e44b4592c7904679f",
+      "FMA72701.obj": "46c464de3a9633d89e1c77859c49f0a1d98bb09aebedcbb3876481ceac2d6159",
+      "FMA72702.obj": "42a1540643bd188c3fff8e9e26d287ebc720f5a71f570345dc59deaeb617f691",
+      "FMA72705.obj": "4cb6151d0116cf618e73391357fc08a89d5f530eacf304bc47d9628a3ec29842",
+      "FMA72706.obj": "cd269b6d9b5c736e5081fb8a31fe18f52f5ca1730ed1f5e646f5e01ebe6ce1bc",
+      "FMA72717.obj": "c701a29dec1185e49a40147b219b7f36f5cfb1872c6b00e46047e1780e1497c3",
+      "FMA72718.obj": "6dea889c0e5179e242d78cd8aeb35ac718992a0fd9567765d05feac9da80966b",
+      "FMA72800.obj": "6f8a60dc779db80db992d75743901550f331b72410d5b81fd5bba9a7e1dd808e",
+      "FMA72801.obj": "3edcee8f7723c21dd04da2424e9d7b4e2f201a28188857b838835300bf59dbed",
+      "FMA72804.obj": "3f4ddb8ef48df92f6621c5b222bd5c46508c46202a2d423cbeee379f5ddf64f9",
+      "FMA72805.obj": "9b5f8c392d41106e265161fbee9831ad423a40bae72404a61c9caa49cbe7a856",
+      "FMA72975.obj": "c71c77b581ee686b9355ddb9b55d3f4c402324f389c2c00801a4d0149026b6aa",
+      "FMA72976.obj": "b200b0b78490bfeceef6de0c647c88ae7c798a2619b7d0646d0b051f128c6910",
+      "FMA72977.obj": "f9ef503cd5769162570bc7c4ae42068db3aedd1ce9b8d3af96da61db89ca6576",
+      "FMA72978.obj": "68e0c03ca1c9543614ad18cf81192863a230376a74b7608ba17d084044916ab2",
+      "FMA67944.obj": "99029898506c46266467f549ec6e49f23d85c241eac9f166371379973d7f79ae",
+      "FMA61993nsn.obj": "5b627fb3858990325a2de4f1315dc49750c58cfff9451721a92bb06a0e875c6a",
+      "FMA62004.obj": "d3f4c5f25e65d0e46e317b76a2f469830f2946ce985592a666f3c086299db8f4"
+    },
+    "sourceBounds": {
+      "min": [
+        -67.3039,
+        1476.35,
+        4.51652
+      ],
+      "max": [
+        65.8352,
+        1633.02,
+        174.631
+      ]
+    }
+  },
+  {
+    "name": "heart",
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceArchiveContentLengthBytes": 134113358,
+    "sourceArchiveLastModified": "2011-09-11",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "baked organ center",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm",
+      "layout": "exploded teaching centers; source-relative sizes and bilateral height offsets"
+    },
+    "source": [
+      "FMA7274.obj"
+    ],
+    "vertices": 69692,
+    "triangles": 132375,
+    "min": [
+      -0.6470296885866627,
+      -0.20666254539834755,
+      -0.30172071710068804
+    ],
+    "max": [
+      0.7270296885866627,
+      1.0466625453983476,
+      1.0017207171006879
+    ],
+    "center": [
+      0.04,
+      0.42,
+      0.35
+    ],
+    "sourceSHA256": {
+      "FMA7274.obj": "3c0f37d1098984d4a524c0c3dd13093197c871a858919024ad75f1e6fb5b399b"
+    },
+    "sourceBounds": {
+      "min": [
+        -36.3199,
+        1184.36,
+        67.0666
+      ],
+      "max": [
+        79.1457,
+        1289.68,
+        176.598
+      ]
+    }
+  },
+  {
+    "name": "lung-right",
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceArchiveContentLengthBytes": 134113358,
+    "sourceArchiveLastModified": "2011-09-11",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "baked organ center",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm",
+      "layout": "exploded teaching centers; source-relative sizes and bilateral height offsets"
+    },
+    "source": [
+      "FMA7333.obj",
+      "FMA7337.obj",
+      "FMA7383.obj"
+    ],
+    "vertices": 11955,
+    "triangles": 23887,
+    "min": [
+      -2.4324954563016767,
+      -0.3765010431960445,
+      -1.0769718259794456
+    ],
+    "max": [
+      -0.9275045436983228,
+      2.6501862298122267,
+      1.0769718259794454
+    ],
+    "center": [
+      -1.68,
+      1.136842593308091,
+      0
+    ],
+    "sourceSHA256": {
+      "FMA7333.obj": "2ada44d1aa395d93567ce839cbe509138aa00be7ec9b42431a85d47a0188fccf",
+      "FMA7337.obj": "c53ff9b414a238a2f625aea4d30630005dae0f6a0c6fa5523a6d94c6cdb82110",
+      "FMA7383.obj": "ee68c9eec87ece782686603a24f3dbacb590e0a3773d4734b995a5c09e4508f7"
+    },
+    "sourceBounds": {
+      "min": [
+        -128.054,
+        1118.04,
+        16.4378
+      ],
+      "max": [
+        -1.5859,
+        1372.38,
+        197.439
+      ]
+    }
+  },
+  {
+    "name": "lung-left",
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceArchiveContentLengthBytes": 134113358,
+    "sourceArchiveLastModified": "2011-09-11",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "baked organ center",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm",
+      "layout": "exploded teaching centers; source-relative sizes and bilateral height offsets"
+    },
+    "source": [
+      "FMA7370.obj",
+      "FMA7371.obj"
+    ],
+    "vertices": 8489,
+    "triangles": 16990,
+    "min": [
+      0.9661342554671197,
+      -0.4168425933080899,
+      -1.0672791438065068
+    ],
+    "max": [
+      2.39386574453288,
+      2.6631574066919104,
+      1.0672791438065068
+    ],
+    "center": [
+      1.68,
+      1.1231574066919088,
+      0
+    ],
+    "sourceSHA256": {
+      "FMA7370.obj": "8cc3f2f151842320cfb6efe78d86411e95d5c00017141b1d66c5489b74e5f24e",
+      "FMA7371.obj": "f6670ae446a0feb83ee782c2931e8daf957ae6e36a32dbd3e42fc1c73bcc1f98"
+    },
+    "sourceBounds": {
+      "min": [
+        5.3392,
+        1114.65,
+        17.3328
+      ],
+      "max": [
+        125.315,
+        1373.47,
+        196.705
+      ]
+    }
+  },
+  {
+    "name": "kidney-right",
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 95% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_95.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "baked organ center",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm",
+      "layout": "exploded teaching centers; source-relative sizes and bilateral height offsets"
+    },
+    "source": [
+      "FMA7204.obj"
+    ],
+    "vertices": 6199,
+    "triangles": 12394,
+    "min": [
+      -1.6773981686113903,
+      -2.2898842438760543,
+      -0.23580591144424717
+    ],
+    "max": [
+      -0.9626018313886098,
+      -1.073402055482577,
+      0.39580591144424704
+    ],
+    "center": [
+      -1.32,
+      -1.6816431496793143,
+      0.08
+    ],
+    "sourceSHA256": {
+      "FMA7204.obj": "bb840d337f4b99dad9d8f9c211bdab81ac548a95869e61e3f8bb01734da3781a"
+    },
+    "sourceBounds": {
+      "min": [
+        -95.5017,
+        999.596,
+        44.8061
+      ],
+      "max": [
+        -35.4356,
+        1101.82,
+        97.882
+      ]
+    },
+    "sourceArchiveContentLengthBytes": 547270545
+  },
+  {
+    "name": "kidney-left",
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 95% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_95.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "baked organ center",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm",
+      "layout": "exploded teaching centers; source-relative sizes and bilateral height offsets"
+    },
+    "source": [
+      "FMA7205.obj"
+    ],
+    "vertices": 7681,
+    "triangles": 15358,
+    "min": [
+      0.9596035855034386,
+      -2.110977204234605,
+      -0.18237953790278955
+    ],
+    "max": [
+      1.6803964144965615,
+      -0.8857364964067713,
+      0.3423795379027897
+    ],
+    "center": [
+      1.32,
+      -1.4983568503206888,
+      0.08
+    ],
+    "sourceSHA256": {
+      "FMA7205.obj": "2cae3ed4f0c8752c52f465482823ce3c6483c466884a41fcfdab2fff6502c1a2"
+    },
+    "sourceBounds": {
+      "min": [
+        24.5768,
+        1014.63,
+        52.4489
+      ],
+      "max": [
+        85.1468,
+        1117.59,
+        96.5457
+      ]
+    },
+    "sourceArchiveContentLengthBytes": 547270545
+  }
+]

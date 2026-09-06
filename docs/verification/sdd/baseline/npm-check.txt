@@ -1,0 +1,2 @@
+> node scripts/check.js
+Syntax checked 12 JavaScript modules. No external dependencies.

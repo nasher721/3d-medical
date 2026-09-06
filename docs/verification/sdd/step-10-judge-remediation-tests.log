@@ -1,0 +1,16 @@
+✔ production archive preserves historical territories, cycle settings and Starling values after interventions (10.813375ms)
+✔ production CSV parses into exact original observations with distinct organ and ventilator units (3.282792ms)
+✔ calibration and derived archives cannot import unknown, nonfinite, or enabled metadata (2.925709ms)
+✔ plot points and marker share current model values; pause no-op freezes all plot modes (19.989833ms)
+✔ actual monitor render methods expose labeled units and paint stable plots at paused time (4.542625ms)
+✔ organ opacity contract isolates the three bounded controls (1.856083ms)
+✔ ventilator contract exposes volume control and only specified bounds (0.244334ms)
+✔ hypertonic placeholders are finite, visibly gated, and disabled (0.256ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.116958

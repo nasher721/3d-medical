@@ -1,0 +1,11 @@
+command=node scripts/build.js --release
+file:///Users/Nash/Documents/ChatGPT/3d%20project/src/organ-assets.js:14
+  if (blocked) throw new Error(`Organ asset release blocked by provenance record: ${blocked.name || 'unnamed organ'}.`);
+                     ^
+
+Error: Organ asset release blocked by provenance record: brain.
+    at assertAssetReleaseAllowed (file:///Users/Nash/Documents/ChatGPT/3d%20project/src/organ-assets.js:14:22)
+    at file:///Users/Nash/Documents/ChatGPT/3d%20project/scripts/build.js:7:3
+
+Node.js v24.13.0
+exit_code=1

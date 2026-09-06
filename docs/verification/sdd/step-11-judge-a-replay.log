@@ -1,0 +1,21 @@
+✔ production session serializer round trips all five agents and volume-control settings (13.926ms)
+✔ production restore defaults legacy opacity and rejects malformed imports atomically (7.846041ms)
+✔ production restart clears captured baseline, clock, monitor cursors and comparisons repeatedly (8.498708ms)
+✔ production direct numeric handlers reject invalid values with feedback and retain valid state (2.789208ms)
+✔ opacity numeric and range pairs preserve decimals and peer state (1.924375ms)
+✔ production animation frame freezes paused model and resumes without resetting (5.114333ms)
+✔ archived measurements are finite records and never become restored model state (5.341208ms)
+✔ production archive preserves historical territories, cycle settings and Starling values after interventions (10.65275ms)
+✔ production CSV parses into exact original observations with distinct organ and ventilator units (4.004625ms)
+✔ calibration and derived archives cannot import unknown, nonfinite, or enabled metadata (1.983792ms)
+✔ plot points and marker share current model values; pause no-op freezes all plot modes (16.1885ms)
+✔ actual monitor render methods expose labeled units and paint stable plots at paused time (5.736291ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.874417
+Syntax checked 13 JavaScript modules. No external dependencies.

@@ -1,0 +1,10 @@
+{
+  "timestampUTC": "2026-09-05T18:31:37.445844+00:00",
+  "sourceMatchesDist": true,
+  "glbCount": 0,
+  "requiredModules": [
+    "dist/src/session.js",
+    "dist/src/monitors.js"
+  ],
+  "node": "v24.13.0"
+}

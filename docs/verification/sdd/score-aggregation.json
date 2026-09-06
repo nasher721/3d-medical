@@ -1,0 +1,332 @@
+{
+  "criteria": [
+    "behavior",
+    "contract",
+    "educationalBoundary",
+    "evidence"
+  ],
+  "weights": [
+    0.35,
+    0.25,
+    0.2,
+    0.2
+  ],
+  "standardThreshold": 4,
+  "criticalThreshold": 4.5,
+  "rows": [
+    {
+      "step": 1,
+      "iteration": 2,
+      "a": [
+        4.7,
+        4.6,
+        4.8,
+        4.7
+      ],
+      "b": [
+        4.7,
+        4.6,
+        4.8,
+        4.5
+      ],
+      "threshold": 4.5,
+      "median": [
+        4.7,
+        4.6,
+        4.8,
+        4.6
+      ],
+      "weighted": 4.675,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 2,
+      "iteration": 2,
+      "a": [
+        4.7,
+        4.6,
+        4.5,
+        4.4
+      ],
+      "b": [
+        4.6,
+        4.6,
+        4.7,
+        4.6
+      ],
+      "threshold": 4,
+      "median": [
+        4.65,
+        4.6,
+        4.6,
+        4.5
+      ],
+      "weighted": 4.5975,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 3,
+      "iteration": 1,
+      "a": [
+        4.6,
+        4.4,
+        4.7,
+        4.5
+      ],
+      "threshold": 4,
+      "median": [
+        4.6,
+        4.4,
+        4.7,
+        4.5
+      ],
+      "weighted": 4.55,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 4,
+      "iteration": 2,
+      "a": [
+        4.7,
+        4.8,
+        4.6,
+        4.6
+      ],
+      "b": [
+        4.65,
+        4.7,
+        4.65,
+        4.6
+      ],
+      "threshold": 4.5,
+      "median": [
+        4.675000000000001,
+        4.75,
+        4.625,
+        4.6
+      ],
+      "weighted": 4.66875,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 5,
+      "iteration": 1,
+      "a": [
+        4.4,
+        4.2,
+        4.5,
+        4.1
+      ],
+      "b": [
+        4.4,
+        4.1,
+        4.7,
+        4.5
+      ],
+      "threshold": 4,
+      "median": [
+        4.4,
+        4.15,
+        4.6,
+        4.3
+      ],
+      "weighted": 4.3575,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 6,
+      "iteration": 2,
+      "a": [
+        4.6,
+        4.5,
+        4.6,
+        4.5
+      ],
+      "b": [
+        4.6,
+        4.5,
+        4.8,
+        4.5
+      ],
+      "threshold": 4.5,
+      "median": [
+        4.6,
+        4.5,
+        4.699999999999999,
+        4.5
+      ],
+      "weighted": 4.575,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 7,
+      "iteration": 2,
+      "a": [
+        4.3,
+        4.5,
+        4.6,
+        3.8
+      ],
+      "b": [
+        4.5,
+        4.7,
+        4.6,
+        4.4
+      ],
+      "threshold": 4,
+      "median": [
+        4.4,
+        4.6,
+        4.6,
+        4.1
+      ],
+      "weighted": 4.43,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 8,
+      "iteration": "DoD remediation after three cycles",
+      "a": [
+        4.8,
+        4.9,
+        4.7,
+        4.8
+      ],
+      "b": [
+        4.6,
+        4.65,
+        4.6,
+        4.5
+      ],
+      "threshold": 4,
+      "median": [
+        4.699999999999999,
+        4.775,
+        4.65,
+        4.65
+      ],
+      "weighted": 4.69875,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 9,
+      "iteration": 1,
+      "a": [
+        4.6,
+        4.5,
+        4.5,
+        4.3
+      ],
+      "threshold": 4,
+      "median": [
+        4.6,
+        4.5,
+        4.5,
+        4.3
+      ],
+      "weighted": 4.495,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 10,
+      "iteration": 2,
+      "a": [
+        4.6,
+        4.75,
+        4.7,
+        4.5
+      ],
+      "threshold": 4,
+      "median": [
+        4.6,
+        4.75,
+        4.7,
+        4.5
+      ],
+      "weighted": 4.6375,
+      "highVariance": false,
+      "pass": true
+    },
+    {
+      "step": 11,
+      "iteration": "startup remediation refresh",
+      "a": [
+        4.75,
+        4.7,
+        4.8,
+        4.65
+      ],
+      "b": [
+        4.7,
+        4.7,
+        4.75,
+        4.675
+      ],
+      "threshold": 4.5,
+      "median": [
+        4.725,
+        4.7,
+        4.775,
+        4.6625
+      ],
+      "weighted": 4.71625,
+      "highVariance": false,
+      "pass": true,
+      "priorSnapshot": 4.70375
+    },
+    {
+      "step": 12,
+      "iteration": "final frozen browser matrix",
+      "a": [
+        4.65,
+        4.75,
+        4.8,
+        4.75
+      ],
+      "b": [
+        4.7,
+        4.65,
+        4.75,
+        4.65
+      ],
+      "threshold": 4.5,
+      "median": [
+        4.675,
+        4.7,
+        4.775,
+        4.7
+      ],
+      "weighted": 4.70625,
+      "highVariance": false,
+      "pass": true,
+      "priorSnapshot": 4.63
+    }
+  ],
+  "history": [
+    {
+      "step": 11,
+      "label": "prior frozen-source snapshot",
+      "panel": 4.70375,
+      "note": "Superseded by refreshed startup-remediation panel below; retained for audit history."
+    },
+    {
+      "step": 12,
+      "label": "provisional Judge B superseded",
+      "panel": 4.63,
+      "note": "Historical pre-frozen-matrix assessment; superseded by final frozen panel."
+    }
+  ],
+  "taskPath": ".specs/tasks/done/anatomic-multiorgan-icu-simulator.feature.md",
+  "status": "DONE",
+  "checklist": "27/27 checked",
+  "stepCount": 12
+}

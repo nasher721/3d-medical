@@ -1,0 +1,40 @@
+> node --test tests/*.test.js
+✔ shipping anatomical bundle contains six detailed, correctly placed organ surfaces (123.072041ms)
+✔ large meshes retain indexed buffers with a compatible fallback for WebGL 1 (0.35175ms)
+✔ imported heart and lung geometry retain physiology-driven animation about their pivots (0.129417ms)
+✔ pressure, oxygen and ventricular identities hold during every intervention transition (17.799667ms)
+✔ a severe shunt retains an oxygenation limitation even on 100 percent oxygen (0.293125ms)
+✔ moderate PEEP recruits ARDS lung while reducing forward flow (0.154084ms)
+✔ inotrope increases demand and heart rate, afterload limits pump-failure response (0.115666ms)
+✔ congestion changes renal flow and visible lung water in pump failure (0.091834ms)
+✔ hyperventilation decreases cerebral flow even as conventional CPP rises (0.301917ms)
+✔ paused and invalid time steps do not change a simulation (0.210667ms)
+✔ unknown and nonfinite input cannot poison exported state (0.182583ms)
+✔ parses named mesh while preserving triangle indices (2.190791ms)
+✔ rejects an index outside the vertex range (0.4555ms)
+✔ rejects mismatched normal counts and missing mesh declarations (0.148917ms)
+✔ rejects malformed GLB headers (1.0175ms)
+✔ loads and parses fetched assets (0.204417ms)
+✔ healthy baseline and numerical identities (1.255459ms)
+✔ interventions are bounded and directional (0.858708ms)
+✔ all scenarios remain finite through long run and history is bounded (126.4385ms)
+✔ patient edits and insights are safe (0.256958ms)
+✔ scenario physiology and named interventions point in expected directions (0.320208ms)
+✔ ARDS oxygen and PEEP tradeoffs are visible (0.395083ms)
+✔ ventilation changes CO2, CPP, and cerebral flow when autoregulation is absent (0.248541ms)
+✔ hemoglobin changes oxygen delivery while saturation stays similar (0.146834ms)
+✔ autoregulation buffers MAP changes and disabling it reveals pressure dependence (0.235042ms)
+✔ rapid heart rate reduces filling and stroke volume (0.212458ms)
+✔ all bounds, reset behavior, and scenario presets are valid (0.677958ms)
+✔ time step consistency, history cadence, and extreme combinations (74.329ms)
+✔ organ opacity contract isolates the three bounded controls (0.791375ms)
+✔ ventilator contract exposes volume control and only specified bounds (0.134708ms)
+✔ hypertonic placeholders are finite, visibly gated, and disabled (0.262ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 257.830125

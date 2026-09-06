@@ -1,0 +1,110 @@
+{
+  "waveforms": {
+    "pausePixelsStable": true,
+    "text": "ECG\nII \u00b7 illustrative\nHR\n72\nbpm\nSinus rhythm\n25 mm/s\nArterial pressure\nmmHg\nMAP\n87\n119 / 72\nSystemic circulation\nOxygen saturation\n%\nSaO\u2082\n98\n%\nArterial estimate\nCardiac output\nCO\n5.0\nL/min\nSV\n70 mL\nCentral venous pressure\nCVP\n5.5\nmmHg\nSystemic vascular resistance\nSVR\n1300\ndyn\u00b7s/cm\u2075"
+  },
+  "trends": {
+    "pausePixelsStable": true,
+    "text": "Response over time\nMAP mmHg\nCO L/min\nSaO\u2082 %\nCPP mmHg\nIndependent scales \u00b7 last 5 min"
+  },
+  "pv": {
+    "pausePixelsStable": true,
+    "text": "LEFT VENTRICLE\nPressure\u2013volume loop\n\nWatch filling, ejection and afterload reshape the cardiac cycle.\n\nSchematic loop derived from current volume and pressure estimates.\nEnd-diastolic volume\n120 mL\nEnd-systolic volume\n50 mL\nEjection fraction\n58%"
+  },
+  "starling": {
+    "pausePixelsStable": true,
+    "text": "Schematic Frank\u2013Starling\nEDV 120.0 mL \u00b7 SV 70.0 mL \u00b7 Contractility 1.00 relative \u00b7 Afterload 1.00 dimensionless\nEducational approximation \u00b7 EDV is a preload proxy; this is separate from the pressure\u2013volume loop.",
+    "narrowNoOverflow": true
+  },
+  "ventilator": {
+    "pausePixelsStable": true,
+    "text": "Airway pressure \u00b7 cmH2O\nAirway flow \u00b7 mL/s\nLung volume \u00b7 mL\nexpiration \u00b7 VT 6 mL/kg PBW (420 mL) \u00b7 RR 16/min \u00b7 PEEP 0 cmH2O \u00b7 FiO\u2082 21% \u00b7 Minute / alveolar ventilation 6720 / 4480 mL/min \u00b7 PaCO\u2082 40.0 mmHg\nEducational approximation \u00b7 Volume control \u00b7 fixed I:E 1:2; prescribed expiration, not calibrated mechanics.",
+    "narrowNoOverflow": true
+  },
+  "perfusion": {
+    "pausePixelsStable": true,
+    "text": "Cerebral proxy \u00b7 mL/100 g/min\nRenal perfusion \u00b7 mL/min\nUrine outflow \u00b7 mL/h\nCerebral 50.0 (ACA 18.0 \u00b7 MCA 22.0 \u00b7 PCA 10.0) mL/100 g/min \u00b7 Renal 1006.8 mL/min \u00b7 Urine 110.6 mL/h \u00b7 CPP / MAP / ICP 82 / 87 / 5 mmHg\nEducational approximation \u00b7 Independent scales \u00b7 regional values are tissue proxies; urine is separate from renal blood flow.",
+    "narrowNoOverflow": true
+  },
+  "inputs": [
+    {
+      "type": "number",
+      "dataset": {
+        "intervention": "fio2"
+      }
+    },
+    {
+      "type": "range",
+      "dataset": {
+        "intervention": "fio2"
+      }
+    },
+    {
+      "type": "number",
+      "dataset": {
+        "intervention": "peep"
+      }
+    },
+    {
+      "type": "range",
+      "dataset": {
+        "intervention": "peep"
+      }
+    },
+    {
+      "type": "number",
+      "dataset": {
+        "intervention": "respiratoryRate"
+      }
+    },
+    {
+      "type": "range",
+      "dataset": {
+        "intervention": "respiratoryRate"
+      }
+    },
+    {
+      "type": "number",
+      "dataset": {
+        "intervention": "tidalVolume"
+      }
+    },
+    {
+      "type": "range",
+      "dataset": {
+        "intervention": "tidalVolume"
+      }
+    }
+  ],
+  "export": {
+    "fiveAgents": true,
+    "completeDerivedValues": true,
+    "historyRows": 12,
+    "calibration": {
+      "modelVersion": "2",
+      "hypertonic": [
+        {
+          "id": "hypertonic-3",
+          "calibrationStatus": "unreviewed",
+          "calibrationVersion": null
+        },
+        {
+          "id": "hypertonic-7-5",
+          "calibrationStatus": "unreviewed",
+          "calibrationVersion": null
+        },
+        {
+          "id": "hypertonic-23-4",
+          "calibrationStatus": "unreviewed",
+          "calibrationVersion": null
+        }
+      ]
+    }
+  },
+  "restore": {
+    "fiveAgents": true,
+    "freshClock": true,
+    "baselineCleared": true
+  },
+  "errors": []
+}

@@ -1,0 +1,12 @@
+{
+  "phaseEquality": true,
+  "allRatesZero": true,
+  "finite": true,
+  "glError": 0,
+  "opacity": {
+    "brain": 0.15,
+    "lungs": 1,
+    "kidneys": 1
+  },
+  "assetSource": "schematic-fallback-provenance-blocked"
+}

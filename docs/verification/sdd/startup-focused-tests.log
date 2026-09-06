@@ -1,0 +1,18 @@
+✔ production session serializer round trips all five agents and volume-control settings (10.156083ms)
+✔ production restore defaults legacy opacity and rejects malformed imports atomically (6.11875ms)
+✔ production restart clears captured baseline, clock, monitor cursors and comparisons repeatedly (6.629375ms)
+✔ production direct numeric handlers reject invalid values with feedback and retain valid state (2.040417ms)
+✔ opacity numeric and range pairs preserve decimals and peer state (1.845083ms)
+✔ production animation frame freezes paused model and resumes without resetting (1.425417ms)
+✔ archived measurements are finite records and never become restored model state (1.751959ms)
+✔ production readiness keeps startup zero-time and blocks activation until complete frames settle (1.871166ms)
+✔ startup readiness respects reduced-motion pause and restarts its settling period after slow frames (1.265291ms)
+✔ startup has a bounded error state without advancing or enabling interaction (1.0775ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.533625

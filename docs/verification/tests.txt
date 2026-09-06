@@ -1,0 +1,28 @@
+✔ pressure, oxygen and ventricular identities hold during every intervention transition (36.222541ms)
+✔ a severe shunt retains an oxygenation limitation even on 100 percent oxygen (0.462541ms)
+✔ moderate PEEP recruits ARDS lung while reducing forward flow (0.223958ms)
+✔ inotrope increases demand and heart rate, afterload limits pump-failure response (0.16925ms)
+✔ congestion changes renal flow and visible lung water in pump failure (0.121875ms)
+✔ hyperventilation decreases cerebral flow even as conventional CPP rises (0.126709ms)
+✔ paused and invalid time steps do not change a simulation (0.204875ms)
+✔ unknown and nonfinite input cannot poison exported state (0.222791ms)
+✔ healthy baseline and numerical identities (1.584875ms)
+✔ interventions are bounded and directional (0.592625ms)
+✔ all scenarios remain finite through long run and history is bounded (198.20775ms)
+✔ patient edits and insights are safe (0.408708ms)
+✔ scenario physiology and named interventions point in expected directions (0.444334ms)
+✔ ARDS oxygen and PEEP tradeoffs are visible (0.385916ms)
+✔ ventilation changes CO2, CPP, and cerebral flow when autoregulation is absent (0.349291ms)
+✔ hemoglobin changes oxygen delivery while saturation stays similar (0.193667ms)
+✔ autoregulation buffers MAP changes and disabling it reveals pressure dependence (1.079375ms)
+✔ rapid heart rate reduces filling and stroke volume (0.220375ms)
+✔ all bounds, reset behavior, and scenario presets are valid (0.939583ms)
+✔ time step consistency, history cadence, and extreme combinations (109.957ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 394.730125
