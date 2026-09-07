@@ -1,0 +1,3082 @@
+[
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "aorta-ascending",
+    "semantic": "arterial",
+    "label": "ascending aorta",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA3736.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3736.obj": "b45ed0f01eea2519b8bf3d62c2f230210cbaf0ec754950971f039c890677d53b"
+    },
+    "vertices": 217,
+    "triangles": 430,
+    "bounds": {
+      "min": [
+        -0.31072943667413666,
+        0.5973124178966085,
+        0.15589288308476934
+      ],
+      "max": [
+        0.10125608531025423,
+        1.2039826906730564,
+        0.5589156788501662
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "aorta-arch",
+    "semantic": "arterial",
+    "label": "aortic arch",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA3768.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3768.obj": "bfa16af76b42f167b770f60f4d024d46aae8d43c737a015bef49b9bd111904e2"
+    },
+    "vertices": 330,
+    "triangles": 656,
+    "bounds": {
+      "min": [
+        -0.3092734518197977,
+        1.1924395332663629,
+        -0.4535834479561087
+      ],
+      "max": [
+        0.16041179197898156,
+        1.6376246039718723,
+        0.5385426010354685
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "aorta-descending",
+    "semantic": "arterial",
+    "label": "descending aorta",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA3784.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3784.obj": "d7832975e0263cad6f41a1d3670b6b86d11cebb97dd68df230c734283d5408ff"
+    },
+    "vertices": 2382,
+    "triangles": 4760,
+    "bounds": {
+      "min": [
+        -0.22592044308786044,
+        -2.876820956649409,
+        -0.5276464879066536
+      ],
+      "max": [
+        0.14112757901244108,
+        1.208266749092033,
+        0.4718421914844294
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "brachiocephalic-trunk",
+    "semantic": "arterial",
+    "label": "brachiocephalic artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA3932nsn.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3932nsn.obj": "5765b6f0f22451f4660ef5277bdc30dd015480ed6e7559976ba71503b75c55c1"
+    },
+    "vertices": 133,
+    "triangles": 262,
+    "bounds": {
+      "min": [
+        -0.44510535507302396,
+        1.3552337531875427,
+        0.11264769337763691
+      ],
+      "max": [
+        0.0023098060428096076,
+        1.8075589212580159,
+        0.32572009891043974
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-common-carotid",
+    "semantic": "arterial",
+    "label": "right common carotid artery",
+    "group": "brain",
+    "oxygenated": true,
+    "source": [
+      "FMA3941.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3941.obj": "6fbda5cb1c0a4de3c7cbfa85654ea0b97956e369056fc817d661b96572a64ae5"
+    },
+    "vertices": 480,
+    "triangles": 956,
+    "bounds": {
+      "min": [
+        -0.46838326249903434,
+        1.6536898230430417,
+        0.15396505679622885
+      ],
+      "max": [
+        -0.3170331906344179,
+        2.1772969631404084,
+        0.29927793833552274
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-common-carotid",
+    "semantic": "arterial",
+    "label": "left common carotid artery",
+    "group": "brain",
+    "oxygenated": true,
+    "source": [
+      "FMA4058.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4058.obj": "3839e2bbad1eb4cc7101aef6cf3cfd6d6f6c51acf9c9f46ff37902e730ddc9fd"
+    },
+    "vertices": 87,
+    "triangles": 170,
+    "bounds": {
+      "min": [
+        -0.08945353527548111,
+        1.3917672513716113,
+        0.042570017772969426
+      ],
+      "max": [
+        0.05953292635808668,
+        2.180629008577389,
+        0.23787310099683168
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-subclavian",
+    "semantic": "arterial",
+    "label": "right subclavian artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA3953.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3953.obj": "271ae050aa42db3d4d53b29bbc1ac622513890d8e59e9829342157dbae5eebe9"
+    },
+    "vertices": 246,
+    "triangles": 488,
+    "bounds": {
+      "min": [
+        -1.1932983077041963,
+        1.6714210648327033,
+        0.021353218452978884
+      ],
+      "max": [
+        -0.3300757684877523,
+        1.9367946835638659,
+        0.2365759833088633
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-subclavian",
+    "semantic": "arterial",
+    "label": "left subclavian artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA4694.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4694.obj": "4e9f59de6a1791d16c9eab7c6e4ff8648ed33f42bc60df63924834c314dafb38"
+    },
+    "vertices": 352,
+    "triangles": 700,
+    "bounds": {
+      "min": [
+        -0.004680349277490205,
+        1.3908152383896137,
+        -0.06632122710764243
+      ],
+      "max": [
+        0.8155216752955724,
+        1.9764222239394176,
+        0.1578683100224093
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-right",
+    "semantic": "arterial",
+    "label": "right coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA3802.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3802.obj": "7de0aa707779e15db17e491d2551aa7c6023c1ed9519c085f17134f1cefcf5bf"
+    },
+    "vertices": 1378,
+    "triangles": 2752,
+    "bounds": {
+      "min": [
+        -0.47384543698323184,
+        -0.045177343327408026,
+        0.01039792906266912
+      ],
+      "max": [
+        0.0320602117301599,
+        0.82531952708446,
+        0.8340712309713315
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-right-marginal",
+    "semantic": "arterial",
+    "label": "marginal branch right coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA3818.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3818.obj": "e4c0f02369608988cba9f67d0799e9f5d1f29502d886d5446d4413d1a1ab4071"
+    },
+    "vertices": 2269,
+    "triangles": 4522,
+    "bounds": {
+      "min": [
+        -0.4639897225871264,
+        -0.16358395796306263,
+        0.6532244648790665
+      ],
+      "max": [
+        0.4525821961208562,
+        0.8015192025345783,
+        1.0008639054168924
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-right-posterior-interventricular",
+    "semantic": "arterial",
+    "label": "posterior interventricular branch right coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA3840nsn.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3840nsn.obj": "1c98c5e1b2a5a3957e1f5e1cc1f6e1d13a5351580a6ac1086895d4f2009d0acc"
+    },
+    "vertices": 1222,
+    "triangles": 2440,
+    "bounds": {
+      "min": [
+        -0.22568943713777925,
+        -0.20011745614712945,
+        0.2990875357391237
+      ],
+      "max": [
+        0.5810480179275174,
+        -0.005073796460861091,
+        0.7550541534657292
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-left-anterior-interventricular",
+    "semantic": "arterial",
+    "label": "anterior interventricular branch left coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA3862nsn.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3862nsn.obj": "36dcf9e77e4fe1b91160ccb0bb55718dd4abb57e664637f38738b9b3ad273270"
+    },
+    "vertices": 2559,
+    "triangles": 5114,
+    "bounds": {
+      "min": [
+        0.12815402210030133,
+        -0.14609071941890045,
+        0.32388747392009887
+      ],
+      "max": [
+        0.7305997372691448,
+        0.7841449656131658,
+        0.9563810988331661
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-left-circumflex",
+    "semantic": "arterial",
+    "label": "circumflex branch left coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA3895.obj"
+    ],
+    "sourceSHA256": {
+      "FMA3895.obj": "2912fc697751868c6914ba08164c7a347ed879c9bce85f4605570b7dca774b10"
+    },
+    "vertices": 1065,
+    "triangles": 2126,
+    "bounds": {
+      "min": [
+        0.19386552816629313,
+        -0.046724364423152254,
+        -0.06464806429178604
+      ],
+      "max": [
+        0.7019286763001316,
+        0.7680797465419982,
+        0.6000545398346341
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-left-stem",
+    "semantic": "arterial",
+    "label": "stem left coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA4685.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4685.obj": "068f3f8a9a38d0c644205bb6a56a6979738023ecbf6bd88d04e063abc96a6ffa"
+    },
+    "vertices": 79,
+    "triangles": 154,
+    "bounds": {
+      "min": [
+        0.06319460629008569,
+        0.7416613862916304,
+        0.29675510393323556
+      ],
+      "max": [
+        0.19529830770419596,
+        0.8227014913839721,
+        0.369572196893594
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-right-septal",
+    "semantic": "arterial",
+    "label": "interventricular septal branches right coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA71669.obj"
+    ],
+    "sourceSHA256": {
+      "FMA71669.obj": "680e6aff78ff0723b9cfed8afa85910d20e154592e9539bcbfc27f17adc8164c"
+    },
+    "vertices": 340,
+    "triangles": 672,
+    "bounds": {
+      "min": [
+        -0.10435610849238863,
+        -0.1506127810833799,
+        0.3122015145661078
+      ],
+      "max": [
+        0.14224143420137544,
+        0.09714859748087618,
+        0.46889095124024427
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-left-septal",
+    "semantic": "arterial",
+    "label": "interventricular septal branches left coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA71670.obj"
+    ],
+    "sourceSHA256": {
+      "FMA71670.obj": "aa86ea1ddc9259b661b958f7dd46935e72f09635b9d68280535e6ebd0305f57e"
+    },
+    "vertices": 558,
+    "triangles": 1104,
+    "bounds": {
+      "min": [
+        0.2844983540684646,
+        0.16021945753805694,
+        0.5433978672436443
+      ],
+      "max": [
+        0.4485777915153389,
+        0.6150436596862701,
+        0.8843375164206787
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-right-posterolateral",
+    "semantic": "arterial",
+    "label": "right posterolateral branch right coronary artery",
+    "group": "heart",
+    "oxygenated": true,
+    "source": [
+      "FMA76994.obj"
+    ],
+    "sourceSHA256": {
+      "FMA76994.obj": "d3e62f2c5bb0fc0b10a2f5c8e2328740373d83418e59a4867c5641138358b455"
+    },
+    "vertices": 1125,
+    "triangles": 2246,
+    "bounds": {
+      "min": [
+        0.014991808979213282,
+        -0.19262035391391835,
+        -0.045347191098060624
+      ],
+      "max": [
+        0.6611706205084616,
+        0.0393138088246659,
+        0.5557978363341319
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "celiac",
+    "semantic": "arterial",
+    "label": "celiac artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA50737.obj"
+    ],
+    "sourceSHA256": {
+      "FMA50737.obj": "846fe64578ccf8dc95fc2ca8852da10d63f556c370ae70caf5c76ea6deca1d3f"
+    },
+    "vertices": 112,
+    "triangles": 220,
+    "bounds": {
+      "min": [
+        -0.23912961131288166,
+        -1.5097303145042904,
+        0.22261709296035848
+      ],
+      "max": [
+        -0.07919440537825526,
+        -1.385492620353915,
+        0.5073284753883008
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "gastric-left",
+    "semantic": "arterial",
+    "label": "left gastric artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA14768.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14768.obj": "7cda4aef5ff3011b65c56de1cbdc87fc0e170f7a64077c446b9372e34a1b4c33"
+    },
+    "vertices": 31,
+    "triangles": 58,
+    "bounds": {
+      "min": [
+        -0.20246854338922815,
+        -1.439638358704892,
+        0.4543132524534427
+      ],
+      "max": [
+        -0.05718505525075349,
+        -1.3452700718646167,
+        0.6039101924117148
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "hepatic-common",
+    "semantic": "arterial",
+    "label": "common hepatic artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA14771.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14771.obj": "ed44cd39a4396fa5d4fb6fb89c2dae6fb8750642b37273a2ed56c64b9a840622"
+    },
+    "vertices": 116,
+    "triangles": 228,
+    "bounds": {
+      "min": [
+        -0.4008450815238392,
+        -1.4641526929912683,
+        0.42425344254694386
+      ],
+      "max": [
+        -0.1575193694459471,
+        -1.0975086933003642,
+        0.6263062978131518
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "splenic",
+    "semantic": "arterial",
+    "label": "splenic artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA14773.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14773.obj": "25e116c03b540f2c5dbdcc67a18cd217328ed46c267a27b8d46cd1d29fc8231b"
+    },
+    "vertices": 727,
+    "triangles": 1450,
+    "bounds": {
+      "min": [
+        -0.23827101460474473,
+        -1.477361873116454,
+        -0.10885121706205103
+      ],
+      "max": [
+        0.8079745923808054,
+        -1.079063441774208,
+        0.5195975426937641
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "mesenteric-superior",
+    "semantic": "arterial",
+    "label": "superior mesenteric artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA14749.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14749.obj": "7f33fc31d0e1af2d007b6225a170cf37a857a176f7e62868df8d47a2e1417a09"
+    },
+    "vertices": 37,
+    "triangles": 70,
+    "bounds": {
+      "min": [
+        -0.1844957283053861,
+        -1.888036473224636,
+        0.26498167065914535
+      ],
+      "max": [
+        -0.08237531875434673,
+        -1.5660180820647547,
+        0.7039072560080367
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "mesenteric-inferior",
+    "semantic": "arterial",
+    "label": "inferior mesenteric artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA14750.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14750.obj": "92bc4ea6fec6223f39335657e77ed6752f254c110ee1d30f38066871f25ac92d"
+    },
+    "vertices": 118,
+    "triangles": 232,
+    "bounds": {
+      "min": [
+        -0.1834533930917241,
+        -2.9425336527316297,
+        0.37329694768565036
+      ],
+      "max": [
+        -0.06071464338150074,
+        -2.2968070473688282,
+        0.6581035314117923
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-renal-artery",
+    "semantic": "arterial",
+    "label": "right renal artery",
+    "group": "renal",
+    "oxygenated": true,
+    "source": [
+      "FMA14752.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14752.obj": "c29d24fad6952974bb8a3924c280e349cea23fe829d9afb510ca6bd6f8a8138c"
+    },
+    "vertices": 179,
+    "triangles": 354,
+    "bounds": {
+      "min": [
+        -0.9076265821806664,
+        -1.8811343791051698,
+        -0.1622055946217449
+      ],
+      "max": [
+        -0.03285398346341093,
+        -1.614094737655515,
+        0.3545898925894445
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-renal-artery",
+    "semantic": "arterial",
+    "label": "left renal artery",
+    "group": "renal",
+    "oxygenated": true,
+    "source": [
+      "FMA14753.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14753.obj": "260ae0d159e9f9bd4829bd9cb53ca6d6e54bc394dab046e2ff1f6fb679ef1293"
+    },
+    "vertices": 134,
+    "triangles": 264,
+    "bounds": {
+      "min": [
+        -0.13671633876825603,
+        -1.8465049068850963,
+        -0.13922519125260802
+      ],
+      "max": [
+        0.4151930762692219,
+        -1.51353836643227,
+        0.36314610926512636
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-renal-vein",
+    "semantic": "venous",
+    "label": "right renal vein",
+    "group": "renal",
+    "oxygenated": false,
+    "source": [
+      "FMA14335.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14335.obj": "fb2e33d085a087822bd61c1f5df9b4567174a05028523b9304a280d9d1fc5b72"
+    },
+    "vertices": 157,
+    "triangles": 310,
+    "bounds": {
+      "min": [
+        -1.0007632022254853,
+        -1.9170728691754881,
+        -0.13645364345877453
+      ],
+      "max": [
+        -0.38485245344254715,
+        -1.6982288849393417,
+        0.4109014604744611
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-renal-vein",
+    "semantic": "venous",
+    "label": "left renal vein",
+    "group": "renal",
+    "oxygenated": false,
+    "source": [
+      "FMA14336.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14336.obj": "d68dcba95e9396afd958650184a53ceb731b76621f6a8c1e6dd10a2e15ef2b24"
+    },
+    "vertices": 84,
+    "triangles": 164,
+    "bounds": {
+      "min": [
+        -0.3966943049223401,
+        -1.8905355073023742,
+        -0.15204642608762864
+      ],
+      "max": [
+        0.3432922958040337,
+        -1.5994575380573384,
+        0.48224293331272705
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "pulmonary-artery",
+    "semantic": "arterial",
+    "label": "pulmonary artery",
+    "group": "pulmonary",
+    "oxygenated": false,
+    "source": [
+      "FMA66326.obj"
+    ],
+    "sourceSHA256": {
+      "FMA66326.obj": "5f1bb69397ed30b4f9806e358f44ca9ea2e9ea34a41c4e3640985b6387997b66"
+    },
+    "vertices": 11695,
+    "triangles": 23390,
+    "bounds": {
+      "min": [
+        -1.6962324858975353,
+        -0.8000046364268609,
+        -0.8298594389923503
+      ],
+      "max": [
+        1.2463801406382817,
+        1.9708291476701962,
+        1.0892107101460473
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "pulmonary-vein",
+    "semantic": "venous",
+    "label": "pulmonary vein",
+    "group": "pulmonary",
+    "oxygenated": true,
+    "source": [
+      "FMA66643.obj"
+    ],
+    "sourceSHA256": {
+      "FMA66643.obj": "2a26e8afb92c797c322a510bdd9c08aaa86869b17c6f92ccde4c29db435db15d"
+    },
+    "vertices": 7263,
+    "triangles": 14510,
+    "bounds": {
+      "min": [
+        -1.6836659145351986,
+        -0.8102387759833078,
+        -0.8316539834634112
+      ],
+      "max": [
+        1.2543532493624916,
+        1.9848713391546244,
+        0.9353654122556218
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "coronary-sinus",
+    "semantic": "venous",
+    "label": "coronary sinus",
+    "group": "heart",
+    "oxygenated": false,
+    "source": [
+      "FMA4706.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4706.obj": "06a6090e1bf55c7bea695fa7541a4f48e3c0ca5cd7577bece6ecc612e745ade2"
+    },
+    "vertices": 194,
+    "triangles": 384,
+    "bounds": {
+      "min": [
+        -0.28109779460629025,
+        0.06858820802101745,
+        -0.13470550962058592
+      ],
+      "max": [
+        0.3000947067460011,
+        0.2975473301908665,
+        0.2759179197898153
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "great-cardiac-vein",
+    "semantic": "venous",
+    "label": "great cardiac vein",
+    "group": "heart",
+    "oxygenated": false,
+    "source": [
+      "FMA4707.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4707.obj": "9225ae1d083ad0bf6ce7b4c07ed62632a5691bd855442267de2a76342b92555a"
+    },
+    "vertices": 1390,
+    "triangles": 2776,
+    "bounds": {
+      "min": [
+        0.24027616103855967,
+        -0.14192566262267364,
+        -0.12507827834015928
+      ],
+      "max": [
+        0.6734420678463799,
+        0.7349972954176653,
+        0.9567262035391396
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "middle-cardiac-vein",
+    "semantic": "venous",
+    "label": "middle cardiac vein",
+    "group": "heart",
+    "oxygenated": false,
+    "source": [
+      "FMA4713.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4713.obj": "b44a9e46c787aaa96d14e9055918751e8396e330d5bb862674316ebcbf4b61a4"
+    },
+    "vertices": 1697,
+    "triangles": 3390,
+    "bounds": {
+      "min": [
+        -0.1961992998995442,
+        -0.2048775210571065,
+        0.18507208098292238
+      ],
+      "max": [
+        0.6254701336836413,
+        0.18675681941117445,
+        0.7627892589444404
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "posterior-cardiac-veins",
+    "semantic": "venous",
+    "label": "posterior veins of left ventricle",
+    "group": "heart",
+    "oxygenated": false,
+    "source": [
+      "FMA76751.obj"
+    ],
+    "sourceSHA256": {
+      "FMA76751.obj": "c8862dfab1d975f86ca022172b10306e54bb51945a4acb4d1e3d3e21b7c6a19e"
+    },
+    "vertices": 1959,
+    "triangles": 3910,
+    "bounds": {
+      "min": [
+        -0.022754315740669252,
+        -0.19809442856039,
+        -0.11462874584653449
+      ],
+      "max": [
+        0.706911274244649,
+        0.30552043891507635,
+        0.6168575689668497
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "anterior-cardiac-veins",
+    "semantic": "venous",
+    "label": "anterior cardiac veins",
+    "group": "heart",
+    "oxygenated": false,
+    "source": [
+      "FMA71567.obj"
+    ],
+    "sourceSHA256": {
+      "FMA71567.obj": "b52f2942576d0b83422d0fe9bbcaf619d9e141c3df6a87aebb4ee61c8286807e"
+    },
+    "vertices": 1621,
+    "triangles": 3238,
+    "bounds": {
+      "min": [
+        -0.46268903485047547,
+        -0.15549184761610307,
+        0.2608999149988408
+      ],
+      "max": [
+        0.4378557453056178,
+        0.6106405996445403,
+        1.0019825206707367
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "splenic-vein",
+    "semantic": "venous",
+    "label": "splenic vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA14331.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14331.obj": "ef8229e2a705577e0e010895829065c37303ef7a9d0604b90e189dd43be1afe3"
+    },
+    "vertices": 400,
+    "triangles": 796,
+    "bounds": {
+      "min": [
+        -0.3626646008809213,
+        -1.5369816861139025,
+        -0.09055471756433053
+      ],
+      "max": [
+        0.9218198748164749,
+        -1.1554624835793206,
+        0.4695573603276407
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "superior-mesenteric-vein",
+    "semantic": "venous",
+    "label": "superior mesenteric vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA14332.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14332.obj": "18083ba2c333890372744bc3007b368764e52c7fbb274bad18d0ba871a5253e5"
+    },
+    "vertices": 52,
+    "triangles": 100,
+    "bounds": {
+      "min": [
+        -0.3013181933390003,
+        -1.8789923498956824,
+        0.3938366277721971
+      ],
+      "max": [
+        -0.18603513329727234,
+        -1.6051696159493094,
+        0.6916024882157487
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "superior-vena-cava",
+    "semantic": "venous",
+    "label": "superior vena cava",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA4720.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4720.obj": "b859b28e0bf9db0db0c0c51ed29942fb3f8638369f4218242795e09ee1452ece"
+    },
+    "vertices": 156,
+    "triangles": 308,
+    "bounds": {
+      "min": [
+        -0.5325977281508386,
+        0.9921598021791187,
+        0.13210445869716414
+      ],
+      "max": [
+        -0.26344961594930855,
+        1.4092604899157735,
+        0.4141740051000694
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "inferior-vena-cava",
+    "semantic": "venous",
+    "label": "inferior vena cava",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA10951.obj"
+    ],
+    "sourceSHA256": {
+      "FMA10951.obj": "a1e5b5be5d475997cd9c99f984c27a1e3cc4e6846dc1f060afde23ab69983e21"
+    },
+    "vertices": 777,
+    "triangles": 1550,
+    "bounds": {
+      "min": [
+        -0.5336520825283984,
+        -2.864849393400821,
+        0.13142614944749254
+      ],
+      "max": [
+        -0.25234248048837044,
+        -0.010190866239087215,
+        0.4881216134765475
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-brachiocephalic-vein",
+    "semantic": "venous",
+    "label": "right brachiocephalic vein",
+    "group": "brain",
+    "oxygenated": false,
+    "source": [
+      "FMA4751.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4751.obj": "2d3d0dc1dd344a655099118564b5892863b2b9907754a5e23bbdf2a445a54bfc"
+    },
+    "vertices": 152,
+    "triangles": 300,
+    "bounds": {
+      "min": [
+        -0.5959934626381271,
+        1.2793107178734253,
+        0.20129200216366583
+      ],
+      "max": [
+        -0.33446954640290566,
+        1.8969291399428183,
+        0.46002533034541393
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-internal-jugular",
+    "semantic": "venous",
+    "label": "right internal jugular vein",
+    "group": "brain",
+    "oxygenated": false,
+    "source": [
+      "FMA4754.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4754.obj": "ecfc30284f2228a513e06b0776718bac9b551216989b3c558ee8ff1ca87c4fc4"
+    },
+    "vertices": 112,
+    "triangles": 220,
+    "bounds": {
+      "min": [
+        -0.5873670350050231,
+        1.7850676145583808,
+        0.24218095974036002
+      ],
+      "max": [
+        -0.4719913917007961,
+        2.276544316513407,
+        0.35457799242716936
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-subclavian-vein",
+    "semantic": "venous",
+    "label": "right subclavian vein",
+    "group": "brain",
+    "oxygenated": false,
+    "source": [
+      "FMA4755.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4755.obj": "3bb21189353b0b719b2860a5f4d9c09f798457b437759b13b69ed2f7f65e83da"
+    },
+    "vertices": 103,
+    "triangles": 202,
+    "bounds": {
+      "min": [
+        -1.2449616722046213,
+        1.633816552043891,
+        0.1899392473533731
+      ],
+      "max": [
+        -0.4801525229889501,
+        1.9189444401514582,
+        0.3512459469901862
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-brachiocephalic-vein",
+    "semantic": "venous",
+    "label": "left brachiocephalic vein",
+    "group": "brain",
+    "oxygenated": false,
+    "source": [
+      "FMA4761.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4761.obj": "8dfab16158859cc38e9a86237f624a1ce309d69ab26d493edc74764818c66506"
+    },
+    "vertices": 208,
+    "triangles": 412,
+    "bounds": {
+      "min": [
+        -0.49846806274631034,
+        1.2542013754733006,
+        0.2149533884552971
+      ],
+      "max": [
+        0.11876003400046362,
+        1.87431883162043,
+        0.474103222316668
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-internal-jugular",
+    "semantic": "venous",
+    "label": "left internal jugular vein",
+    "group": "brain",
+    "oxygenated": false,
+    "source": [
+      "FMA4762.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4762.obj": "99b6141223330c65a4f35c15e19ef0b0b53096530a824cbeab576f412cec3809"
+    },
+    "vertices": 98,
+    "triangles": 192,
+    "bounds": {
+      "min": [
+        -0.002585920717100766,
+        1.7481771115060685,
+        0.22888847847925187
+      ],
+      "max": [
+        0.1538833629549494,
+        2.261074105555986,
+        0.35550620508461483
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-subclavian-vein",
+    "semantic": "venous",
+    "label": "left subclavian vein",
+    "group": "brain",
+    "oxygenated": false,
+    "source": [
+      "FMA4763.obj"
+    ],
+    "sourceSHA256": {
+      "FMA4763.obj": "972cb17eb80d828541c0c1b3655c070b8f94ad399a17fe9aa233df36c01dec1e"
+    },
+    "vertices": 121,
+    "triangles": 238,
+    "bounds": {
+      "min": [
+        0.016399598176338702,
+        1.6053751642067855,
+        0.1577731087242099
+      ],
+      "max": [
+        0.9014277567421375,
+        1.9410787419828441,
+        0.34260642917857964
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-common-iliac-artery",
+    "semantic": "arterial",
+    "label": "right common iliac artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA14765.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14765.obj": "c43a3a5317f7b54b6713ebaec192c1f8e6619bfe997eca0d6750a88564957788"
+    },
+    "vertices": 91,
+    "triangles": 178,
+    "bounds": {
+      "min": [
+        -0.6653963990418054,
+        -3.394311413337455,
+        0.20859870180047901
+      ],
+      "max": [
+        -0.07396428405841907,
+        -2.679456765319527,
+        0.4483750714782474
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-common-iliac-artery",
+    "semantic": "arterial",
+    "label": "left common iliac artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA14766.obj"
+    ],
+    "sourceSHA256": {
+      "FMA14766.obj": "b9c694d1c72795ffbb3c89d5bd8a0fe8d0e67afabbbf2eddc5d1da1b04433884"
+    },
+    "vertices": 82,
+    "triangles": 160,
+    "bounds": {
+      "min": [
+        -0.224159683177498,
+        -3.431344718337071,
+        0.17682526852638902
+      ],
+      "max": [
+        0.22912808901939571,
+        -2.6801112742446502,
+        0.4494103855961674
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-external-iliac-artery",
+    "semantic": "arterial",
+    "label": "right external iliac artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA18806.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18806.obj": "10a08af96d3785fda1c57de6a17e548c9615895e1fd45060beb86782276688a4"
+    },
+    "vertices": 153,
+    "triangles": 302,
+    "bounds": {
+      "min": [
+        -0.8510401205470987,
+        -4.466337531875437,
+        0.12333403910053298
+      ],
+      "max": [
+        -0.5412027354918478,
+        -3.332311567885018,
+        0.8039876207402828
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-external-iliac-artery",
+    "semantic": "arterial",
+    "label": "left external iliac artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA18807.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18807.obj": "c229c8843477eff848d92e99bf67a1023209af961a2faf94344b12bcf00feeaf"
+    },
+    "vertices": 130,
+    "triangles": 256,
+    "bounds": {
+      "min": [
+        0.1089340700100456,
+        -4.466325631713161,
+        0.055474553743914634
+      ],
+      "max": [
+        0.42923526775365123,
+        -3.381185534348198,
+        0.7891600185457074
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-internal-iliac-artery",
+    "semantic": "arterial",
+    "label": "right internal iliac artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA18809.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18809.obj": "261add811a4faa92730df4e7ac436f6646c25cb6d4fcff0b2456bbcbc7994103"
+    },
+    "vertices": 128,
+    "triangles": 252,
+    "bounds": {
+      "min": [
+        -0.5957292790356234,
+        -4.081581485202072,
+        -0.6548984931612708
+      ],
+      "max": [
+        -0.4576695464029057,
+        -3.34209350127502,
+        0.33244369059578094
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-internal-iliac-artery",
+    "semantic": "arterial",
+    "label": "left internal iliac artery",
+    "group": "systemic",
+    "oxygenated": true,
+    "source": [
+      "FMA18810.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18810.obj": "07fae121023a47377515a62bf29ae7f6ffbc0a6aaa9ecbc030d37d3686e369db"
+    },
+    "vertices": 182,
+    "triangles": 360,
+    "bounds": {
+      "min": [
+        0.014105246889730243,
+        -4.109570666872731,
+        -0.7801084305695082
+      ],
+      "max": [
+        0.18830815238389612,
+        -3.33301367745924,
+        0.29571978981531577
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-common-iliac-vein",
+    "semantic": "venous",
+    "label": "right common iliac vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA21387.obj"
+    ],
+    "sourceSHA256": {
+      "FMA21387.obj": "fc50fdee60bb376210ef0876d6d1fa2a87705d102cd979bff0dcdd2705007cfd"
+    },
+    "vertices": 93,
+    "triangles": 182,
+    "bounds": {
+      "min": [
+        -0.614100749555676,
+        -3.4289051850707075,
+        0.056918043427864995
+      ],
+      "max": [
+        -0.2630000278185613,
+        -2.680860984467971,
+        0.42357513329727203
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-common-iliac-vein",
+    "semantic": "venous",
+    "label": "left common iliac vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA21388.obj"
+    ],
+    "sourceSHA256": {
+      "FMA21388.obj": "19aafbe434a96dc097a3871c1abbd27eae0503e27de72a371aeea6e2574b18d2"
+    },
+    "vertices": 105,
+    "triangles": 206,
+    "bounds": {
+      "min": [
+        -0.4180182057028053,
+        -3.446327022641219,
+        0.019693145815624757
+      ],
+      "max": [
+        0.08217893516729771,
+        -2.6803373773278736,
+        0.42344423151224786
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-external-iliac-vein",
+    "semantic": "venous",
+    "label": "right external iliac vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA18885.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18885.obj": "cbe51f62a88e8d524586b1868b1aa678fde76150770cb82f95df853178c2cc3a"
+    },
+    "vertices": 138,
+    "triangles": 272,
+    "bounds": {
+      "min": [
+        -0.7244104937794609,
+        -4.466373232362262,
+        -0.007900950467506385
+      ],
+      "max": [
+        -0.47248881848388863,
+        -3.3851482883857518,
+        0.7315275326481726
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-external-iliac-vein",
+    "semantic": "venous",
+    "label": "left external iliac vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA18886.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18886.obj": "20c3c34d8b7056459c6ccd2ffbd7e80f361894300f42aa7b357f38a33df7176d"
+    },
+    "vertices": 152,
+    "triangles": 300,
+    "bounds": {
+      "min": [
+        -0.05344602426396731,
+        -4.466373232362262,
+        -0.09901097287690297
+      ],
+      "max": [
+        0.3060507379646085,
+        -3.400118692527627,
+        0.7271006722818948
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "right-internal-iliac-vein",
+    "semantic": "venous",
+    "label": "right internal iliac vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA18887.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18887.obj": "8d25c780eb2e0ddbeb9026d8f6f032f5dd97f2338926b034c100de02cd964c92"
+    },
+    "vertices": 110,
+    "triangles": 216,
+    "bounds": {
+      "min": [
+        -0.5851298044973343,
+        -4.057352754810294,
+        -0.60636725137161
+      ],
+      "max": [
+        -0.48408671663704533,
+        -3.3640136001854586,
+        0.14097007959199426
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  },
+  {
+    "sourceRelease": "BodyParts3D 3.0 (2011-09-15), 99% polygon-reduction OBJ",
+    "sourceArchive": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/BodyParts3D_3.0_obj_99.zip",
+    "sourceREADME": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/20110915/README_e.html",
+    "archivedLicenseEvidence": "CC Attribution-Share Alike 2.1 Japan (Release 3.0 README)",
+    "currentLicenseEvidence": "CC Attribution 4.0 International (portal license, last updated 2025-02-27)",
+    "provenanceStatus": "blocked-pending-review",
+    "derivativeReleaseAllowed": false,
+    "name": "left-internal-iliac-vein",
+    "semantic": "venous",
+    "label": "left internal iliac vein",
+    "group": "systemic",
+    "oxygenated": false,
+    "source": [
+      "FMA18888.obj"
+    ],
+    "sourceSHA256": {
+      "FMA18888.obj": "cce83f8b73179f6ea82e881e9e12393776bf1768f2a8b5d002d89859f541681b"
+    },
+    "vertices": 106,
+    "triangles": 208,
+    "bounds": {
+      "min": [
+        -0.045757329418128496,
+        -4.056555443937873,
+        -0.5988284985704354
+      ],
+      "max": [
+        0.09375779306081441,
+        -3.359789042577855,
+        0.11697935244571511
+      ]
+    },
+    "sourceCoordinateSystem": "X-left, Y-posterior, Z-superior",
+    "normalizedTransform": {
+      "coordinateSystem": "X-left, Y-up, Z-anterior",
+      "pivot": "heart source center registered to existing heart",
+      "scale": 0.011900162274940116,
+      "sourceUnits": "mm"
+    },
+    "registration": {
+      "scale": 0.011900162274940116,
+      "heartSourceCenter": [
+        21.412900000000004,
+        1237.02,
+        121.8323
+      ],
+      "heartCenter": [
+        0.04,
+        0.42,
+        0.35
+      ],
+      "transform": "[x,z,-y] * scale - heartSourceCenter * scale + heart.center"
+    }
+  }
+]

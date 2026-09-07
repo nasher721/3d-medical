@@ -42,3 +42,20 @@ The layout is still an **exploded teaching diagram**, with separated organ cente
 `--preview` explicitly enables local preparation while preserving blocked provenance. Without it, preparation requires reviewed provenance; `--release` takes precedence even if `--preview` is also present. Preparing different source files resets their review status. Packaging preserves attribution and source/license evidence. The existing license conflict and distribution gate remain unresolved.
 
 The optimized GLB is 10,581,512 bytes, with 230,738 vertices and 454,298 triangles. It remains extension-free and under the 12 MB budget; glTF Transform weld/dedup/prune avoids a new runtime decoder or dependency.
+
+## Registered vascular bundle — 2026-09-06
+
+`vasculature.glb` adds 56 named vascular source meshes, including the aorta and arch branches, caval and jugular return, pulmonary trees, renal vessels, coronary arteries/veins, abdominal branches and iliac vessels. `vascular-manifest.json` records each source OBJ hash, anatomical label, arterial/venous identity, oxygenation, runtime group and shared registration. The source OBJ frame is X-left/Y-posterior/Z-superior; `[x,z,-y]` rotates it into X-left/Y-up/Z-anterior. Existing organ manifest bounds already use the latter frame.
+
+The renderer translates the six existing organ meshes back into this same source frame, preserving dimensions and all inter-organ offsets. This supersedes the earlier exploded layout when the vascular bundle is available. The original six-organ GLB is unchanged. Intracranial arteries/sinuses, short cervical connectors and urine paths remain explicitly schematic; coronary surfaces follow the heart's teaching animation. Major-vessel particle paths are suppressed because the former schematic centerlines do not follow the source vessels.
+
+Reproduce locally without a new runtime dependency:
+
+```sh
+node scripts/prepare-vasculature.js tmp/bodyparts.zip --preview
+gltf-transform dedup assets/organs/vasculature.glb tmp/vasculature-dedup.glb
+gltf-transform prune tmp/vasculature-dedup.glb assets/organs/vasculature.glb
+gltf-transform validate assets/organs/vasculature.glb
+```
+
+The preparation script requires `--preview` and rejects `--release`, including when both flags are present. Both manifests remain blocked for distribution under the unresolved provenance conflict described above. Source-aligned anatomy is not exhaustive vascular anatomy, patient-specific anatomy or clinical validation.
