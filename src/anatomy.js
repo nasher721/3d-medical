@@ -1,3 +1,5 @@
+import { loadRegisteredVasculature } from './vascular-registration.js';
+import { SYSTEMIC_VASCULAR_ROUTES } from './vascular-routes.js';
 import { loadOrganAssets } from './organ-assets.js';
 import { mat4Multiply, mat4Perspective, mat4LookAt, mat4Identity, projectPoint, clamp } from './math3d.js';
 
@@ -21,8 +23,16 @@ export const CEREBRAL_TEACHING_GRAPH = Object.freeze({
     'left-internal-carotid', 'right-internal-carotid', 'left-aca', 'right-aca',
     'anterior-communicating', 'left-mca', 'right-mca', 'left-pca', 'right-pca',
     'left-posterior-communicating', 'right-posterior-communicating', 'basilar',
-    'left-vertebral', 'right-vertebral', 'aca-capillary-bed', 'mca-capillary-bed',
-    'pca-capillary-bed', 'dural-venous-sinuses', 'internal-jugular-return',
+    'left-vertebral', 'right-vertebral', 'vertebrobasilar-junction',
+    'left-aca-capillary-bed', 'right-aca-capillary-bed',
+    'left-mca-capillary-bed', 'right-mca-capillary-bed',
+    'left-pca-capillary-bed', 'right-pca-capillary-bed',
+    'superior-sagittal-sinus', 'straight-sinus', 'left-transverse-sinus',
+    'right-transverse-sinus', 'left-sigmoid-sinus', 'right-sigmoid-sinus',
+    'left-internal-jugular-return', 'right-internal-jugular-return',
+    // Legacy aggregate ids remain visible for saved sessions and label consumers.
+    'aca-capillary-bed', 'mca-capillary-bed', 'pca-capillary-bed',
+    'dural-venous-sinuses', 'internal-jugular-return',
   ]),
   edges: Object.freeze([
     ['left-internal-carotid', 'left-aca'], ['right-internal-carotid', 'right-aca'],
@@ -30,11 +40,17 @@ export const CEREBRAL_TEACHING_GRAPH = Object.freeze({
     ['left-internal-carotid', 'left-mca'], ['right-internal-carotid', 'right-mca'],
     ['left-internal-carotid', 'left-posterior-communicating'], ['right-internal-carotid', 'right-posterior-communicating'],
     ['left-posterior-communicating', 'left-pca'], ['right-posterior-communicating', 'right-pca'],
-    ['left-vertebral', 'basilar'], ['right-vertebral', 'basilar'], ['basilar', 'left-pca'], ['basilar', 'right-pca'],
-    ['left-aca', 'aca-capillary-bed'], ['right-aca', 'aca-capillary-bed'], ['left-mca', 'mca-capillary-bed'],
-    ['right-mca', 'mca-capillary-bed'], ['left-pca', 'pca-capillary-bed'], ['right-pca', 'pca-capillary-bed'],
-    ['aca-capillary-bed', 'dural-venous-sinuses'], ['mca-capillary-bed', 'dural-venous-sinuses'],
-    ['pca-capillary-bed', 'dural-venous-sinuses'], ['dural-venous-sinuses', 'internal-jugular-return'],
+    ['left-vertebral', 'vertebrobasilar-junction'], ['right-vertebral', 'vertebrobasilar-junction'], ['vertebrobasilar-junction', 'basilar'], ['basilar', 'left-pca'], ['basilar', 'right-pca'],
+    ['left-aca', 'left-aca-capillary-bed'], ['right-aca', 'right-aca-capillary-bed'],
+    ['left-mca', 'left-mca-capillary-bed'], ['right-mca', 'right-mca-capillary-bed'],
+    ['left-pca', 'left-pca-capillary-bed'], ['right-pca', 'right-pca-capillary-bed'],
+    ['left-aca-capillary-bed', 'superior-sagittal-sinus'], ['right-aca-capillary-bed', 'superior-sagittal-sinus'],
+    ['left-mca-capillary-bed', 'left-transverse-sinus'], ['right-mca-capillary-bed', 'right-transverse-sinus'],
+    ['left-pca-capillary-bed', 'left-transverse-sinus'], ['right-pca-capillary-bed', 'right-transverse-sinus'],
+    ['superior-sagittal-sinus', 'confluence-of-sinuses'], ['straight-sinus', 'confluence-of-sinuses'],
+    ['confluence-of-sinuses', 'left-transverse-sinus'], ['confluence-of-sinuses', 'right-transverse-sinus'],
+    ['left-transverse-sinus', 'left-sigmoid-sinus'], ['right-transverse-sinus', 'right-sigmoid-sinus'],
+    ['left-sigmoid-sinus', 'left-internal-jugular-return'], ['right-sigmoid-sinus', 'right-internal-jugular-return'],
   ]),
   labels: Object.freeze({
     'left-internal-carotid': 'Left internal carotid artery',
@@ -51,17 +67,30 @@ export const CEREBRAL_TEACHING_GRAPH = Object.freeze({
     basilar: 'Basilar artery',
     'left-vertebral': 'Left vertebral artery',
     'right-vertebral': 'Right vertebral artery',
-    'aca-capillary-bed': 'ACA territory — schematic capillary bed',
-    'mca-capillary-bed': 'MCA territory — schematic capillary bed',
-    'pca-capillary-bed': 'PCA territory — schematic capillary bed',
-    'dural-venous-sinuses': 'Dural venous sinuses — schematic venous return',
-    'internal-jugular-return': 'Internal jugular venous return',
+    'vertebrobasilar-junction': 'Vertebrobasilar junction',
+    'left-aca-capillary-bed': 'Left ACA territory — schematic capillary bed',
+    'right-aca-capillary-bed': 'Right ACA territory — schematic capillary bed',
+    'left-mca-capillary-bed': 'Left MCA territory — schematic capillary bed',
+    'right-mca-capillary-bed': 'Right MCA territory — schematic capillary bed',
+    'left-pca-capillary-bed': 'Left PCA territory — schematic capillary bed',
+    'right-pca-capillary-bed': 'Right PCA territory — schematic capillary bed',
+    'superior-sagittal-sinus': 'Superior sagittal sinus', 'straight-sinus': 'Straight sinus', 'confluence-of-sinuses': 'Confluence of sinuses',
+    'left-transverse-sinus': 'Left transverse sinus', 'right-transverse-sinus': 'Right transverse sinus',
+    'left-sigmoid-sinus': 'Left sigmoid sinus', 'right-sigmoid-sinus': 'Right sigmoid sinus',
+    'left-internal-jugular-return': 'Left internal jugular venous return',
+    'right-internal-jugular-return': 'Right internal jugular venous return',
+    'aca-capillary-bed': 'ACA territories — schematic capillary bed',
+    'mca-capillary-bed': 'MCA territories — schematic capillary bed',
+    'pca-capillary-bed': 'PCA territories — schematic capillary bed',
+    'dural-venous-sinuses': 'Dural venous sinuses',
+    'internal-jugular-return': 'Internal jugular veins',
   }),
 });
 
+const cerebralVenousEdge = ([from, to]) => /sinus|jugular/.test(from) || /sinus|jugular/.test(to);
 export const ANATOMICAL_ROUTE_COLLECTIONS = Object.freeze({
-  arterial: Object.freeze(CEREBRAL_TEACHING_GRAPH.edges.slice(0, 20).map(([from, to]) => `${from}->${to}`)),
-  venous: Object.freeze(CEREBRAL_TEACHING_GRAPH.edges.slice(20).map(([from,to])=>`${from}->${to}`)),
+  arterial: Object.freeze(CEREBRAL_TEACHING_GRAPH.edges.filter(edge => !cerebralVenousEdge(edge)).map(([from, to]) => `${from}->${to}`)),
+  venous: Object.freeze(CEREBRAL_TEACHING_GRAPH.edges.filter(cerebralVenousEdge).map(([from,to])=>`${from}->${to}`)),
   urine: Object.freeze(['collecting-ducts->calyces', 'calyces->renal-pelvis', 'renal-pelvis->ureter', 'ureter->bladder', 'bladder->outlet']),
 });
 
@@ -76,10 +105,18 @@ export const CEREBRAL_NODE_POSITIONS = Object.freeze({
   'left-pca':[.24,3.41,-.10], 'right-pca':[-.24,3.41,-.10],
   'left-posterior-communicating':[.28,3.42,.12], 'right-posterior-communicating':[-.28,3.42,.12],
   // Source pons reaches Z +.195; its ventral surface faces anterior, not negative Z.
-  basilar:[0,3.43,.24], 'left-vertebral':[.12,2.94,.24], 'right-vertebral':[-.12,2.94,.24],
-  'aca-capillary-bed':[0,4.04,.70], 'mca-capillary-bed':[-.98,3.85,.63],
-  'pca-capillary-bed':[.91,3.14,.64], 'dural-venous-sinuses':[0,4.25,.50],
-  'internal-jugular-return':[1.10,2.94,.32],
+  basilar:[0,3.43,.24], 'left-vertebral':[.12,2.94,.24], 'right-vertebral':[-.12,2.94,.24], 'vertebrobasilar-junction':[0,3.16,.24],
+  'left-aca-capillary-bed':[.25,4.08,.68], 'right-aca-capillary-bed':[-.25,4.08,.68],
+  'left-mca-capillary-bed':[.72,3.86,.42], 'right-mca-capillary-bed':[-.72,3.86,.42],
+  'left-pca-capillary-bed':[.42,3.85,-.85], 'right-pca-capillary-bed':[-.42,3.85,-.85],
+  'superior-sagittal-sinus':[0,4.48,.05], 'straight-sinus':[0,3.88,-.55], 'confluence-of-sinuses':[0,3.66,-.70],
+  'left-transverse-sinus':[.55,3.55,-.66], 'right-transverse-sinus':[-.55,3.55,-.66],
+  'left-sigmoid-sinus':[.42,3.18,-.34], 'right-sigmoid-sinus':[-.42,3.18,-.34],
+  'left-internal-jugular-return':[.35,3.00,-.18], 'right-internal-jugular-return':[-.35,3.00,-.18],
+  // Kept as non-rendered aggregate label anchors for compatibility.
+  'aca-capillary-bed':[0,4.04,.70], 'mca-capillary-bed':[0,3.85,.63],
+  'pca-capillary-bed':[0,3.14,-.04], 'dural-venous-sinuses':[0,4.30,.05],
+  'internal-jugular-return':[0,2.82,.18],
 });
 export const URINE_NODE_POSITIONS = Object.freeze({
   'collecting-ducts':[1.48,-1.37,.48],calyces:[1.30,-1.57,.48],
@@ -187,7 +224,8 @@ export class AnatomyRenderer {
     this._buildVessels();this._buildGrid();this._buildParticles();this.resetCamera();this._bindEvents();
     this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(canvas);this.resize();
     this.assetController=new AbortController();
-    this.ready=this._loadOrgans().then(()=>{if(!this.destroyed)onReady?.();}).catch(error=>{if(!this.destroyed)onError?.(error);});
+    this.cerebralPositions=CEREBRAL_NODE_POSITIONS;
+    this.ready=this._loadOrgans().then(()=>loadRegisteredVasculature(this)).then(()=>{if(!this.destroyed)onReady?.();}).catch(error=>{if(!this.destroyed)onError?.(error);});
   }
   _asset(g,options){
     const gl=this.gl;
@@ -232,6 +270,7 @@ export class AnatomyRenderer {
     this.assetSource=provenanceBlocked?'local-surface-bundle-provenance-blocked':'local-surface-bundle';
     this.canvas.dispatchEvent(new CustomEvent('anatomy-assets-ready',{bubbles:true,detail:{detailed:true,provenanceBlocked}}));
     if(this.destroyed)return;
+    this.organManifest=manifest;
     const organs={
       brain:{id:'brain',color:[.72,.56,.54],center:[0,3.62,0]},
       heart:{id:'heart',color:[.57,.20,.18],center:[.04,.42,.35]},
@@ -245,7 +284,7 @@ export class AnatomyRenderer {
       const options=organs[mesh.name];
       const center=manifest.find(record=>record.name===mesh.name)?.center;
       const packagedCenter=Array.isArray(center)&&center.length===3&&center.every(Number.isFinite)?center:options?.center;
-      if(options)this._asset(mesh,{...options,center:packagedCenter,tissue:true});
+      if(options)this._asset(mesh,{...options,sourceName:mesh.name,center:packagedCenter,tissue:true});
     }
   }
   _buildFallbackOrgans(){
@@ -274,49 +313,51 @@ export class AnatomyRenderer {
     }
   }
   _route(points,{radius=.065,oxygenated=true,group='systemic',flow=1,particles=true,id='vessels',color,name,semantic,territory}={}){
+    if(this.registeredVasculature&&group==='urine')points=points.map(p=>this._registeredUrinePoint(p));
     const path=curve(points,10),g=geometry();tube(g,path,radius,radius>.08?12:8);const asset=this._asset(g,{id,color:color??(oxygenated?RED:BLUE),oxygenated,group,radius,name,semantic:semantic??(id==='urine'?'urine':group==='pulmonary'?(oxygenated?'venous':'arterial'):oxygenated?'arterial':'venous'),territory});
     if(particles){const distances=[0];for(let i=1;i<path.length;i++)distances.push(distances[i-1]+Math.hypot(...sub(path[i],path[i-1])));this.routes.push({path,distances,length:distances.at(-1),oxygenated,group,flow,radius,asset,name,semantic:asset.semantic,territory});}
   }
   _buildVessels(){
-    const LV=[.43,.86,.18],RA=[-.47,.94,.22],RV=[-.26,.5,.77],LA=[.42,1.04,.10];
-    this._route([LV,[.50,1.57,.33],[.31,2.08,.26],[-.12,2.10,.03],[-.27,1.66,-.38],[.25,.80,-.47],[.31,-.60,-.40],[.30,-2.65,-.24]],{radius:.115});
-    this._route([[-.31,-2.65,-.15],[-.37,-1.35,-.2],[-.40,.16,-.23],RA],{radius:.135,oxygenated:false});
-    for(const side of [-1,1]){
-      this._route([RV,[-.13,1.23,.88],[side*.65,1.72,.48],[side*1.43,1.58,.2]],{radius:.09,oxygenated:false,group:'pulmonary'});
-      this._route([[side*1.58,.65,.18],[side*.98,.99,.09],LA],{radius:.071,oxygenated:true,group:'pulmonary'});
-      for(let j=0;j<6;j++){
-        const y=.05+j*.43,outer=side*(1.86+.16*Math.sin(j)),z=.22+.15*Math.cos(j);
-        this._route([[side*1.43,1.58,.2],[side*1.61,(1.58+y)/2,.16],[outer,y,z]],{radius:.027,oxygenated:false,group:'pulmonary',flow:.35});
-        this._route([[outer+.045*side,y-.045,z],[side*1.72,(y+.65)/2,.26],[side*1.58,.65,.18]],{radius:.020,oxygenated:true,group:'pulmonary',flow:.32});
-        for(let branch=0;branch<3;branch++){const end=[outer+side*(.17+branch*.06),y+(branch-1)*.15,z+.07*Math.sin(branch+j)];this._route([[outer,y,z],end],{radius:.009,oxygenated:false,group:'pulmonary',flow:.14,particles:false});this._route([end,[outer+.045*side,y-.045,z]],{radius:.008,oxygenated:true,group:'pulmonary',flow:.14,particles:false});}
-      }
-      this._route([[.31,-1.15,-.37],[side*.76,-1.30,.07],[side*1.10,-1.51,.23]],{radius:.059,group:'renal',flow:.55});
-      this._route([[side*1.08,-1.64,.26],[side*.66,-1.70,.05],[-.37,-1.35,-.2]],{radius:.071,oxygenated:false,group:'renal',flow:.55});
-      for(let j=0;j<5;j++){
-        const bed=[side*(1.35+.18*Math.sin(j)),-1.20-j*.14,.34];
-        this._route([[side*1.10,-1.51,.23],bed],{radius:.014,group:'renal',name:`${side}-renal-capillary-in-${j}`,flow:.20});
-        this._route([bed,[side*1.08,-1.64,.26]],{radius:.012,group:'renal',oxygenated:false,name:`${side}-renal-capillary-return-${j}`,flow:.20});
-      }
-      this._route([[.30,-2.65,-.24],[side*.87,-2.83,-.13],[side*1.60,-2.74,.02],[side*1.91,-2.29,.03]],{radius:.065,flow:.65});
-      this._route([[side*1.91,-2.29,.03],[side*1.67,-2.95,-.20],[side*.62,-3.01,-.29],[-.31,-2.65,-.15]],{radius:.077,oxygenated:false,flow:.65});
-    }
-    this._route([RA,[-.56,.56,.58],RV],{radius:.076,oxygenated:false,group:'heart'});this._route([LA,[.44,.62,.35],LV],{radius:.075,group:'heart'});this._buildCerebralRoutes();this._buildUrineRoutes();
+    for(const {points,...options} of SYSTEMIC_VASCULAR_ROUTES)this._route(points,options);
+    this._buildCerebralRoutes();
+    this._buildUrineRoutes();
   }
   _buildCerebralRoutes(){
-    CEREBRAL_TEACHING_GRAPH.edges.forEach(([from,to],index)=>{
-      const semantic=index>=20?'venous':'arterial';
+    const cerebralRoutePoints=(from,to)=>{
+      const a=CEREBRAL_NODE_POSITIONS[from], b=CEREBRAL_NODE_POSITIONS[to];
+      const side=from.startsWith('left-')||to.startsWith('left-')?1:-1;
+      if(from.endsWith('-aca')&&to.endsWith('capillary-bed'))return [a,[side*.10,3.68,.72],[side*.16,3.96,.78],b];
+      if(from.endsWith('-mca')&&to.endsWith('capillary-bed'))return [a,[side*.73,3.60,.31],[side*.76,3.74,.36],b];
+      if(from.endsWith('-pca')&&to.endsWith('capillary-bed'))return [a,[side*.38,3.42,-.38],[side*.51,3.63,-.71],b];
+      if(from.includes('sagittal'))return [a,[0,4.42,-.38],[0,4.07,-.78],b];
+      if(from.includes('straight'))return [a,[0,3.76,-.62],b];
+      if(from.includes('confluence'))return [a,[side*.30,3.60,-.70],b];
+      if(from.includes('transverse'))return [a,[side*.58,3.42,-.61],[side*.52,3.28,-.47],b];
+      if(from.includes('sigmoid'))return [a,[side*.46,3.08,-.30],b];
+      return [a,b];
+    };
+    CEREBRAL_TEACHING_GRAPH.edges.forEach(([from,to])=>{
+      const semantic=cerebralVenousEdge([from,to])?'venous':'arterial';
       const territory=['aca','mca','pca'].find(t=>from.includes(t)||to.includes(t));
-      this._route([CEREBRAL_NODE_POSITIONS[from],CEREBRAL_NODE_POSITIONS[to]],{
-        radius:index>=14?.016:.026,group:'brain',semantic,oxygenated:semantic==='arterial',
+      this._route(cerebralRoutePoints(from,to),{
+        radius:from.includes('capillary-bed')||to.includes('capillary-bed')?.014:semantic==='venous'?.023:.026,group:'brain',semantic,oxygenated:semantic==='arterial',
         name:`${from}->${to}`,territory,flow:.55,
       });
     });
-    for(const side of [-1,1])this._route([[.12,2.10,.12],[side*.35,2.59,.24],CEREBRAL_NODE_POSITIONS[side<0?'right-internal-carotid':'left-internal-carotid']],{radius:.045,group:'brain',name:`${side}-carotid-inflow`});
-    this._route([CEREBRAL_NODE_POSITIONS['internal-jugular-return'],[.85,2.48,.12],[-.47,.94,.22]],{radius:.047,group:'brain',oxygenated:false,name:'jugular-systemic-return'});
-    for(const name of ['aca-capillary-bed','mca-capillary-bed','pca-capillary-bed']){
-      const center=CEREBRAL_NODE_POSITIONS[name];
-      for(let j=0;j<3;j++)this._route([add(center,[-.10,j*.035,0]),add(center,[.10,j*.035,0])],{radius:.009,group:'brain',name:`${name}-${j}`,territory:name.slice(0,3),flow:.15});
-    }
+    // Common carotid and vertebral inflows remain separate until the ipsilateral
+    // circle of Willis; no cervical route crosses the midline.
+    this._route([[-.43,2.30,.08],[-.35,2.62,.20],CEREBRAL_NODE_POSITIONS['right-internal-carotid']],{radius:.045,group:'brain',name:'-1-carotid-inflow'});
+    this._route([[.12,2.30,-.08],[.18,2.62,.20],CEREBRAL_NODE_POSITIONS['left-internal-carotid']],{radius:.045,group:'brain',name:'1-carotid-inflow'});
+    this._route([[-.80,2.15,-.12],[-.32,2.58,.16],CEREBRAL_NODE_POSITIONS['right-vertebral']],{radius:.032,group:'brain',name:'right-vertebral-inflow'});
+    this._route([[.72,2.15,-.26],[.30,2.58,.16],CEREBRAL_NODE_POSITIONS['left-vertebral']],{radius:.032,group:'brain',name:'left-vertebral-inflow'});
+    this._route([CEREBRAL_NODE_POSITIONS['left-internal-jugular-return'],[.65,2.28,.22],[.65,1.98,.22]],{radius:.047,group:'brain',oxygenated:false,name:'left-jugular-systemic-return'});
+    this._route([CEREBRAL_NODE_POSITIONS['right-internal-jugular-return'],[-.65,2.28,.22],[-.65,1.98,.22]],{radius:.047,group:'brain',oxygenated:false,name:'right-jugular-systemic-return'});
+  }
+  _registeredUrinePoint(point){
+    if(!this.registrationOffsets)return point;
+    const offset=this.registrationOffsets[point[0]<0?'kidney-right':'kidney-left'];
+    const weight=clamp((point[1]+2.70)/1.15,0,1);
+    return point.map((v,i)=>v+offset[i]*weight+(i===0?this.registrationOffsets.brain[0]*(1-weight):0));
   }
   _buildUrineRoutes(){
     for(const side of [-1,1])for(const edge of ANATOMICAL_ROUTE_COLLECTIONS.urine){
@@ -326,11 +367,11 @@ export class AnatomyRenderer {
       const point=name=>URINE_NODE_POSITIONS[name].map((v,i)=>i===0?v*side:v);
       this._route([point(from),point(to)],{radius:.029,group:'urine',id:'urine',semantic:'urine',name:`${side}:${edge}`,color:[.88,.76,.26],flow:.45});
     }
-    this._asset(ellipsoid(URINE_NODE_POSITIONS.bladder,[.20,.18,.13]),{id:'urine',group:'urine',semantic:'urine',color:[.88,.76,.26],name:'bladder-reservoir'});
+    this._asset(ellipsoid(this._registeredUrinePoint(URINE_NODE_POSITIONS.bladder),[.20,.18,.13]),{id:'urine',group:'urine',semantic:'urine',color:[.88,.76,.26],name:'bladder-reservoir'});
   }
   _buildGrid(){const g=geometry();for(let i=-12;i<=12;i++){g.position.push(i*.55,-3.25,-6,i*.55,-3.25,6,-6,-3.25,i*.55,6,-3.25,i*.55);for(let n=0;n<4;n++)g.normal.push(0,1,0);}this._asset(g,{id:'grid',color:[.15,.32,.44],lines:true});}
   _buildParticles(){
-    this.particles=[];this.routes.forEach((route,index)=>{const count=Math.max(3,Math.round(route.length*(route.radius>.05?11:4)));for(let j=0;j<count;j++)this.particles.push({route,phase:(j+.37*Math.sin(index*7+j))/count,size:route.radius>.05?4.2:2.8});});
+    this.particles=[];this.routes.filter(route=>!route.asset.superseded).forEach((route,index)=>{const count=Math.max(3,Math.round(route.length*(route.radius>.05?11:4)));for(let j=0;j<count;j++)this.particles.push({route,phase:(j+.37*Math.sin(index*7+j))/count,size:route.radius>.05?4.2:2.8});});
     const gl=this.gl,count=this.particles.length;this.particleArrays={position:new Float32Array(count*3),color:new Float32Array(count*3),size:new Float32Array(count)};this.particleBuffers={};for(const key of ['position','color','size']){this.particleBuffers[key]=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,this.particleBuffers[key]);gl.bufferData(gl.ARRAY_BUFFER,this.particleArrays[key],gl.DYNAMIC_DRAW);}
   }
   _bindEvents(){
@@ -344,7 +385,7 @@ export class AnatomyRenderer {
   }
   _pick(event){
     if(!this.vp)return;const rect=this.canvas.getBoundingClientRect(),x=event.clientX-rect.left,y=event.clientY-rect.top,centers={brain:[0,3.62,0],lungs:[-1.68,1.13,0],heart:[.04,.42,.55],kidneys:[1.32,-1.59,.08]};let best=65,id=null;
-    for(const [key,center]of Object.entries(centers)){const p=projectPoint(this.vp,center,rect.width,rect.height),d=Math.hypot(p[0]-x,p[1]-y);if(d<best){best=d;id=key;}if(key==='lungs'||key==='kidneys'){const q=projectPoint(this.vp,[-center[0],center[1],center[2]],rect.width,rect.height),dd=Math.hypot(q[0]-x,q[1]-y);if(dd<best){best=dd;id=key;}}}if(id)this.onSelect?.(id);
+    for(const [key,center]of Object.entries(centers)){const offset=this.registrationOffsets?.[key==='lungs'?'lung-right':key==='kidneys'?'kidney-left':key]||[0,0,0];const p=projectPoint(this.vp,add(center,offset),rect.width,rect.height),d=Math.hypot(p[0]-x,p[1]-y);if(d<best){best=d;id=key;}if(key==='lungs'||key==='kidneys'){const otherOffset=this.registrationOffsets?.[key==='lungs'?'lung-left':'kidney-right']||[0,0,0];const q=projectPoint(this.vp,add([-center[0],center[1],center[2]],otherOffset),rect.width,rect.height),dd=Math.hypot(q[0]-x,q[1]-y);if(dd<best){best=dd;id=key;}}}if(id)this.onSelect?.(id);
   }
   _color(asset){
     if(asset.id==='urine')return asset.color;if(asset.id!=='vessels')return asset.color;const m=this.metrics;
@@ -353,10 +394,10 @@ export class AnatomyRenderer {
     return mix([.08,.28,.77],[.95,.22,.20],clamp(((asset.oxygenated?m.spo2:m.svo2)/100-.78)/.20,0,1));
   }
   _model(asset){
-    if(!asset.center)return mat4Identity();const m=this.metrics;let s=1,sy=1;
-    if(asset.id==='heart'){s=Math.cbrt(clamp((m.edv||120)/120,.7,1.5))*(1-.065*this.beat);if(asset.chamber==='rv'||asset.chamber==='ra')s*=1+clamp((m.cvp-6)/90,0,.2);sy=s;}
+    if(!asset.center){const model=mat4Identity();if(asset.registrationOffset)for(let i=0;i<3;i++)model[12+i]=asset.registrationOffset[i];return model;}const m=this.metrics;let s=1,sy=1;
+    if((asset.animationOrgan||asset.id)==='heart'){s=Math.cbrt(clamp((m.edv||120)/120,.7,1.5))*(1-.065*this.beat);if(asset.chamber==='rv'||asset.chamber==='ra')s*=1+clamp((m.cvp-6)/90,0,.2);sy=s;}
     if(asset.id==='lungs'){s=1+.025*Math.sin(this.time*(m.respiratoryRate||16)/60*TAU)+clamp((m.lungWater||0)/150,0,.13);sy=1+(s-1)*.6;}
-    const c=asset.center,out=mat4Identity();out[0]=s;out[5]=sy;out[10]=s;out[12]=c[0]*(1-s);out[13]=c[1]*(1-sy);out[14]=c[2]*(1-s);return out;
+    const c=asset.center,out=mat4Identity();out[0]=s;out[5]=sy;out[10]=s;out[12]=c[0]*(1-s);out[13]=c[1]*(1-sy);out[14]=c[2]*(1-s);if(asset.registrationOffset)for(let i=0;i<3;i++)out[12+i]+=asset.registrationOffset[i];return out;
   }
   _routeRate(route){
     if(route.semantic==='urine')return clamp((this.metrics.urineOutput??60)/60,0,3);
@@ -380,6 +421,7 @@ export class AnatomyRenderer {
     const gl=this.gl;if(!this.projection)return;const cp=Math.cos(this.pitch),eye=[this.target[0]+Math.sin(this.yaw)*cp*this.distance,this.target[1]+Math.sin(this.pitch)*this.distance,this.target[2]+Math.cos(this.yaw)*cp*this.distance];this.vp=mat4Multiply(this.projection,mat4LookAt(eye,this.target));
     gl.viewport(0,0,this.canvas.width,this.canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);gl.depthMask(true);gl.useProgram(this.program);gl.uniformMatrix4fv(this.uniforms.viewProjection,false,this.vp);gl.uniform3fv(this.uniforms.eye,eye);
     const draw=asset=>{
+      if(asset.superseded)return;
       // Urine geometry is its own semantic collection, but shares the renal camera.
       
       if((asset.id==='vessels'||asset.id==='urine')&&!this.layers.vessels)return;
@@ -401,21 +443,28 @@ export class AnatomyRenderer {
       
       const r=particle.route,t=((particle.phase+(r.phase||0))%1+1)%1,dist=t*r.length;
       let lo=0,hi=r.distances.length-1;while(hi-lo>1){const mid=(lo+hi)>>1;if(r.distances[mid]<dist)lo=mid;else hi=mid;}
-      const f=(dist-r.distances[lo])/(r.distances[hi]-r.distances[lo]||1),p=mix(r.path[lo],r.path[hi],f),color=this._color(r.asset);for(let k=0;k<3;k++){a.position[index*3+k]=p[k];a.color[index*3+k]=Math.min(1,color[k]*1.35+.12);}const group={heart:'heart',lungs:'pulmonary',brain:'brain',kidneys:'renal'}[this.view];const visible=(!group||r.group===group||(this.view==='kidneys'&&r.group==='urine'));a.size[index]=visible?particle.size:0;
+      const f=(dist-r.distances[lo])/(r.distances[hi]-r.distances[lo]||1),p=mix(r.path[lo],r.path[hi],f),color=this._color(r.asset);for(let k=0;k<3;k++){a.position[index*3+k]=p[k]+(r.asset.registrationOffset?.[k]||0);a.color[index*3+k]=Math.min(1,color[k]*1.35+.12);}const group={heart:'heart',lungs:'pulmonary',brain:'brain',kidneys:'renal'}[this.view];const visible=(!group||r.group===group||(this.view==='kidneys'&&r.group==='urine'));a.size[index]=visible?particle.size:0;
     });
     gl.useProgram(this.pointProgram);gl.uniformMatrix4fv(this.pointUniforms.viewProjection,false,this.vp);gl.uniform1f(this.pointUniforms.dpr,this.dpr);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);gl.disable(gl.CULL_FACE);
     for(const key of ['position','color','size']){gl.bindBuffer(gl.ARRAY_BUFFER,this.particleBuffers[key]);gl.bufferSubData(gl.ARRAY_BUFFER,0,a[key]);gl.enableVertexAttribArray(this.pointAttributes[key]);gl.vertexAttribPointer(this.pointAttributes[key],key==='size'?1:3,gl.FLOAT,false,0,0);}gl.drawArrays(gl.POINTS,0,this.particles.length);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);for(const key of ['position','color','size'])gl.disableVertexAttribArray(this.pointAttributes[key]);
   }
-  setView(view){if(!VIEWS[view])return;this.view=view;this.resetCamera();if(this.assetSource?.startsWith('local-surface-bundle'))this.canvas.dispatchEvent(new CustomEvent('anatomy-assets-ready',{bubbles:true,detail:{detailed:true,provenanceBlocked:this.assetSource.endsWith('provenance-blocked')}}));}
+  setView(view){if(!VIEWS[view])return;this.view=view;this.resetCamera();if(this.assetSource?.startsWith('local-surface-bundle'))this.canvas.dispatchEvent(new CustomEvent('anatomy-assets-ready',{bubbles:true,detail:{detailed:true,registered:this.registeredVasculature,provenanceBlocked:this.assetSource.endsWith('provenance-blocked')}}));}
   setLayers(layers){for(const key of ['particles','labels','vessels','transparent'])if(typeof layers[key]==='boolean')this.layers[key]=layers[key];if(layers.opacity&&typeof layers.opacity==='object')for(const key of ORGAN_OPACITY_KEYS)if(Number.isFinite(layers.opacity[key]))this.layers.opacity[key]=clamp(layers.opacity[key],0,1);}
   setColorMode(mode){if(['oxygenation','pressure','flow'].includes(mode))this.colorMode=mode;}
-  resetCamera(){const view=VIEWS[this.view||'whole'];this.target=[...view.target];this.distance=view.distance;this.yaw=-.035;this.pitch=.04;this._fitCamera();}
-  _fitCamera(){const aspect=(this.canvas.clientWidth||600)/(this.canvas.clientHeight||600);const width={whole:7,systemic:7,heart:2.1,brain:3.2,lungs:5.8,kidneys:4.4}[this.view];this.distance=Math.max(VIEWS[this.view].distance,width/(2*Math.tan(22*Math.PI/180)*aspect));if(this.view==='brain')this.target[0]=this.canvas.clientWidth>600?.45:0;}
+  resetCamera(){const view=VIEWS[this.view||'whole'];this.target=[...view.target];if(this.registrationOffsets){const key={brain:'brain',heart:'heart',lungs:'lung-left',kidneys:'kidney-left'}[this.view];if(key)this.target=this.target.map((v,i)=>v+this.registrationOffsets[key][i]);if(['lungs','kidneys'].includes(this.view))this.target[0]=-.22;}this.distance=this.registeredVasculature&&['whole','systemic'].includes(this.view)?13.5:view.distance;this.yaw=-.035;this.pitch=.04;this._fitCamera();}
+  _fitCamera(){
+    const aspect=(this.canvas.clientWidth||600)/(this.canvas.clientHeight||600);
+    const widths=this.registeredVasculature?{whole:6.4,systemic:6.4,heart:2.1,brain:2.6,lungs:3.8,kidneys:3.2}:{whole:7,systemic:7,heart:2.1,brain:3.2,lungs:5.8,kidneys:4.4};
+    const distance=this.registeredVasculature?({whole:13.5,systemic:13.5,lungs:6.2,kidneys:5}[this.view]||VIEWS[this.view].distance):VIEWS[this.view].distance;
+    this.distance=Math.max(distance,widths[this.view]/(2*Math.tan(22*Math.PI/180)*aspect));
+    if(this.view==='brain')this.target[0]=(this.canvas.clientWidth>600?.45:0)+(this.registrationOffsets?.brain?.[0]||0);
+  }
   resize(){const rect=this.canvas.getBoundingClientRect();if(!rect.width||!rect.height)return;this.dpr=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(rect.width*this.dpr);this.canvas.height=Math.round(rect.height*this.dpr);this.projection=mat4Perspective(44*Math.PI/180,rect.width/rect.height,.1,60);this._fitCamera();}
   getLabels(){
     if(!this.vp)return[];
     const w=this.canvas.clientWidth,h=this.canvas.clientHeight;
     const project=(id,text,position,organ,kind='organ')=>{
+      if(this.registrationOffsets){const key=organ==='brain'?'brain':organ==='lungs'?(position[0]<0?'lung-right':'lung-left'):organ==='kidneys'?(position[0]<0?'kidney-right':'kidney-left'):organ;const offset=this.registrationOffsets[key];if(offset)position=position.map((v,i)=>v+offset[i]);}
       const q=projectPoint(this.vp,position,w,h);
       return{id,text,organ,kind,x:q[0]/w,y:q[1]/h,anchorX:q[0]/w,anchorY:q[1]/h,
         visible:this.layers.labels&&q[2]>-1&&q[2]<1};
@@ -432,7 +481,7 @@ export class AnatomyRenderer {
       labels.push(project('renal-bed',`Schematic renal blood bed: ${status(this.metrics.renalFlow,'mL/min')}`,[-1.40,-1.50,.3],'kidneys','flow'));
       labels.push(project('urine-flow',`Separate urine outflow: ${status(this.metrics.urineOutput,'mL/h')}`,[-.35,-3.03,.20],'kidneys','flow'));
     }else if(this.view==='lungs'){
-      labels=[project('pulmonary-bed','Pulmonary vessels → schematic capillary bed',[-1.85,1.1,.3],'lungs','anatomy'),
+      labels=[project('pulmonary-bed',this.registeredVasculature?'Source pulmonary arteries and veins':'Pulmonary vessels → schematic capillary bed',[-1.85,1.1,.3],'lungs','anatomy'),
         project('pulmonary-flow',`Pulmonary blood flow: ${status(this.metrics.co,'L/min')}`,[1.85,1.1,.3],'lungs','flow')];
     }
     // A stable, numbered key is inspectable without placing long names over vessels.
