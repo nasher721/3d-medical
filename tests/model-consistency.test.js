@@ -122,7 +122,8 @@ test('v1 flat snapshots migrate atomically into v2 with bounded finite outputs',
   assert.throws(()=>migrateState({scenarioId:'healthy',interventions:{vasoactive:{norepinephrine:Infinity}}}),/Invalid vasoactive value/);
   assert.throws(()=>migrateState({scenarioId:'healthy',interventions:{hypertonicSolution:{id:'3-percent'}}}),/uncalibrated/);
   assert.throws(()=>migrateState({scenarioId:'healthy',visual:{opacity:{brain:NaN}}}),/Invalid opacity/);
-  assert.equal(validateSimulationState({schemaVersion:2,interventions:{ventilator:{mode:'pressure-control'}}}).valid,false);
+  assert.equal(validateSimulationState({schemaVersion:2,interventions:{ventilator:{mode:'pressure-control'}}}).valid,true);
+  assert.equal(validateSimulationState({schemaVersion:2,interventions:{ventilator:{mode:'bogus-mode'}}}).valid,false);
 });
 
 test('fixed stepping is deterministic, bounded, and records one-second history cadence',()=>{

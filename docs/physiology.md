@@ -50,12 +50,24 @@ Renal flow is a bounded perfusion proxy using forward flow, arterial pressure, a
 | Epinephrine | 0–1 µg/kg/min |
 | Phenylephrine | 0–1 µg/kg/min |
 | Vasopressin | 0–1 conceptual model units |
+| Milrinone | 0–0.75 µg/kg/min |
+| Nitroprusside | 0–3 µg/kg/min |
+| Nitroglycerin | 0–200 µg/min |
+| Esmolol | 0–300 µg/kg/min |
+| Atropine | 0–3 mg (bolus) |
+| Furosemide | 0–80 mg |
+| Albuterol | 0–8 conceptual doses |
+| Inhaled nitric oxide | 0–40 ppm |
+| Sedation depth | 0–100 conceptual scale |
+| Prone positioning | Boolean |
 | Hypertonic solution | 3%, 7.5%, and 23.4% labels only; all unreviewed records disabled |
 | Retained fluid | 0–2,000 mL |
 | FiO₂ | 21–100% |
 | PEEP | 0–20 cmH₂O |
 | Respiratory rate | 6–35/min |
-| Tidal volume | 4–10 mL/kg PBW |
+| Tidal volume (volume control) | 4–10 mL/kg PBW |
+| Inspiratory pressure (pressure control) | 5–40 cmH₂O above PEEP |
+| Pressure support (pressure support/CPAP) | 0–25 cmH₂O above PEEP |
 | Intrinsic heart rate | 40–160 bpm |
 | Baseline ICP | 0–40 mmHg |
 | Predicted body weight | 40–150 kg |
@@ -64,14 +76,16 @@ Renal flow is a bounded perfusion proxy using forward flow, arterial pressure, a
 | Vascular tone | 30–200% of scenario |
 | Circulating volume | 40–160% of scenario |
 | Metabolic demand | 20–200% of baseline |
+| Core temperature | 32–41 °C |
 | Autoregulation | Boolean |
 
 Norepinephrine and dobutamine retain their existing `µg/kg/min` semantics. Direct UI text inputs reject blank, nonnumeric, non-finite, and out-of-range values with feedback and preserve the last valid value. Range controls commit within their bounds. The model setter clamps finite numeric API values to bounds; strict session validation rejects unknown, conflicting, unsupported, or uncalibrated inputs before replacing state. Numeric bounds are model safeguards, not treatment targets.
 
+Furosemide is the one intervention that is not an instantaneous input: while its dose is above zero, `stepSimulation` decrements retained fluid by a bounded illustrative elimination rate on every fixed substep, so its effect on preload and venous congestion only appears as simulated time advances.
 
 ### Named interventions and live teaching views
 
-The authoritative `VASOACTIVE_REGISTRY` exposes exactly five conceptual inputs. Its time basis is **per minute** for every record; this metadata does not establish clinical dosing, pharmacokinetics, onset, or offset. All effects below are bounded illustrative coefficients. Named new presets remain uncalibrated clinical approximations; their implemented model effects are distinct from the disabled concentration-specific hypertonic records.
+The authoritative `VASOACTIVE_REGISTRY` exposes ten conceptual inputs. Its time basis is **per minute** for every infusion record and a one-time **bolus** for atropine; this metadata does not establish clinical dosing, pharmacokinetics, onset, or offset. All effects below are bounded illustrative coefficients. Named presets remain uncalibrated clinical approximations; their implemented model effects are distinct from the disabled concentration-specific hypertonic records.
 
 | Agent | Input unit and bounds | Time basis | Primary and coupled model effects |
 | --- | --- | --- | --- |
@@ -80,12 +94,31 @@ The authoritative `VASOACTIVE_REGISTRY` exposes exactly five conceptual inputs. 
 | Epinephrine | 0–1 µg/kg/min | Per minute | Increases contractility, vascular tone, and heart rate. |
 | Phenylephrine | 0–1 µg/kg/min | Per minute | Increases vascular tone, with downstream afterload/perfusion changes. |
 | Vasopressin | 0–1 conceptual model units | Per minute | Increases vascular tone, with downstream afterload/perfusion changes. This namespace is not clinical units/min and has no clinical-unit conversion. |
+| Milrinone | 0–0.75 µg/kg/min | Per minute | Increases contractility and heart rate; lowers vascular tone (inodilator). |
+| Nitroprusside | 0–3 µg/kg/min | Per minute | Lowers vascular tone and MAP; small reflex heart-rate increase. |
+| Nitroglycerin | 0–200 µg/min | Per minute | Lowers modeled venous congestion (preload) more than arterial tone. |
+| Esmolol | 0–300 µg/kg/min | Per minute | Lowers heart rate and contractility. |
+| Atropine | 0–3 mg | Bolus | Increases heart rate. |
 
 The registry's effect dimensions identify primary effects. The coupled calculation also propagates changes through preload, afterload, oxygen demand, and organ perfusion; response direction can depend on the scenario. No value in this table is a treatment target.
 
-The Frank–Starling panel uses the shared `forwardStrokeVolume(EDV, {inotropy, afterload, rateFilling, rvLoad, obstructionFactor})` function for its curve and operating marker. The live volume-controlled cycle uses respiratory rate, tidal volume, PBW, FiO₂, and PEEP with a fixed 1:2 inspiratory/expiratory timing; delivered-flow and volume integrals are engineering checks. `ventilatorCycle` reports phase; cycle timing in seconds; flow in mL/s; tidal and instantaneous volume in mL; airway and elastic pressure in cmH₂O; compliance in mL/cmH₂O; resistance in cmH₂O·s/L; and minute/alveolar ventilation in mL/min. Inspiration has constant prescribed flow, expiration has a prescribed quadratic volume decay, and expiratory airway-opening pressure equals PEEP; these are illustrative mechanics.
+The non-vasoactive support inputs (furosemide, albuterol, inhaled nitric oxide, sedation depth, and prone positioning) live in a separate `state.interventions.support` group with the same finite-bounds validation as the vasoactive and ventilator groups. Albuterol lowers the shared airway resistance used by every ventilator mode; inhaled nitric oxide lowers modeled pulmonary vascular resistance and, in a recruitable (high-shunt) lung, modestly improves V/Q matching; prone positioning modestly improves compliance and reduces shunt in a recruitable lung; sedation lowers modeled metabolic demand, heart rate, and vascular tone.
+
+#### Ventilator modes
+
+`state.interventions.ventilator.mode` selects one of three modes, all sharing respiratory rate, PEEP, and FiO₂ with a fixed 1:2 inspiratory/expiratory timing:
+
+- **`volume-controlled`** (default): tidal volume (mL/kg PBW) is the fixed input; inspiration has constant prescribed flow and airway pressure is the modeled output.
+- **`pressure-control`**: `inspiratoryPressure` (cmH₂O above PEEP) is the fixed input; inspiratory flow decelerates along an RC (resistance × compliance) time constant and delivered tidal volume is the modeled output. A stiffer (lower-compliance) or more obstructed (higher-resistance) lung delivers a smaller tidal volume at the same drive pressure.
+- **`pressure-support`**: identical mechanics to pressure control, driven by `pressureSupport` instead; at 0 cmH₂O this is CPAP. Patient inspiratory effort and triggering are not modeled in any mode — pressure-support/CPAP shows only the ventilator-delivered portion of a breath.
+
+The Frank–Starling panel uses the shared `forwardStrokeVolume(EDV, {inotropy, afterload, rateFilling, rvLoad, obstructionFactor})` function for its curve and operating marker. `ventilatorCycle` reports phase; cycle timing in seconds; flow in mL/s; tidal and instantaneous volume in mL; airway and elastic pressure in cmH₂O; compliance in mL/cmH₂O; resistance in cmH₂O·s/L; and minute/alveolar ventilation in mL/min, regardless of mode. Expiration always has a prescribed passive quadratic volume decay, and expiratory airway-opening pressure always equals PEEP; these are illustrative mechanics, not calibrated respiratory physiology.
 
 The cerebral graph labels bilateral arterial sources, Circle of Willis connections, schematic ACA/MCA/PCA capillary beds, dural venous sinuses, and jugular return. Kidney view labels collecting ducts, calyces, renal pelvis, ureter, bladder, and outlet, with renal perfusion and separate urine-output flow cues. Whole view uses organ labels; focused views use a numbered, scrollable anatomy key that collapses on narrow startup.
+
+### Monitor waveforms
+
+The Lead-II ECG trace is built from five gaussian components (P, Q, R, S, T) whose durations are fixed **absolute** milliseconds (a ~100 ms P wave, a ~150 ms PR interval, a ~90 ms QRS complex, and a Bazett-style `QTc x sqrt(RR seconds)` QT interval), converted to a phase fraction of the current RR interval each frame — not fixed fractions of the RR interval. Only the isoelectric TP rest segment compresses as heart rate rises, matching how a real ECG's complex durations stay roughly constant while diastole shortens; at very fast simulated rates the P wave can visibly ride the tail of the preceding T wave, a genuine sinus-tachycardia appearance this periodic construction reproduces. It remains an illustrative waveform, not simulated cardiac electrophysiology or a diagnostic rhythm strip.
 
 See the completed session/export contract below for exact field names, units, precision, and setup restoration.
 

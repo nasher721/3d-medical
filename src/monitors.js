@@ -3,15 +3,41 @@ import { volumeControlledBreath } from './physiology.js';
 
 const colors = {hr:'#77e994',map:'#ff7977',spo2:'#70b5ff',co:'#5de6c1',cvp:'#70b5ff',cpp:'#bcabff'};
 const gaussian = (x, center, width) => Math.exp(-(((x - center) / width) ** 2));
-// Lead-II sinus morphology: small upright P, narrow QRS with visible Q/R/S,
-// then a broad upright T. Amplitudes are illustrative millivolts, not a
-// diagnostic ECG or patient-specific rhythm model.
-function ecg(p) {
-  return .16*gaussian(p,.18,.035)
-    -.12*gaussian(p,.30,.010)
-    +.92*gaussian(p,.335,.013)
-    -.22*gaussian(p,.368,.013)
-    +.28*gaussian(p,.60,.075);
+// A component drawn at a phase fraction needs contributions from the adjacent
+// beat's copies too, or its shape gets cut off near the phase-0/1 seam -- most
+// visibly for a T wave whose absolute width approaches the RR interval at
+// fast heart rates (see ecg() below).
+const wrappedGaussian = (p, center, width) => gaussian(p, center, width) + gaussian(p, center - 1, width) + gaussian(p, center + 1, width);
+// Lead-II sinus morphology built from fixed absolute component durations (P
+// wave, PR interval, QRS complex, and a Bazett-adjusted QT interval) rather
+// than fixed fractions of the RR interval. A real ECG's P and QRS durations
+// stay roughly constant as heart rate changes; only the isoelectric TP rest
+// segment compresses at faster rates, and QT shortens with it (approximated
+// here with QTc x sqrt(RR), clamped). Representing this in absolute time and
+// converting to a phase fraction each call -- instead of stretching or
+// squashing the whole complex proportionally with the cycle, as a single
+// phase-only waveform would -- is what keeps the trace looking like an ECG at
+// both slow and fast rates; at very fast rates the P wave can visibly ride
+// the tail of the preceding T wave, a real sinus-tachycardia artifact this
+// periodic (wrapped) construction reproduces rather than hides. Amplitudes
+// are illustrative millivolts, not a diagnostic ECG or patient-specific
+// rhythm model.
+export function ecg(p, rrSeconds = 60 / 72) {
+  const rrMs = Math.max(rrSeconds, .01) * 1000;
+  const pOnsetMs = 20, pDurMs = 100, prIntervalMs = 150;
+  const qrsOnsetMs = pOnsetMs + prIntervalMs;
+  const qtcMs = 400; // illustrative corrected-QT baseline, not a measured value
+  const qtMs = Math.min(480, Math.max(250, qtcMs * Math.sqrt(rrMs / 1000)));
+  const pCenter = (pOnsetMs + pDurMs / 2) / rrMs, pWidth = (pDurMs / 4) / rrMs;
+  const qCenter = (qrsOnsetMs + 12) / rrMs, qWidth = 7 / rrMs;
+  const rCenter = (qrsOnsetMs + 35) / rrMs, rWidth = 12 / rrMs;
+  const sCenter = (qrsOnsetMs + 65) / rrMs, sWidth = 12 / rrMs;
+  const tCenter = (qrsOnsetMs + qtMs * .72) / rrMs, tWidth = (qtMs * .16) / rrMs;
+  return .18*wrappedGaussian(p,pCenter,pWidth)
+    -.12*wrappedGaussian(p,qCenter,qWidth)
+    +1.0*wrappedGaussian(p,rCenter,rWidth)
+    -.25*wrappedGaussian(p,sCenter,sWidth)
+    +.30*wrappedGaussian(p,tCenter,tWidth);
 }
 function arterial(p) { return Math.max(0, 1.5 * (1-Math.exp(-p*35))*Math.exp(-p*4)) + .1*gaussian(p,.47,.028); }
 function pleth(p) { return Math.max(0,1.9*(1-Math.exp(-p*10))*Math.exp(-p*4))+.09*gaussian(p,.52,.08); }
@@ -73,7 +99,7 @@ export class Monitors {
     else if(this.mode==='trends') this.element.innerHTML=`<div class="trend-full"><div class="trend-heading"><span>Response over time</span><div>${['map','co','spo2','cpp'].map(key=>`<span style="color:${colors[key]}">${(key==='spo2'?'SaO₂':key.toUpperCase())}${key==='map'||key==='cpp'?' mmHg':key==='co'?' L/min':' %'}</span>`).join('')}</div><small>Independent scales · last 5 min</small></div><canvas data-trend aria-label="Physiological trends over the last five minutes"></canvas></div>`;
     else if(['starling','ventilator','perfusion'].includes(this.mode)) {
       const labels=this.mode==='starling'?['Schematic Frank–Starling']:this.mode==='ventilator'?['Airway pressure · cmH2O','Airway flow · mL/s','Lung volume · mL']:['Cerebral proxy · mL/100 g/min','Renal perfusion · mL/min','Urine outflow · mL/h'];
-      this.element.innerHTML=`<div class="model-monitor ${this.mode}"><div class="model-monitor-plots">${labels.map((label,index)=>`<figure><figcaption>${label}</figcaption><canvas data-model-plot="${index}" aria-label="${label}"></canvas></figure>`).join('')}</div><div class="model-monitor-summary" data-model-summary></div><small class="model-monitor-note">Educational approximation · ${this.mode==='starling'?'EDV is a preload proxy; this is separate from the pressure–volume loop.':this.mode==='ventilator'?'Volume control · fixed I:E 1:2; prescribed expiration, not calibrated mechanics.':'Independent scales · regional values are tissue proxies; urine is separate from renal blood flow.'}</small></div>`;
+      this.element.innerHTML=`<div class="model-monitor ${this.mode}"><div class="model-monitor-plots">${labels.map((label,index)=>`<figure><figcaption>${label}</figcaption><canvas data-model-plot="${index}" aria-label="${label}"></canvas></figure>`).join('')}</div><div class="model-monitor-summary" data-model-summary></div><small class="model-monitor-note">Educational approximation · ${this.mode==='starling'?'EDV is a preload proxy; this is separate from the pressure–volume loop.':this.mode==='ventilator'?'Fixed I:E 1:2; expiration is always passive and prescribed. Pressure-targeted modes derive tidal volume from compliance and resistance instead of taking it as an input.':'Independent scales · regional values are tissue proxies; urine is separate from renal blood flow.'}</small></div>`;
     }
     else this.element.innerHTML=`<div class="pv-layout"><div class="pv-copy"><span class="section-label">LEFT VENTRICLE</span><h3>Pressure–volume loop</h3><p>Watch filling, ejection and afterload reshape the cardiac cycle.</p><small>Schematic loop derived from current volume and pressure estimates.</small></div><canvas data-pv aria-label="Illustrative left ventricular pressure-volume loop"></canvas><div class="pv-numbers"><span>End-diastolic volume <b><i data-metric="edv">120</i> mL</b></span><span>End-systolic volume <b><i data-metric="esv">51</i> mL</b></span><span>Ejection fraction <b><i data-metric="ef">58</i>%</b></span></div></div>`;
   }
@@ -84,7 +110,7 @@ export class Monitors {
     this.element.querySelectorAll('[data-delta]').forEach(el=>{const key=el.dataset.delta;el.textContent=this.baseline?`${m[key]>=this.baseline[key]?'+':''}${displayNumber(m[key]-this.baseline[key])} vs baseline`:'';});
     this.element.querySelectorAll('[data-wave]').forEach(canvas=>{
       const {ctx,w,h}=context(canvas);grid(ctx,w,h);const key=canvas.dataset.wave;ctx.strokeStyle=colors[key];ctx.lineWidth=1.5;ctx.shadowBlur=5;ctx.shadowColor=colors[key];ctx.beginPath();
-      for(let x=0;x<w;x++){const phase=((this.phase-((w-x)/w)*4*m.hr/60)%1+1)%1;const v=key==='hr'?ecg(phase):key==='map'?arterial(phase):pleth(phase);const y=key==='hr'?h*.68-v*h*.46:h*.84-v*h*.73; x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();
+      for(let x=0;x<w;x++){const phase=((this.phase-((w-x)/w)*4*m.hr/60)%1+1)%1;const v=key==='hr'?ecg(phase,60/m.hr):key==='map'?arterial(phase):pleth(phase);const y=key==='hr'?h*.68-v*h*.46:h*.84-v*h*.73; x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();
     });
     const trend=this.element.querySelector('[data-trend]');if(trend)this.drawTrend(trend,state);
     const pv=this.element.querySelector('[data-pv]');if(pv)this.drawPV(pv,m);
@@ -93,7 +119,7 @@ export class Monitors {
     const summary=this.element.querySelector('[data-model-summary]');
     if(summary){const fs=state.frankStarling,c=state.ventilatorCycle,i=state.interventions,t=m.cerebralTerritories;
       summary.textContent=this.mode==='starling'?`EDV ${displayNumber(m.edv,1)} mL · SV ${displayNumber(m.sv,1)} mL · Contractility ${displayNumber(fs.contractility,2)} relative · Afterload ${displayNumber(fs.afterload,2)} dimensionless`:
-        this.mode==='ventilator'?`${c.phase} · VT ${i.tidalVolume} mL/kg PBW (${displayNumber(c.tidalVolumeMl)} mL) · RR ${i.respiratoryRate}/min · PEEP ${i.peep} cmH2O · FiO₂ ${i.fio2}% · Minute / alveolar ventilation ${displayNumber(c.minuteVentilationMlMin)} / ${displayNumber(c.alveolarVentilationMlMin)} mL/min · PaCO₂ ${displayNumber(m.paco2,1)} mmHg`:
+        this.mode==='ventilator'?`${c.phase} · ${i.ventilator.mode==='pressure-control'?`Pressure control ${i.inspiratoryPressure} cmH2O above PEEP`:i.ventilator.mode==='pressure-support'?`Pressure support ${i.pressureSupport} cmH2O above PEEP`:`Volume control ${i.tidalVolume} mL/kg PBW`} · Delivered VT ${displayNumber(c.tidalVolumeMl)} mL · RR ${i.respiratoryRate}/min · PEEP ${i.peep} cmH2O · FiO₂ ${i.fio2}% · Minute / alveolar ventilation ${displayNumber(c.minuteVentilationMlMin)} / ${displayNumber(c.alveolarVentilationMlMin)} mL/min · PaCO₂ ${displayNumber(m.paco2,1)} mmHg`:
         `Cerebral ${displayNumber(m.brainFlow,1)} (ACA ${displayNumber(t.aca,1)} · MCA ${displayNumber(t.mca,1)} · PCA ${displayNumber(t.pca,1)}) mL/100 g/min · Renal ${displayNumber(m.renalFlow,1)} mL/min · Urine ${displayNumber(m.urineOutput,1)} mL/h · CPP / MAP / ICP ${displayNumber(m.cpp)} / ${displayNumber(m.map)} / ${displayNumber(m.icp)} mmHg`;
     }
   }

@@ -29,6 +29,9 @@ dialog{padding:0;border:1px solid #34495c;border-radius:12px;background:#0e1926;
 
 .dialog-status{border:1px solid #4a7c71;background:#142c2a;color:#b6e7d6;border-radius:6px;padding:12px 15px;margin-bottom:20px;font-size:12px;line-height:1.6}
 
+#ventilator-mode{width:100%;margin-top:14px;border:1px solid #3a495a;background:#0c1621;padding:11px 13px;border-radius:6px;font-size:12px}
+.control-explainer-inline{font-size:10px;color:var(--muted);line-height:1.6;margin:12px 0 22px}
+
 @media(min-width:701px) and (max-height:850px){.intervention-controls .control-row{padding:10px 0 11px}.intervention-controls .control-label .help-icon{padding:1px}.intervention-controls .control-value{margin:8px 0 3px}.intervention-controls .control-value input{height:25px;font-size:21px}.intervention-controls .slider{margin:10px 0}.intervention-controls .control-label{min-height:18px}}
 
 .compact-reset{display:none}
