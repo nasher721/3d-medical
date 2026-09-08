@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SCENARIOS, DEFAULT_INTERVENTIONS, DEFAULT_PATIENT, VASOACTIVE_REGISTRY, createSimulation, stepSimulation, setIntervention, setPatient, resetInterventions, getInsights, forwardStrokeVolume, volumeControlledBreath } from '../src/physiology.js';
+import { SCENARIOS, DEFAULT_INTERVENTIONS, DEFAULT_PATIENT, VASOACTIVE_REGISTRY, VENTILATOR_MODES, createSimulation, stepSimulation, setIntervention, setPatient, setVentilatorMode, resetInterventions, getInsights, forwardStrokeVolume, volumeControlledBreath, pressureControlledBreath, ventilatorBreath } from '../src/physiology.js';
 
 const close = (a, b, e = 1e-8) => assert.ok(Math.abs(a - b) < e, `${a} != ${b}`);
 test('vasoactive registry is finite, named, and preserves legacy units', () => {
-  assert.deepEqual(VASOACTIVE_REGISTRY.map(record => record.id), ['norepinephrine', 'dobutamine', 'epinephrine', 'phenylephrine', 'vasopressin']);
+  assert.deepEqual(VASOACTIVE_REGISTRY.map(record => record.id), ['norepinephrine', 'dobutamine', 'epinephrine', 'phenylephrine', 'vasopressin', 'milrinone', 'nitroprusside', 'nitroglycerin', 'esmolol', 'atropine']);
   assert.equal(VASOACTIVE_REGISTRY[0].conceptualUnit, 'µg/kg/min');
   assert.equal(VASOACTIVE_REGISTRY[1].conceptualUnit, 'µg/kg/min');
   assert.equal(VASOACTIVE_REGISTRY[4].conceptualUnit, 'conceptual model units');
@@ -17,11 +17,26 @@ test('vasoactive registry is finite, named, and preserves legacy units', () => {
   assert.equal(JSON.stringify(state), before);
 });
 test('all named vasoactive presets produce finite directional teaching responses', () => {
-  for (const key of ['epinephrine', 'phenylephrine', 'vasopressin']) {
+  for (const key of ['epinephrine', 'phenylephrine', 'vasopressin', 'atropine']) {
     const state = createSimulation('healthy'); const before = state.metrics.map;
-    setIntervention(state, key, 1); stepSimulation(state, 1);
+    setIntervention(state, key, VASOACTIVE_REGISTRY.find(r => r.id === key).bounds.max); stepSimulation(state, 20);
     assert.ok(state.metrics.map > before, key);
     assert.ok(Object.values(state.metrics).every(Number.isFinite));
+  }
+  for (const key of ['nitroprusside', 'nitroglycerin', 'esmolol', 'milrinone']) {
+    const state = createSimulation('healthy'); const before = { ...state.metrics };
+    setIntervention(state, key, VASOACTIVE_REGISTRY.find(r => r.id === key).bounds.max); stepSimulation(state, 20);
+    assert.ok(Object.values(state.metrics).every(Number.isFinite), key);
+  }
+  {
+    const state = createSimulation('cardiogenic'); const before = state.metrics.co;
+    setIntervention(state, 'milrinone', .75); stepSimulation(state, 20);
+    assert.ok(state.metrics.co > before, 'milrinone raises cardiac output');
+  }
+  {
+    const state = createSimulation('healthy'); const before = state.metrics.hr;
+    setIntervention(state, 'esmolol', 300); stepSimulation(state, 20);
+    assert.ok(state.metrics.hr < before, 'esmolol lowers heart rate');
   }
 });
 test('coupled cerebral, ventilator, renal, and Frank-Starling outputs share the forward model', () => {
@@ -58,7 +73,7 @@ test('ventilation changes CO2, CPP, and cerebral flow when autoregulation is abs
 test('hemoglobin changes oxygen delivery while saturation stays similar', () => { const s = createSimulation(); const sat = s.metrics.spo2; const do2 = s.metrics.do2; setPatient(s, 'hemoglobin', 6); stepSimulation(s, 20); assert.ok(Math.abs(s.metrics.spo2 - sat) < 1); assert.ok(s.metrics.do2 < do2); });
 test('autoregulation buffers MAP changes and disabling it reveals pressure dependence', () => { const s = createSimulation(); setPatient(s, 'vascularTone', 30); stepSimulation(s, 20); const regulated = s.metrics.brainFlow; setPatient(s, 'autoregulation', false); stepSimulation(s, 20); assert.ok(s.metrics.brainFlow < regulated); });
 test('rapid heart rate reduces filling and stroke volume', () => { const s = createSimulation(); const sv = s.metrics.sv; setIntervention(s, 'heartRate', 160); stepSimulation(s, 20); assert.ok(s.metrics.sv < sv); });
-test('all bounds, reset behavior, and scenario presets are valid', () => { for (const id of SCENARIOS.map((x) => x.id)) { const s = createSimulation(id); assert.ok(s.interventions.heartRate >= 40 && s.interventions.heartRate <= 160); assert.ok(s.interventions.icp >= 0 && s.interventions.icp <= 40); for (const [key, value] of Object.entries(DEFAULT_INTERVENTIONS)) { setIntervention(s, key, -Infinity); assert.equal(s.interventions[key], value === 21 || value === 72 || value === 5 ? s.interventions[key] : value); } resetInterventions(s); assert.deepEqual(s.interventions, { ...DEFAULT_INTERVENTIONS, heartRate: createSimulation(s.scenarioId).interventions.heartRate, icp: createSimulation(s.scenarioId).interventions.icp }); } assert.deepEqual(Object.keys(DEFAULT_PATIENT).sort(), ['autoregulation','contractility','hemoglobin','metabolicDemand','vascularTone','volume','weight'].sort()); });
+test('all bounds, reset behavior, and scenario presets are valid', () => { for (const id of SCENARIOS.map((x) => x.id)) { const s = createSimulation(id); assert.ok(s.interventions.heartRate >= 40 && s.interventions.heartRate <= 160); assert.ok(s.interventions.icp >= 0 && s.interventions.icp <= 40); for (const [key, value] of Object.entries(DEFAULT_INTERVENTIONS)) { setIntervention(s, key, -Infinity); assert.equal(s.interventions[key], value === 21 || value === 72 || value === 5 ? s.interventions[key] : value); } resetInterventions(s); assert.deepEqual(s.interventions, { ...DEFAULT_INTERVENTIONS, heartRate: createSimulation(s.scenarioId).interventions.heartRate, icp: createSimulation(s.scenarioId).interventions.icp }); } assert.deepEqual(Object.keys(DEFAULT_PATIENT).sort(), ['autoregulation','contractility','hemoglobin','metabolicDemand','temperature','vascularTone','volume','weight'].sort()); });
 test('time step consistency, history cadence, and extreme combinations', () => { const a = createSimulation('ards'); const b = createSimulation('ards'); setIntervention(a, 'fio2', 100); setIntervention(b, 'fio2', 100); for (let n = 0; n < 20; n += 1) stepSimulation(a, 1); stepSimulation(b, 20); assert.ok(Math.abs(a.metrics.spo2 - b.metrics.spo2) < .5); assert.equal(a.history.length, 21); for (const id of SCENARIOS.map((x) => x.id)) { const s = createSimulation(id, { hemoglobin: 5, metabolicDemand: 200, vascularTone: 200, contractility: 20 }); for (const k of Object.keys(DEFAULT_INTERVENTIONS)) setIntervention(s, k, k === 'fio2' ? 100 : k === 'heartRate' ? 160 : 20); for (let n = 0; n < 3000; n += 1) stepSimulation(s, .5); assert.ok(s.history.length <= 1800); assert.ok(Object.values(s.metrics).every(Number.isFinite)); } });
 
 
@@ -147,4 +162,101 @@ test('multiorgan fixed-step time course and extreme replay are deterministic', (
     const c = run(id, [600]), d = run(id, [60]);
     assert.deepEqual(c.metrics, d.metrics); close(c.timeS, 60, 1e-9);
   }
+});
+
+test('ventilator modes are named, bounded, and default to volume control', () => {
+  assert.deepEqual(VENTILATOR_MODES.map(m => m.id), ['volume-controlled', 'pressure-control', 'pressure-support']);
+  for (const mode of VENTILATOR_MODES) assert.ok(mode.name && mode.help);
+  const s = createSimulation();
+  assert.equal(s.interventions.ventilator.mode, 'volume-controlled');
+  assert.equal(s.ventilatorCycle.tidalVolumeMl, volumeControlledBreath(s).tidalVolumeMl);
+  setVentilatorMode(s, 'bogus-mode');
+  assert.equal(s.interventions.ventilator.mode, 'volume-controlled');
+});
+
+test('pressure-control tidal volume is a modeled output, not the fixed volume-control input', () => {
+  const s = createSimulation('ards');
+  setVentilatorMode(s, 'pressure-control');
+  setIntervention(s, 'inspiratoryPressure', 20);
+  stepSimulation(s, 1 / 30);
+  const cycle = pressureControlledBreath(s, 0);
+  assert.ok(cycle.tidalVolumeMl > 0 && cycle.tidalVolumeMl < 2000);
+  // Delivered volume follows compliance: a stiffer (lower-compliance) lung
+  // yields a smaller delivered tidal volume at the same drive pressure.
+  const stiff = createSimulation('ards', {}); setPatient(stiff, 'contractility', stiff.patient.contractility);
+  const compliant = createSimulation('healthy');
+  setVentilatorMode(stiff, 'pressure-control'); setIntervention(stiff, 'inspiratoryPressure', 20);
+  setVentilatorMode(compliant, 'pressure-control'); setIntervention(compliant, 'inspiratoryPressure', 20);
+  assert.ok(pressureControlledBreath(stiff, 0).tidalVolumeMl < pressureControlledBreath(compliant, 0).tidalVolumeMl);
+  // Pressure stays flat at PEEP + drive during inspiration (pressure-targeted),
+  // unlike volume control where pressure is the output.
+  const mid = pressureControlledBreath(s, cycle.inspiratoryTimeS / 2);
+  close(mid.pressureCmH2O, s.interventions.peep + 20, 1e-9);
+  assert.equal(s.ventilatorCycle.tidalVolumeMl, ventilatorBreath(s).tidalVolumeMl);
+  for (const value of Object.values(s.metrics)) assert.ok(Number.isFinite(value));
+});
+
+test('pressure-support at zero is CPAP: a flat PEEP trace with no delivered volume', () => {
+  const s = createSimulation();
+  setVentilatorMode(s, 'pressure-support');
+  setIntervention(s, 'pressureSupport', 0);
+  stepSimulation(s, 1 / 30);
+  const cycle = pressureControlledBreath(s, 0, 'pressureSupport');
+  close(cycle.tidalVolumeMl, 0, 1e-6);
+  close(pressureControlledBreath(s, 5, 'pressureSupport').pressureCmH2O, s.interventions.peep, 1e-9);
+});
+
+test('bounded respiratory-support interventions have their documented directional effects', () => {
+  const withoutBronchodilator = createSimulation('ards');
+  const withBronchodilator = createSimulation('ards'); setIntervention(withBronchodilator, 'albuterol', 8);
+  stepSimulation(withoutBronchodilator, 1 / 30); stepSimulation(withBronchodilator, 1 / 30);
+  assert.ok(volumeControlledBreath(withBronchodilator, withBronchodilator.ventilatorCycle.inspiratoryTimeS / 2).pressureCmH2O
+    < volumeControlledBreath(withoutBronchodilator, withoutBronchodilator.ventilatorCycle.inspiratoryTimeS / 2).pressureCmH2O);
+
+  const rvFailure = createSimulation('rv-failure'); const before = rvFailure.metrics.pvr;
+  setIntervention(rvFailure, 'inhaledNitricOxide', 40); stepSimulation(rvFailure, 20);
+  assert.ok(rvFailure.metrics.pvr < before);
+
+  const ards = createSimulation('ards'); const beforeSpo2 = ards.metrics.spo2;
+  setIntervention(ards, 'pronePositioning', 1); stepSimulation(ards, 20);
+  assert.ok(ards.metrics.spo2 > beforeSpo2);
+});
+
+test('furosemide gradually depletes retained fluid and raises urine output', () => {
+  const s = createSimulation('cardiogenic');
+  setIntervention(s, 'fluid', 2000); stepSimulation(s, 20);
+  const fluidBefore = s.interventions.fluid, cvpBefore = s.metrics.cvp, urineBefore = s.metrics.urineOutput;
+  setIntervention(s, 'furosemide', 80);
+  stepSimulation(s, 120);
+  assert.ok(s.interventions.fluid < fluidBefore, 'fluid drains over time');
+  assert.ok(s.metrics.cvp < cvpBefore, 'venous congestion falls as fluid drains');
+  assert.ok(s.metrics.urineOutput > urineBefore, 'urine output rises with furosemide');
+  const noDose = createSimulation('cardiogenic'); setIntervention(noDose, 'fluid', 2000); stepSimulation(noDose, 140);
+  assert.ok(s.interventions.fluid < noDose.interventions.fluid);
+});
+
+test('sedation lowers metabolic demand and heart rate; temperature moves both directions', () => {
+  const s = createSimulation(); const before = { hr: s.metrics.hr, vo2: s.metrics.vo2 };
+  setIntervention(s, 'sedation', 100); stepSimulation(s, 20);
+  assert.ok(s.metrics.hr < before.hr && s.metrics.vo2 < before.vo2);
+
+  const fever = createSimulation(); setPatient(fever, 'temperature', 40); stepSimulation(fever, 20);
+  const cool = createSimulation(); setPatient(cool, 'temperature', 34); stepSimulation(cool, 20);
+  assert.ok(fever.metrics.hr > cool.metrics.hr);
+  assert.ok(fever.metrics.vo2 > cool.metrics.vo2);
+});
+
+test('nitroprusside and nitroglycerin lower pressure/congestion; esmolol blunts a tachycardic response', () => {
+  const dilated = createSimulation('septic'); const before = dilated.metrics.map;
+  setIntervention(dilated, 'nitroprusside', 3); stepSimulation(dilated, 20);
+  assert.ok(dilated.metrics.map < before);
+
+  const congested = createSimulation('cardiogenic'); setIntervention(congested, 'fluid', 2000); stepSimulation(congested, 20);
+  const cvpBefore = congested.metrics.cvp;
+  setIntervention(congested, 'nitroglycerin', 200); stepSimulation(congested, 20);
+  assert.ok(congested.metrics.cvp < cvpBefore);
+
+  const withEsmolol = createSimulation(); setIntervention(withEsmolol, 'epinephrine', 1); setIntervention(withEsmolol, 'esmolol', 300); stepSimulation(withEsmolol, 20);
+  const withoutEsmolol = createSimulation(); setIntervention(withoutEsmolol, 'epinephrine', 1); stepSimulation(withoutEsmolol, 20);
+  assert.ok(withEsmolol.metrics.hr < withoutEsmolol.metrics.hr);
 });

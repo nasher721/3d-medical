@@ -45,14 +45,15 @@ function appHarness() {
 const snapshot = c => JSON.stringify({ state: c.state, layers: c.layers, baseline: c.baseline,
   monitorBaseline: c.monitor.baseline, selectedOrgan: c.selectedOrgan, speed: c.speed, running: c.running });
 
-test('production session serializer round trips all five agents and volume-control settings', async () => {
+test('production session serializer round trips all ten agents and volume-control settings', async () => {
   const { c } = appHarness();
   const values = { norepinephrine: .2, dobutamine: 5, epinephrine: .3, phenylephrine: .4, vasopressin: .5,
+    milrinone: .3, nitroprusside: 1, nitroglycerin: 50, esmolol: 100, atropine: 1,
     respiratoryRate: 25, tidalVolume: 8, peep: 10, fio2: 60, fluid: 500 };
   for (const [key, value] of Object.entries(values)) model.setIntervention(c.state, key, value);
   c.saveLocal(); const saved = JSON.parse(c.stored);
   assert.equal(saved.version, 2);
-  assert.equal(Object.keys(saved.interventions.vasoactive).length, 5);
+  assert.equal(Object.keys(saved.interventions.vasoactive).length, 10);
   c.state = model.createSimulation('septic'); c.restoreSetup(saved);
   for (const [key, value] of Object.entries(values)) assert.equal(c.state.interventions[key], value, key);
   assert.equal(c.state.interventions.ventilator.mode, 'volume-controlled');
@@ -92,7 +93,9 @@ test('production restore defaults legacy opacity and rejects malformed imports a
     { ...saved, visual: { opacity: { brain: 1, lungs: 1, kidneys: 1, unknown: 1 } } },
     { ...saved, visual: { opacity: { brain: 1 } } },
     { ...saved, interventions: { ...saved.interventions, hypertonicSolution: { concentrationPercent: 3 } } },
-    { ...saved, interventions: { ...saved.interventions, ventilator: { ...saved.interventions.ventilator, mode: 'pressure-control' } } },
+    { ...saved, interventions: { ...saved.interventions, ventilator: { ...saved.interventions.ventilator, mode: 'bogus-mode' } } },
+    { ...saved, interventions: { ...saved.interventions, support: { ...saved.interventions.support, unknown: 1 } } },
+    { ...saved, interventions: { ...saved.interventions, support: { ...saved.interventions.support, furosemide: 999 } } },
   ];
   for (const data of invalid) {
     const before = snapshot(c); assert.throws(() => c.restoreSetup(data)); assert.equal(snapshot(c), before);
@@ -101,6 +104,11 @@ test('production restore defaults legacy opacity and rejects malformed imports a
   await c.importFile({ target: { files: [{ size: 12, text: async () => '{bad JSON' }], value: 'file' } });
   assert.equal(snapshot(c), before); assert.match(c.notifications.at(-1), /Could not import/);
   c.stored = JSON.stringify(saved); c.loadLocal(); assert.equal(c.state.interventions.norepinephrine, .4);
+  const pressureControl = { ...saved, interventions: { ...saved.interventions, ventilator: { ...saved.interventions.ventilator, mode: 'pressure-control', inspiratoryPressure: 22 }, support: { ...saved.interventions.support, furosemide: 40 } } };
+  c.restoreSetup(pressureControl);
+  assert.equal(c.state.interventions.ventilator.mode, 'pressure-control');
+  assert.equal(c.state.interventions.inspiratoryPressure, 22);
+  assert.equal(c.state.interventions.furosemide, 40);
 });
 
 test('production restart clears captured baseline, clock, monitor cursors and comparisons repeatedly', () => {

@@ -1,4 +1,4 @@
-import { VASOACTIVE_REGISTRY } from './physiology.js';
+import { VASOACTIVE_REGISTRY, VENTILATOR_MODES } from './physiology.js';
 import { HYPERTONIC_CALIBRATION_RECORDS } from './content.js';
 
 const paths = {
@@ -31,22 +31,33 @@ export function icon(name, cls = '') { return `<svg class="icon ${cls}" viewBox=
 export const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 export const formatTime = seconds => `${Math.floor(seconds / 60).toString().padStart(2, '0')}:${Math.floor(seconds % 60).toString().padStart(2, '0')}`;
 export function displayNumber(n, digits = 0) { return Number.isFinite(n) ? n.toFixed(digits) : '—'; }
+// Per-drug slider granularity; anything not listed uses the norepinephrine-style default.
+const VASOACTIVE_STEP = { dobutamine: [.5, 1], milrinone: [.02, 2], nitroprusside: [.05, 2], nitroglycerin: [2, 0], esmolol: [5, 0], atropine: [.1, 1] };
 export const INTERVENTIONS = {
   vasoactive: [
-    ...VASOACTIVE_REGISTRY.map(record => ({ key: record.id, name: record.displayName, unit: record.conceptualUnit, min: record.bounds.min, max: record.bounds.max, step: record.id === 'dobutamine' ? .5 : .01, digits: record.id === 'dobutamine' ? 1 : 2, help: record.educationalCopy })),
+    ...VASOACTIVE_REGISTRY.map(record => { const [step, digits] = VASOACTIVE_STEP[record.id] || [.01, 2]; return { key: record.id, name: record.displayName, unit: record.conceptualUnit, min: record.bounds.min, max: record.bounds.max, step, digits, help: record.educationalCopy }; }),
     {key:'heartRate',name:'Heart rate',unit:'bpm',min:40,max:160,step:1,digits:0,help:'Set the intrinsic rate. The model adds drug effects; fast rates shorten diastolic filling.'},
   ],
   fluids: [
     {key:'fluid',name:'Retained fluid',unit:'mL',min:0,max:2000,step:50,digits:0,help:'A simplified cumulative retained volume, not an infusion prescription. Response depends on preload reserve and cardiac function.'},
+    {key:'furosemide',name:'Furosemide (diuretic)',unit:'mg',min:0,max:80,step:5,digits:0,help:'A named conceptual loop-diuretic preset. While active it gradually depletes modeled retained fluid and raises urine output over simulated time; it is not a dosing recommendation.'},
   ],
   ventilation: [
     {key:'fio2',name:'Inspired oxygen',unit:'%',min:21,max:100,step:1,digits:0,help:'Raises alveolar oxygen. Intrapulmonary shunt limits the improvement in arterial oxygenation.'},
     {key:'peep',name:'PEEP',unit:'cmH₂O',min:0,max:20,step:1,digits:0,help:'Recruits collapsed lung but raises intrathoracic pressure, reduces venous return and can increase RV afterload.'},
     {key:'respiratoryRate',name:'Respiratory rate',unit:'/min',min:6,max:35,step:1,digits:0,help:'Increases alveolar minute ventilation and lowers PaCO₂. Cerebral blood flow responds to carbon dioxide.'},
-    {key:'tidalVolume',name:'Tidal volume',unit:'mL/kg PBW',min:4,max:10,step:.5,digits:1,help:'Changes alveolar ventilation. Predicted body weight is an explicit patient setting in this model.'},
+    {key:'tidalVolume',name:'Tidal volume',unit:'mL/kg PBW',min:4,max:10,step:.5,digits:1,help:'Volume-control target. Changes alveolar ventilation directly. Predicted body weight is an explicit patient setting in this model.'},
+    {key:'inspiratoryPressure',name:'Inspiratory pressure',unit:'cmH₂O above PEEP',min:5,max:40,step:1,digits:0,help:'Pressure-control target. Delivered tidal volume becomes a modeled output of this pressure, compliance and resistance instead of a fixed input.'},
+    {key:'pressureSupport',name:'Pressure support',unit:'cmH₂O above PEEP',min:0,max:25,step:1,digits:0,help:'Pressure-support/CPAP target above PEEP. At 0 cmH₂O this is CPAP. Patient inspiratory effort and triggering are not modeled.'},
+  ],
+  respiratorySupport: [
+    {key:'albuterol',name:'Albuterol (bronchodilator)',unit:'doses',min:0,max:8,step:.5,digits:1,help:'A named conceptual bronchodilator preset. Bounded reduction in modeled airway resistance lowers peak/plateau airway pressure; a mild heart-rate rise is a modeled side effect.'},
+    {key:'inhaledNitricOxide',name:'Inhaled nitric oxide',unit:'ppm',min:0,max:40,step:1,digits:0,help:'A named conceptual selective pulmonary vasodilator preset. Bounded reduction in modeled pulmonary vascular resistance, with a small V/Q-matching benefit where shunt is high.'},
+    {key:'pronePositioning',name:'Prone positioning',unit:'boolean',min:0,max:1,step:1,digits:0,help:'A patient-positioning maneuver, not a drug. Modestly improves compliance and reduces shunt in a recruitable lung. Rendered as a toggle, not a slider.'},
   ],
   cerebral: [
     {key:'icp',name:'Intracranial pressure',unit:'mmHg',min:0,max:40,step:1,digits:0,help:'Set baseline ICP. The model includes secondary CO₂ and venous-pressure effects. CPP equals MAP minus ICP.'},
+    {key:'sedation',name:'Sedation depth',unit:'conceptual scale',min:0,max:100,step:5,digits:0,help:'A bounded conceptual sedation-depth input. Reduces modeled metabolic demand and heart rate, and mildly reduces vascular tone; it is not a dosing tool for any agent.'},
   ],
 };
 export const PATIENT_FIELDS = [
@@ -56,6 +67,7 @@ export const PATIENT_FIELDS = [
   {key:'vascularTone',name:'Vascular tone',unit:'% of scenario',min:30,max:200,step:5},
   {key:'volume',name:'Circulating volume',unit:'% of scenario',min:40,max:160,step:5},
   {key:'metabolicDemand',name:'Metabolic demand',unit:'% of baseline',min:20,max:200,step:5},
+  {key:'temperature',name:'Core temperature',unit:'°C',min:32,max:41,step:.1,digits:1},
 ];
 
 // Step 8 UI contract: app.js may project these records into controls once the
@@ -99,6 +111,17 @@ export function visualOpacityMarkup(values = {}) {
 
 export function ventilatorMarkup(values = {}) {
   return VOLUME_CONTROL_VENTILATOR.fields.map(field => sliderMarkup(field, values[field.key] ?? field.min, 'ventilator')).join('');
+}
+
+export function ventilatorModeMarkup(currentMode) {
+  return `<select id="ventilator-mode" aria-label="Ventilator mode" data-ventilator-mode>${VENTILATOR_MODES.map(mode => `<option value="${mode.id}" ${mode.id === currentMode ? 'selected' : ''}>${escapeHTML(mode.name)}</option>`).join('')}</select>`;
+}
+export function ventilatorModeHelp(mode) { return VENTILATOR_MODES.find(m => m.id === mode)?.help || ''; }
+// Which of the ventilation-tab fields apply to the selected mode. FiO2, PEEP
+// and respiratory rate are shared controls; the drive field is mode-specific.
+export function ventilationFieldsForMode(mode) {
+  const driveKey = mode === 'pressure-control' ? 'inspiratoryPressure' : mode === 'pressure-support' ? 'pressureSupport' : 'tidalVolume';
+  return INTERVENTIONS.ventilation.filter(field => !['tidalVolume', 'inspiratoryPressure', 'pressureSupport'].includes(field.key) || field.key === driveKey);
 }
 
 export function hypertonicOptionMarkup() {
