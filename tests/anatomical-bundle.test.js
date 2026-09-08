@@ -74,6 +74,50 @@ test('imported heart and lung geometry retain physiology-driven animation about 
   renderer.metrics.lungWater = 15;
   assert.ok(renderer._model(lung)[0] > 1.1);
 });
+
+test('cardiac chambers contract on independent atrial/ventricular timing, nonuniformly, with apex twist', () => {
+  const renderer = Object.create(AnatomyRenderer.prototype);
+  renderer.metrics = { edv: 120, cvp: 6 };
+  renderer.time = 0;
+  const lv = { id: 'heart', chamber: 'lv', center: [.24, .20, .45] };
+  const ra = { id: 'heart', chamber: 'ra', center: [-.24, .74, .20] };
+  // Ventricular systole: `this.beat` drives LV contraction and apex twist;
+  // the atrium is unaffected mid-systole because its kick fires in late diastole.
+  renderer.beat = 1; renderer.heartPhase = 0;
+  const lvSystole = renderer._model(lv);
+  assert.ok(lvSystole[0] < 1, 'the LV short axis contracts during systole');
+  assert.ok(lvSystole[0] < lvSystole[5], 'the short (radial) axis contracts more than the long (base-apex) axis');
+  assert.ok(lv.twistAngle > 0, 'the LV apex twists during systole');
+  const raQuiet = renderer._model(ra);
+  assert.equal(raQuiet[0], 1, 'the atrium is not contracting mid-ventricular-systole');
+  assert.equal(ra.twistAngle, 0, 'atria do not twist');
+  // Atrial kick: a short late-diastolic contraction, independent of the
+  // ventricular beat pulse.
+  renderer.beat = 0; renderer.heartPhase = .92;
+  assert.ok(renderer._model(ra)[0] < 1, 'the atrial kick contracts the atrium even with no ventricular beat');
+});
+
+test('brain pulsation amplitude grows with intracranial pressure and is damped by falling perfusion pressure', () => {
+  const renderer = Object.create(AnatomyRenderer.prototype);
+  renderer.time = 0; renderer.beat = 1;
+  const brainScale = (icp, cpp) => { renderer.metrics = { icp, cpp }; return renderer._model({ id: 'brain', center: [0, 3.62, 0] })[0]; };
+  const normal = brainScale(5, 80), elevated = brainScale(30, 80), lowPerfusion = brainScale(30, 20);
+  assert.ok(elevated > normal, 'a larger systolic swing accompanies reduced compliance at high ICP (Monro-Kellie)');
+  assert.ok(lowPerfusion < elevated && lowPerfusion > 1, 'falling CPP damps, but does not reverse, the pulsatile swing at the same ICP');
+});
+
+test('the diaphragm and ribcage move in phase with the lungs across the respiratory cycle', () => {
+  const renderer = Object.create(AnatomyRenderer.prototype);
+  renderer.metrics = { respiratoryRate: 16 };
+  renderer.time = 0;
+  const lung = { id: 'lungs', center: [1.68, 1.13, 0] }, diaphragm = { id: 'diaphragm', center: [0, -.7, .05] }, ribcage = { id: 'ribcage', center: [0, .5, .1] };
+  const restLung = renderer._model(lung)[0], restDiaphragmY = renderer._model(diaphragm)[13], restRib = renderer._model(ribcage)[0];
+  renderer.time = 60 / 16 / 4; // quarter cycle: peak of the shared breathing sine
+  assert.ok(renderer._model(lung)[0] > restLung, 'lungs expand on inspiration');
+  assert.ok(renderer._model(diaphragm)[13] < restDiaphragmY, 'the diaphragm descends as the lungs expand');
+  assert.ok(renderer._model(ribcage)[0] > restRib, 'the ribcage widens as the lungs expand');
+});
+
 import { CEREBRAL_TEACHING_GRAPH, ANATOMICAL_ROUTE_COLLECTIONS, CIRCLE_OF_WILLIS_EDGES, ORGAN_OPACITY_KEYS, graphIsConnected } from '../src/anatomy.js';
 test('imported tissue uses the packaged center as its animation pivot', async t => {
   const bytes = await readFile(new URL('../assets/organs/anatomy.glb', import.meta.url));
@@ -159,9 +203,11 @@ test('procedural shells provide an identifiable fallback when surfaces are gated
   renderer.assets = [];
   renderer._asset = (geometry, options) => { renderer.assets.push({ geometry, ...options }); return renderer.assets.at(-1); };
   renderer._buildFallbackOrgans();
-  assert.equal(renderer.assets.length, 6);
-  assert.deepEqual(renderer.assets.map(asset => asset.id), ['brain', 'heart', 'lungs', 'lungs', 'kidneys', 'kidneys']);
+  assert.equal(renderer.assets.length, 9);
+  assert.deepEqual(renderer.assets.map(asset => asset.id), ['brain', 'heart', 'heart', 'heart', 'heart', 'lungs', 'lungs', 'kidneys', 'kidneys']);
   assert.ok(renderer.assets.every(asset => asset.procedural && asset.geometry.position.length > 0));
+  // The fallback heart is four independently animatable chambers, not one blob.
+  assert.deepEqual(renderer.assets.filter(asset => asset.id === 'heart').map(asset => asset.chamber), ['ra', 'rv', 'la', 'lv']);
 });
 
 import { CEREBRAL_NODE_POSITIONS, URINE_NODE_POSITIONS } from '../src/anatomy.js';

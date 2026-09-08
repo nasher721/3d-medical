@@ -14,6 +14,10 @@ const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]
 const dot=(a,b)=>a.reduce((sum,v,i)=>sum+v*b[i],0);
 const normalize=a=>scale(a,1/(Math.hypot(...a)||1));
 const RED=[.80,.19,.19],BLUE=[.12,.38,.83];
+// Approximate base-to-apex direction for the heart's long axis (patient-left,
+// anteroinferior tilt), used to drive apex torsion independent of how the
+// tissue's bounding box happens to be oriented. Schematic, not measured.
+const HEART_TWIST_AXIS=Object.freeze(normalize([.22,-1,.32]));
 const ANCHORS={brain:[1.0,3.6,.15],lungs:[-2.55,1.45,.15],heart:[.78,.28,.8],kidneys:[1.85,-1.55,.15]};
 const VIEWS={whole:{target:[0,.5,0],distance:10.5},heart:{target:[.04,.32,.35],distance:3.8},lungs:{target:[0,.8,0],distance:8.7},brain:{target:[0,3.50,0],distance:3.8},kidneys:{target:[0,-1.98,0],distance:6.2},systemic:{target:[0,.25,0],distance:11.5}};
 
@@ -185,7 +189,31 @@ function compile(gl,type,source){const shader=gl.createShader(type);gl.shaderSou
 function program(gl,vertex,fragment){const p=gl.createProgram(),vs=compile(gl,gl.VERTEX_SHADER,vertex),fs=compile(gl,gl.FRAGMENT_SHADER,fragment);gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);gl.deleteShader(vs);gl.deleteShader(fs);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw new Error('Could not link the 3D graphics program.');return p;}
 // Model matrices contain translation and diagonal scale only; reciprocal scale
 // is their inverse-transpose normal transform, including nonuniform respiration.
-const vertexShader=`attribute vec3 position;attribute vec3 normal;uniform mat4 viewProjection;uniform mat4 model;varying vec3 vNormal;varying vec3 vWorld;void main(){vec4 world=model*vec4(position,1.0);vWorld=world.xyz;vNormal=normalize(normal/vec3(model[0][0],model[1][1],model[2][2]));gl_Position=viewProjection*world;}`;
+// A separate, optional twist deformation (apex torsion) is applied in object
+// space before this model matrix, so it composes with that diagonal scale
+// instead of requiring a full inverse-transpose normal matrix.
+const vertexShader=`attribute vec3 position;attribute vec3 normal;
+uniform mat4 viewProjection;uniform mat4 model;
+uniform float twistEnabled;uniform float twistAngle;uniform vec3 twistAxis;uniform vec3 twistCenter;uniform float twistHalfExtent;
+varying vec3 vNormal;varying vec3 vWorld;
+vec3 rotateAboutAxis(vec3 v,vec3 axis,float angle){float c=cos(angle),s=sin(angle);return v*c+cross(axis,v)*s+axis*dot(axis,v)*(1.0-c);}
+void main(){
+  vec3 localPosition=position,localNormal=normal;
+  if(twistEnabled>0.5){
+    // Torsion ramps linearly with signed distance along the long axis from its
+    // pivot, so the apex rotates more than the base -- a real myocardial twist,
+    // not a rigid rotation of the whole chamber.
+    vec3 offset=position-twistCenter;
+    float h=clamp(dot(offset,twistAxis)/twistHalfExtent,-1.0,1.0);
+    float angle=twistAngle*h;
+    localPosition=rotateAboutAxis(offset,twistAxis,angle)+twistCenter;
+    localNormal=rotateAboutAxis(normal,twistAxis,angle);
+  }
+  vec4 world=model*vec4(localPosition,1.0);
+  vWorld=world.xyz;
+  vNormal=normalize(localNormal/vec3(model[0][0],model[1][1],model[2][2]));
+  gl_Position=viewProjection*world;
+}`;
 const fragmentShader=`precision mediump float;
 varying vec3 vNormal; varying vec3 vWorld;
 uniform vec3 color; uniform vec3 eye;
@@ -224,11 +252,11 @@ export class AnatomyRenderer {
     if(!this.gl)throw new Error('WebGL is not available in this browser.');
     this.assets=[];this.routes=[];this.routeGraph=CEREBRAL_TEACHING_GRAPH;this.routeCollections=ANATOMICAL_ROUTE_COLLECTIONS;this.listeners=[];this.time=0;this.flowPhase=0;this.heartPhase=0;this.view='whole';this.colorMode='oxygenation';this.layers={particles:true,labels:true,vessels:true,transparent:false,opacity:{brain:1,lungs:1,kidneys:1}};this.clip={enabled:false,axis:'x',t:.5,flip:false};this.metrics={hr:72,co:5,map:88,cvp:6,spo2:98,svo2:70,edv:120,ef:58,lungWater:0,svr:1300,renalFlow:1000,brainFlow:50,respiratoryRate:16};
     const gl=this.gl;this.uintIndices=gl.getExtension('OES_element_index_uint');this.program=program(gl,vertexShader,fragmentShader);this.pointProgram=program(gl,particleVertex,particleFragment);this.uniforms={};
-    for(const key of ['viewProjection','model','color','eye','alpha','glass','emissive','tissue','clipEnabled','clipNormal','clipDistance'])this.uniforms[key]=gl.getUniformLocation(this.program,key);
+    for(const key of ['viewProjection','model','color','eye','alpha','glass','emissive','tissue','clipEnabled','clipNormal','clipDistance','twistEnabled','twistAngle','twistAxis','twistCenter','twistHalfExtent'])this.uniforms[key]=gl.getUniformLocation(this.program,key);
     this.attributes={position:gl.getAttribLocation(this.program,'position'),normal:gl.getAttribLocation(this.program,'normal')};
     this.pointUniforms={viewProjection:gl.getUniformLocation(this.pointProgram,'viewProjection'),dpr:gl.getUniformLocation(this.pointProgram,'dpr')};
     this.pointAttributes={position:gl.getAttribLocation(this.pointProgram,'position'),color:gl.getAttribLocation(this.pointProgram,'color'),size:gl.getAttribLocation(this.pointProgram,'size')};
-    this._buildVessels();this._buildGrid();this._buildParticles();this.resetCamera();this._bindEvents();
+    this._buildVessels();this._buildGrid();this._buildThorax();this._buildParticles();this.resetCamera();this._bindEvents();
     this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(canvas);this.resize();
     this.assetController=new AbortController();
     this.cerebralPositions=CEREBRAL_NODE_POSITIONS;
@@ -244,6 +272,23 @@ export class AnatomyRenderer {
       g=expanded;indices=null;
     }
     const asset={...options,count:indices?.length??g.position.length/3,buffers:{},model:mat4Identity()};
+    if(options?.tissue&&(options.animationOrgan||options.id)==='heart'){
+      // The projected half-extent of an axis-aligned bounding box along a unit
+      // direction is exact (sum of |axis_i| * half-size_i), so this stays
+      // correct for any heart tissue source -- an imported single-mesh heart
+      // or a procedural chamber shell -- without needing the mesh's own axes
+      // to align with the anatomical long axis.
+      let minX=Infinity,minY=Infinity,minZ=Infinity,maxX=-Infinity,maxY=-Infinity,maxZ=-Infinity;
+      for(let i=0;i<g.position.length;i+=3){
+        const x=g.position[i],y=g.position[i+1],z=g.position[i+2];
+        if(x<minX)minX=x; if(x>maxX)maxX=x;
+        if(y<minY)minY=y; if(y>maxY)maxY=y;
+        if(z<minZ)minZ=z; if(z>maxZ)maxZ=z;
+      }
+      const half=[(maxX-minX)/2,(maxY-minY)/2,(maxZ-minZ)/2],axis=HEART_TWIST_AXIS;
+      asset.twist=true;asset.twistAxis=axis;
+      asset.twistHalfExtent=Math.max(.08,Math.abs(axis[0])*half[0]+Math.abs(axis[1])*half[1]+Math.abs(axis[2])*half[2]);
+    }
     for(const key of ['position','normal']){asset.buffers[key]=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,asset.buffers[key]);gl.bufferData(gl.ARRAY_BUFFER,g[key] instanceof Float32Array?g[key]:new Float32Array(g[key]),gl.STATIC_DRAW);}
     if(indices){
       const small=g.position.length/3<=65536;
@@ -295,8 +340,9 @@ export class AnatomyRenderer {
     }
   }
   _buildFallbackOrgans(){
-    const shells=[['brain',[0,3.62,0],[1.18,.78,.78],[.72,.56,.54]],['heart',[.04,.42,.35],[.72,.88,.65],[.57,.20,.18]],['lungs',[-1.68,1.13,0],[.72,1.52,.90],[.68,.43,.43]],['lungs',[1.68,1.13,0],[.72,1.52,.90],[.68,.43,.43]],['kidneys',[-1.32,-1.59,.08],[.45,.76,.40],[.49,.20,.16]],['kidneys',[1.32,-1.59,.08],[.45,.76,.40],[.49,.20,.16]]];
-    for(const [id,center,radii,color] of shells){
+    const shells=[['brain',[0,3.62,0],[1.18,.78,.78],[.72,.56,.54]],['lungs',[-1.68,1.13,0],[.72,1.52,.90],[.68,.43,.43]],['lungs',[1.68,1.13,0],[.72,1.52,.90],[.68,.43,.43]],['kidneys',[-1.32,-1.59,.08],[.45,.76,.40],[.49,.20,.16]],['kidneys',[1.32,-1.59,.08],[.45,.76,.40],[.49,.20,.16]]];
+    const [brainShell,...restShells]=shells;
+    const buildShell=([id,center,radii,color])=>{
       const g=ellipsoid(center,radii,24,40),side=Math.sign(center[0]);
       for(let i=0;i<g.position.length;i+=3){
         let x=(g.position[i]-center[0])/radii[0],y=(g.position[i+1]-center[1])/radii[1],z=(g.position[i+2]-center[2])/radii[2];
@@ -311,13 +357,66 @@ export class AnatomyRenderer {
         }else if(id==='lungs'){
           x*=.88-.20*y; y+=.10*x*x;
           x+=side*.10*y;
-        }else if(id==='heart'){x*=.88+.18*y;x+=.16*y;}
+        }
         g.position[i]=center[0]+x*radii[0];g.position[i+1]=center[1]+y*radii[1];g.position[i+2]=center[2]+z*radii[2];
       }
       // Recompute face normals after deformation; do not retain ellipsoid normals.
       for(let i=0;i<g.position.length;i+=9){const a=g.position.slice(i,i+3),b=g.position.slice(i+3,i+6),c=g.position.slice(i+6,i+9),n=normalize(cross(sub(b,a),sub(c,a)));for(let v=0;v<3;v++)for(let axis=0;axis<3;axis++)g.normal[i+v*3+axis]=n[axis];}
       this._asset(g,{id,center,color,tissue:true,procedural:true});
+    };
+    buildShell(brainShell);
+    this._buildFallbackHeart();
+    restShells.forEach(buildShell);
+  }
+  // Four independently animated chamber shells replace the single fallback
+  // heart ellipsoid, so schematic previews (no licensed mesh available) still
+  // show atrial-kick/ventricular-systole timing and right-vs-left contraction
+  // differences, not just one blob scaling in and out. Positions are a
+  // schematic approximation of adult cardiac chamber arrangement, not source
+  // anatomy.
+  _buildFallbackHeart(){
+    const center=[.04,.42,.35];
+    const chamberColor={ra:[.50,.20,.30],rv:[.53,.19,.26],la:[.62,.21,.19],lv:[.60,.18,.16]};
+    const chambers=[
+      {chamber:'ra',offset:[-.30,.32,-.16],radii:[.40,.42,.36]},
+      {chamber:'rv',offset:[-.20,-.18,.26],radii:[.46,.56,.42]},
+      {chamber:'la',offset:[.32,.34,-.20],radii:[.38,.40,.34]},
+      {chamber:'lv',offset:[.20,-.24,.10],radii:[.52,.64,.48]},
+    ];
+    for(const {chamber,offset,radii} of chambers){
+      const chamberCenter=add(center,offset);
+      this._asset(ellipsoid(chamberCenter,radii,18,28),{id:'heart',chamber,center:chamberCenter,color:chamberColor[chamber],tissue:true,procedural:true});
     }
+  }
+  // A schematic diaphragm dome and a handful of rib hoops give respiration a
+  // visible driver: the dome descends on inspiration (the lungs' own scale
+  // pulse no longer floats free of any cause), and the rib hoops widen
+  // slightly with chest-wall expansion. Purely illustrative geometry, shown
+  // alongside licensed organ meshes or the procedural fallback alike.
+  _buildThorax(){
+    // A shallow cap of the same ellipsoid formula used elsewhere (rings near
+    // a=0, its "north pole") forms an upward dome: apex near y=-.10, rim near
+    // y=-.54, sitting below the lung bases and the heart's inferior border.
+    const domeCenter=[0,-.70,.05],domeRadii=[2.55,.60,1.15],capAngle=1.3,rings=8,segments=32,g=geometry();
+    for(let r=0;r<rings;r++)for(let s=0;s<segments;s++){
+      const a=capAngle*r/rings,b=capAngle*(r+1)/rings,c=TAU*s/segments,d=TAU*(s+1)/segments;
+      const point=t=>[domeCenter[0]+domeRadii[0]*Math.sin(t[0])*Math.cos(t[1]),domeCenter[1]+domeRadii[1]*Math.cos(t[0]),domeCenter[2]+domeRadii[2]*Math.sin(t[0])*Math.sin(t[1])];
+      const normal=t=>normalize([Math.sin(t[0])*Math.cos(t[1])/domeRadii[0],Math.cos(t[0])/domeRadii[1],Math.sin(t[0])*Math.sin(t[1])/domeRadii[2]]);
+      const q=[[a,c],[a,d],[b,d],[b,c]],p=q.map(point),n=q.map(normal);
+      triangle(g,p[0],p[1],p[2],n[0],n[1],n[2]);triangle(g,p[0],p[2],p[3],n[0],n[2],n[3]);
+    }
+    this._asset(g,{id:'diaphragm',center:domeCenter,color:[.62,.30,.26],tissue:true});
+    this._buildRibcage();
+  }
+  _buildRibcage(){
+    const hoops=[[1.62,1.35,.62,.55],[1.18,1.55,.72,.85],[.70,1.62,.80,1],[.15,1.55,.78,1],[-.35,1.30,.68,.9]];
+    const segments=40,g=geometry();
+    for(const [y,rx,rz,squeeze] of hoops){
+      const points=[];
+      for(let k=0;k<segments;k++){const a=TAU*k/segments;points.push([rx*Math.cos(a)*squeeze,y,rz*Math.sin(a)]);}
+      for(let k=0;k<segments;k++){const a=points[k],b=points[(k+1)%segments];g.position.push(...a,...b);g.normal.push(0,1,0,0,1,0);}
+    }
+    this._asset(g,{id:'ribcage',center:[0,.5,.1],color:[.78,.74,.66],lines:true});
   }
   _route(points,{radius=.065,oxygenated=true,group='systemic',flow=1,particles=true,id='vessels',color,name,semantic,territory}={}){
     if(this.registeredVasculature&&group==='urine')points=points.map(p=>this._registeredUrinePoint(p));
@@ -401,10 +500,45 @@ export class AnatomyRenderer {
     return mix([.08,.28,.77],[.95,.22,.20],clamp(((asset.oxygenated?m.spo2:m.svo2)/100-.78)/.20,0,1));
   }
   _model(asset){
-    if(!asset.center){const model=mat4Identity();if(asset.registrationOffset)for(let i=0;i<3;i++)model[12+i]=asset.registrationOffset[i];return model;}const m=this.metrics;let s=1,sy=1;
-    if((asset.animationOrgan||asset.id)==='heart'){s=Math.cbrt(clamp((m.edv||120)/120,.7,1.5))*(1-.065*this.beat);if(asset.chamber==='rv'||asset.chamber==='ra')s*=1+clamp((m.cvp-6)/90,0,.2);sy=s;}
-    if(asset.id==='lungs'){s=1+.025*Math.sin(this.time*(m.respiratoryRate||16)/60*TAU)+clamp((m.lungWater||0)/150,0,.13);sy=1+(s-1)*.6;}
-    const c=asset.center,out=mat4Identity();out[0]=s;out[5]=sy;out[10]=s;out[12]=c[0]*(1-s);out[13]=c[1]*(1-sy);out[14]=c[2]*(1-s);if(asset.registrationOffset)for(let i=0;i<3;i++)out[12+i]+=asset.registrationOffset[i];return out;
+    if(!asset.center){const model=mat4Identity();if(asset.registrationOffset)for(let i=0;i<3;i++)model[12+i]=asset.registrationOffset[i];return model;}
+    const m=this.metrics;let s=1,sy=1,translateY=0;
+    const breathPhase=this.time*(m.respiratoryRate||16)/60*TAU;
+    if((asset.animationOrgan||asset.id)==='heart'){
+      const edvScale=Math.cbrt(clamp((m.edv||120)/120,.7,1.5));
+      const isAtrium=asset.chamber==='ra'||asset.chamber==='la',isRight=asset.chamber==='rv'||asset.chamber==='ra';
+      // The atrial "kick" is a short, fixed-timing contraction late in diastole,
+      // just before the next ventricular systole; ventricular contraction is
+      // driven by the same sin^3 pulse (`this.beat`) already used for particle
+      // flow timing. Short-axis (radial) contraction dominates real ejection,
+      // while the base-apex long axis shortens more modestly -- nonuniform
+      // scale, not the isotropic pulse this replaces.
+      const cyclePos=((this.heartPhase||0)%1+1)%1,atrialStart=.82,atrialSpan=.18;
+      const atrialBump=cyclePos>atrialStart?Math.sin(Math.PI*(cyclePos-atrialStart)/atrialSpan)**2:0;
+      const bump=isAtrium?atrialBump:this.beat;
+      s=edvScale*(1-(isAtrium?.16:.12)*bump);
+      sy=edvScale*(1-(isAtrium?.05:.035)*bump);
+      if(isRight){const congestion=1+clamp((m.cvp-6)/90,0,.2);s*=congestion;sy*=congestion;}
+      // Apex rotation (torsion): the left ventricle twists during systole and
+      // untwists into early diastole; applied as a vertex-space deformation in
+      // the shader (see twist* uniforms below), not folded into this scale.
+      asset.twistAngle=isAtrium?0:(asset.chamber==='rv'?.07:asset.chamber==='lv'?.16:.13)*this.beat;
+    }
+    if(asset.id==='lungs'){s=1+.025*Math.sin(breathPhase)+clamp((m.lungWater||0)/150,0,.13);sy=1+(s-1)*.6;}
+    if(asset.id==='ribcage'){s=1+.018*Math.sin(breathPhase);}
+    if(asset.id==='diaphragm')translateY=-.32*Math.sin(breathPhase);
+    if(asset.id==='brain'){
+      const icp=m.icp??5,cpp=m.cpp??70;
+      // Elevated ICP reflects reduced intracranial compliance (Monro-Kellie
+      // doctrine): the same cardiac-cycle arterial inflow produces a visibly
+      // larger pulsatile volume swing as compliance worsens, while a falling
+      // CPP damps the swing as pulsatile inflow itself falls. A small chronic
+      // "swelling" term is a schematic proxy for sustained intracranial
+      // hypertension, not a volumetric edema model.
+      const compliancePulse=clamp(icp/20,.15,1.8),perfusionGate=clamp(cpp/60,.15,1);
+      const chronicSwelling=1+clamp((icp-12)/160,0,.035);
+      s=chronicSwelling*(1+.006*compliancePulse*perfusionGate*this.beat);sy=s;
+    }
+    const c=asset.center,out=mat4Identity();out[0]=s;out[5]=sy;out[10]=s;out[12]=c[0]*(1-s);out[13]=c[1]*(1-sy)+translateY;out[14]=c[2]*(1-s);if(asset.registrationOffset)for(let i=0;i<3;i++)out[12+i]+=asset.registrationOffset[i];return out;
   }
   _routeRate(route){
     if(route.semantic==='urine')return clamp((this.metrics.urineOutput??60)/60,0,3);
@@ -445,10 +579,16 @@ export class AnatomyRenderer {
       
       if((asset.id==='vessels'||asset.id==='urine')&&!this.layers.vessels)return;
       if((asset.id==='vessels'||asset.id==='urine')&&!['whole','systemic'].includes(this.view)){const group={heart:'heart',lungs:'pulmonary',brain:'brain',kidneys:'renal'}[this.view];if(asset.group!==group&&!(this.view==='kidneys'&&asset.group==='urine'))return;}if(asset.id==='grid'&&this.view!=='whole'&&this.view!=='systemic')return;
-      if(!(this.view==='whole'||this.view==='systemic'||this.view===asset.id||asset.id==='vessels'||asset.id==='urine'))return;
-      let alpha=asset.id==='grid'?.27:1,glass=0;if(asset.tissue){if(this.clip.enabled){alpha=1;glass=0;}else{const opacity=this.layers.opacity?.[asset.id]??1;alpha=opacity;glass=opacity<.999?.18:0;}}if(asset.id==='vessels'||asset.id==='urine')alpha=1;
+      // The diaphragm/ribcage are a respiration context, not an organ; they
+      // share the lungs' zoomed view in addition to the whole-body views.
+      const thoraxContext=(asset.id==='diaphragm'||asset.id==='ribcage')&&this.view==='lungs';
+      if(!(this.view==='whole'||this.view==='systemic'||this.view===asset.id||asset.id==='vessels'||asset.id==='urine'||thoraxContext))return;
+      let alpha=asset.id==='grid'?.27:asset.id==='ribcage'?.5:1,glass=0;if(asset.tissue){if(this.clip.enabled){alpha=1;glass=0;}else{const opacity=this.layers.opacity?.[asset.id]??1;alpha=opacity;glass=opacity<.999?.18:0;}}if(asset.id==='vessels'||asset.id==='urine')alpha=1;
       for(const key of ['position','normal']){gl.bindBuffer(gl.ARRAY_BUFFER,asset.buffers[key]);gl.enableVertexAttribArray(this.attributes[key]);gl.vertexAttribPointer(this.attributes[key],3,gl.FLOAT,false,0,0);}
-      gl.uniformMatrix4fv(this.uniforms.model,false,this._model(asset));let color=this._color(asset);if(asset.id==='lungs'&&(this.metrics.lungWater||0)>2)color=mix(color,[.55,.40,.40],clamp(this.metrics.lungWater/15,0,.65));gl.uniform3fv(this.uniforms.color,color);gl.uniform1f(this.uniforms.alpha,alpha);gl.uniform1f(this.uniforms.glass,glass);gl.uniform1f(this.uniforms.emissive,asset.id==='vessels'?.10:0);gl.uniform1f(this.uniforms.tissue,asset.tissue?1:0);if(asset.indexType){gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,asset.buffers.indices);gl.drawElements(gl.TRIANGLES,asset.count,asset.indexType,0);}else gl.drawArrays(asset.lines?gl.LINES:gl.TRIANGLES,0,asset.count);
+      gl.uniformMatrix4fv(this.uniforms.model,false,this._model(asset));
+      if(asset.twist){gl.uniform1f(this.uniforms.twistEnabled,1);gl.uniform1f(this.uniforms.twistAngle,asset.twistAngle||0);gl.uniform3fv(this.uniforms.twistAxis,asset.twistAxis);gl.uniform3fv(this.uniforms.twistCenter,asset.center);gl.uniform1f(this.uniforms.twistHalfExtent,asset.twistHalfExtent||1);}
+      else gl.uniform1f(this.uniforms.twistEnabled,0);
+      let color=this._color(asset);if(asset.id==='lungs'&&(this.metrics.lungWater||0)>2)color=mix(color,[.55,.40,.40],clamp(this.metrics.lungWater/15,0,.65));gl.uniform3fv(this.uniforms.color,color);gl.uniform1f(this.uniforms.alpha,alpha);gl.uniform1f(this.uniforms.glass,glass);gl.uniform1f(this.uniforms.emissive,asset.id==='vessels'?.10:0);gl.uniform1f(this.uniforms.tissue,asset.tissue?1:0);if(asset.indexType){gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,asset.buffers.indices);gl.drawElements(gl.TRIANGLES,asset.count,asset.indexType,0);}else gl.drawArrays(asset.lines?gl.LINES:gl.TRIANGLES,0,asset.count);
     };
     // Cross-section mode always renders organs solid; sorted translucency and an
     // open cutaway are not composed together.
