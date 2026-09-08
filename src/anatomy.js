@@ -190,8 +190,14 @@ const fragmentShader=`precision mediump float;
 varying vec3 vNormal; varying vec3 vWorld;
 uniform vec3 color; uniform vec3 eye;
 uniform float alpha; uniform float glass; uniform float emissive; uniform float tissue;
+uniform float clipEnabled; uniform vec3 clipNormal; uniform float clipDistance;
 void main(){
-  vec3 n=normalize(vNormal), v=normalize(eye-vWorld);
+  if(clipEnabled>0.5 && dot(vWorld,clipNormal)>clipDistance) discard;
+  // Cross-section mode disables face culling so the cut opens into an interior
+  // wall instead of a hole; that back-facing wall is shaded as solid cut tissue.
+  bool cut=clipEnabled>0.5 && !gl_FrontFacing;
+  vec3 n=normalize(vNormal); if(cut)n=-n;
+  vec3 v=normalize(eye-vWorld);
   vec3 light=normalize(vec3(-3.0,5.0,5.0));
   float key=max(dot(n,light),0.0);
   float wrap=max((dot(n,light)+.35)/1.35,0.0);
@@ -202,10 +208,11 @@ void main(){
   float grain=sin(vWorld.x*113.0+sin(vWorld.z*81.0))*sin(vWorld.y*127.0+sin(vWorld.x*57.0));
   float mottling=sin(vWorld.x*21.0+sin(vWorld.y*17.0))*sin(vWorld.z*26.0+vWorld.y*13.0);
   vec3 base=color*(1.0+tissue*(.025*grain+.055*mottling));
+  if(cut)base=mix(base,vec3(.58,.15,.13),.5);
   vec3 lit=base*(.24+mix(key,wrap,tissue)*.78+fill*.18);
   lit+=vec3(1.0,.88,.79)*spec*mix(.30,.19,tissue);
   lit+=mix(vec3(.25,.48,.66),base*.28,tissue)*rim*.20+base*emissive;
-  float opacity=mix(alpha,alpha*(.24+.76*rim),glass);
+  float opacity=cut?1.0:mix(alpha,alpha*(.24+.76*rim),glass);
   gl_FragColor=vec4(lit,opacity);
 }`;
 const particleVertex=`attribute vec3 position;attribute vec3 color;attribute float size;uniform mat4 viewProjection;uniform float dpr;varying vec3 vColor;void main(){gl_Position=viewProjection*vec4(position,1.0);gl_PointSize=size*dpr;vColor=color;}`;
@@ -215,9 +222,9 @@ export class AnatomyRenderer {
   constructor(canvas,{onSelect,onReady,onError}={}){
     this.canvas=canvas;this.onSelect=onSelect;this.gl=canvas.getContext('webgl',{antialias:true,alpha:true,premultipliedAlpha:true,preserveDrawingBuffer:true});
     if(!this.gl)throw new Error('WebGL is not available in this browser.');
-    this.assets=[];this.routes=[];this.routeGraph=CEREBRAL_TEACHING_GRAPH;this.routeCollections=ANATOMICAL_ROUTE_COLLECTIONS;this.listeners=[];this.time=0;this.flowPhase=0;this.heartPhase=0;this.view='whole';this.colorMode='oxygenation';this.layers={particles:true,labels:true,vessels:true,transparent:false,opacity:{brain:1,lungs:1,kidneys:1}};this.metrics={hr:72,co:5,map:88,cvp:6,spo2:98,svo2:70,edv:120,ef:58,lungWater:0,svr:1300,renalFlow:1000,brainFlow:50,respiratoryRate:16};
+    this.assets=[];this.routes=[];this.routeGraph=CEREBRAL_TEACHING_GRAPH;this.routeCollections=ANATOMICAL_ROUTE_COLLECTIONS;this.listeners=[];this.time=0;this.flowPhase=0;this.heartPhase=0;this.view='whole';this.colorMode='oxygenation';this.layers={particles:true,labels:true,vessels:true,transparent:false,opacity:{brain:1,lungs:1,kidneys:1}};this.clip={enabled:false,axis:'x',t:.5,flip:false};this.metrics={hr:72,co:5,map:88,cvp:6,spo2:98,svo2:70,edv:120,ef:58,lungWater:0,svr:1300,renalFlow:1000,brainFlow:50,respiratoryRate:16};
     const gl=this.gl;this.uintIndices=gl.getExtension('OES_element_index_uint');this.program=program(gl,vertexShader,fragmentShader);this.pointProgram=program(gl,particleVertex,particleFragment);this.uniforms={};
-    for(const key of ['viewProjection','model','color','eye','alpha','glass','emissive','tissue'])this.uniforms[key]=gl.getUniformLocation(this.program,key);
+    for(const key of ['viewProjection','model','color','eye','alpha','glass','emissive','tissue','clipEnabled','clipNormal','clipDistance'])this.uniforms[key]=gl.getUniformLocation(this.program,key);
     this.attributes={position:gl.getAttribLocation(this.program,'position'),normal:gl.getAttribLocation(this.program,'normal')};
     this.pointUniforms={viewProjection:gl.getUniformLocation(this.pointProgram,'viewProjection'),dpr:gl.getUniformLocation(this.pointProgram,'dpr')};
     this.pointAttributes={position:gl.getAttribLocation(this.pointProgram,'position'),color:gl.getAttribLocation(this.pointProgram,'color'),size:gl.getAttribLocation(this.pointProgram,'size')};
@@ -419,7 +426,19 @@ export class AnatomyRenderer {
   finishPreparationFrame(){if(!this.destroyed&&!this.contextLost)this.gl.finish();}
   _draw(){
     const gl=this.gl;if(!this.projection)return;const cp=Math.cos(this.pitch),eye=[this.target[0]+Math.sin(this.yaw)*cp*this.distance,this.target[1]+Math.sin(this.pitch)*this.distance,this.target[2]+Math.cos(this.yaw)*cp*this.distance];this.vp=mat4Multiply(this.projection,mat4LookAt(eye,this.target));
-    gl.viewport(0,0,this.canvas.width,this.canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);gl.depthMask(true);gl.useProgram(this.program);gl.uniformMatrix4fv(this.uniforms.viewProjection,false,this.vp);gl.uniform3fv(this.uniforms.eye,eye);
+    gl.viewport(0,0,this.canvas.width,this.canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+    // A cutaway plane needs both mesh faces visible; every organ/vessel asset is a
+    // watertight (or single-sleeve) shell, so the depth test alone still resolves
+    // the correct nearest surface outside the discarded half.
+    if(this.clip.enabled)gl.disable(gl.CULL_FACE);else{gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);}
+    gl.depthMask(true);gl.useProgram(this.program);gl.uniformMatrix4fv(this.uniforms.viewProjection,false,this.vp);gl.uniform3fv(this.uniforms.eye,eye);
+    const axisIndex={x:0,y:1,z:2}[this.clip.axis];
+    // The plane's world position tracks the current camera target/distance so the
+    // 0-100 slider always spans roughly the visible extent of whatever view is active.
+    const clipRange=Math.max(this.distance*.6,1.5),clipWorld=this.target[axisIndex]-clipRange+this.clip.t*2*clipRange;
+    const clipSign=this.clip.flip?-1:1,clipNormal=[0,0,0];clipNormal[axisIndex]=clipSign;
+    this._clipPlane=this.clip.enabled?{normal:clipNormal,distance:clipSign*clipWorld}:null;
+    gl.uniform1f(this.uniforms.clipEnabled,this.clip.enabled?1:0);gl.uniform3fv(this.uniforms.clipNormal,clipNormal);gl.uniform1f(this.uniforms.clipDistance,clipSign*clipWorld);
     const draw=asset=>{
       if(asset.superseded)return;
       // Urine geometry is its own semantic collection, but shares the renal camera.
@@ -427,14 +446,17 @@ export class AnatomyRenderer {
       if((asset.id==='vessels'||asset.id==='urine')&&!this.layers.vessels)return;
       if((asset.id==='vessels'||asset.id==='urine')&&!['whole','systemic'].includes(this.view)){const group={heart:'heart',lungs:'pulmonary',brain:'brain',kidneys:'renal'}[this.view];if(asset.group!==group&&!(this.view==='kidneys'&&asset.group==='urine'))return;}if(asset.id==='grid'&&this.view!=='whole'&&this.view!=='systemic')return;
       if(!(this.view==='whole'||this.view==='systemic'||this.view===asset.id||asset.id==='vessels'||asset.id==='urine'))return;
-      let alpha=asset.id==='grid'?.27:1,glass=0;if(asset.tissue){const opacity=this.layers.opacity?.[asset.id]??1;alpha=opacity;glass=opacity<.999?.18:0;}if(asset.id==='vessels'||asset.id==='urine')alpha=1;
+      let alpha=asset.id==='grid'?.27:1,glass=0;if(asset.tissue){if(this.clip.enabled){alpha=1;glass=0;}else{const opacity=this.layers.opacity?.[asset.id]??1;alpha=opacity;glass=opacity<.999?.18:0;}}if(asset.id==='vessels'||asset.id==='urine')alpha=1;
       for(const key of ['position','normal']){gl.bindBuffer(gl.ARRAY_BUFFER,asset.buffers[key]);gl.enableVertexAttribArray(this.attributes[key]);gl.vertexAttribPointer(this.attributes[key],3,gl.FLOAT,false,0,0);}
       gl.uniformMatrix4fv(this.uniforms.model,false,this._model(asset));let color=this._color(asset);if(asset.id==='lungs'&&(this.metrics.lungWater||0)>2)color=mix(color,[.55,.40,.40],clamp(this.metrics.lungWater/15,0,.65));gl.uniform3fv(this.uniforms.color,color);gl.uniform1f(this.uniforms.alpha,alpha);gl.uniform1f(this.uniforms.glass,glass);gl.uniform1f(this.uniforms.emissive,asset.id==='vessels'?.10:0);gl.uniform1f(this.uniforms.tissue,asset.tissue?1:0);if(asset.indexType){gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,asset.buffers.indices);gl.drawElements(gl.TRIANGLES,asset.count,asset.indexType,0);}else gl.drawArrays(asset.lines?gl.LINES:gl.TRIANGLES,0,asset.count);
     };
-    this.assets.filter(a=>a.id!=='vessels'&&a.id!=='urine'&&!(a.tissue&&(this.layers.opacity?.[a.id]??1)<1)).forEach(draw);
+    // Cross-section mode always renders organs solid; sorted translucency and an
+    // open cutaway are not composed together.
+    const translucent=a=>a.tissue&&!this.clip.enabled&&(this.layers.opacity?.[a.id]??1)<1;
+    this.assets.filter(a=>a.id!=='vessels'&&a.id!=='urine'&&!translucent(a)).forEach(draw);
     this.assets.filter(a=>a.id==='vessels'||a.id==='urine').forEach(draw);
     gl.depthMask(false);
-    this.assets.filter(a=>a.tissue&&(this.layers.opacity?.[a.id]??1)<1).sort((a,b)=>Math.hypot(...sub(b.center,eye))-Math.hypot(...sub(a.center,eye))).forEach(draw);
+    this.assets.filter(translucent).sort((a,b)=>Math.hypot(...sub(b.center,eye))-Math.hypot(...sub(a.center,eye))).forEach(draw);
     if(this.layers.particles)this._drawParticles();gl.depthMask(true);
   }
   _drawParticles(){
@@ -443,7 +465,9 @@ export class AnatomyRenderer {
       
       const r=particle.route,t=((particle.phase+(r.phase||0))%1+1)%1,dist=t*r.length;
       let lo=0,hi=r.distances.length-1;while(hi-lo>1){const mid=(lo+hi)>>1;if(r.distances[mid]<dist)lo=mid;else hi=mid;}
-      const f=(dist-r.distances[lo])/(r.distances[hi]-r.distances[lo]||1),p=mix(r.path[lo],r.path[hi],f),color=this._color(r.asset);for(let k=0;k<3;k++){a.position[index*3+k]=p[k]+(r.asset.registrationOffset?.[k]||0);a.color[index*3+k]=Math.min(1,color[k]*1.35+.12);}const group={heart:'heart',lungs:'pulmonary',brain:'brain',kidneys:'renal'}[this.view];const visible=(!group||r.group===group||(this.view==='kidneys'&&r.group==='urine'));a.size[index]=visible?particle.size:0;
+      const f=(dist-r.distances[lo])/(r.distances[hi]-r.distances[lo]||1),p=mix(r.path[lo],r.path[hi],f),color=this._color(r.asset);for(let k=0;k<3;k++){a.position[index*3+k]=p[k]+(r.asset.registrationOffset?.[k]||0);a.color[index*3+k]=Math.min(1,color[k]*1.35+.12);}const group={heart:'heart',lungs:'pulmonary',brain:'brain',kidneys:'renal'}[this.view];let visible=(!group||r.group===group||(this.view==='kidneys'&&r.group==='urine'));
+      if(visible&&this._clipPlane){const n=this._clipPlane.normal,d=a.position[index*3]*n[0]+a.position[index*3+1]*n[1]+a.position[index*3+2]*n[2];if(d>this._clipPlane.distance)visible=false;}
+      a.size[index]=visible?particle.size:0;
     });
     gl.useProgram(this.pointProgram);gl.uniformMatrix4fv(this.pointUniforms.viewProjection,false,this.vp);gl.uniform1f(this.pointUniforms.dpr,this.dpr);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);gl.disable(gl.CULL_FACE);
     for(const key of ['position','color','size']){gl.bindBuffer(gl.ARRAY_BUFFER,this.particleBuffers[key]);gl.bufferSubData(gl.ARRAY_BUFFER,0,a[key]);gl.enableVertexAttribArray(this.pointAttributes[key]);gl.vertexAttribPointer(this.pointAttributes[key],key==='size'?1:3,gl.FLOAT,false,0,0);}gl.drawArrays(gl.POINTS,0,this.particles.length);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);for(const key of ['position','color','size'])gl.disableVertexAttribArray(this.pointAttributes[key]);
@@ -451,6 +475,14 @@ export class AnatomyRenderer {
   setView(view){if(!VIEWS[view])return;this.view=view;this.resetCamera();if(this.assetSource?.startsWith('local-surface-bundle'))this.canvas.dispatchEvent(new CustomEvent('anatomy-assets-ready',{bubbles:true,detail:{detailed:true,registered:this.registeredVasculature,provenanceBlocked:this.assetSource.endsWith('provenance-blocked')}}));}
   setLayers(layers){for(const key of ['particles','labels','vessels','transparent'])if(typeof layers[key]==='boolean')this.layers[key]=layers[key];if(layers.opacity&&typeof layers.opacity==='object')for(const key of ORGAN_OPACITY_KEYS)if(Number.isFinite(layers.opacity[key]))this.layers.opacity[key]=clamp(layers.opacity[key],0,1);}
   setColorMode(mode){if(['oxygenation','pressure','flow'].includes(mode))this.colorMode=mode;}
+  // Cutaway cross-section plane; t=0..1 slides between the two extremes of the
+  // current view's visible span along the chosen world axis.
+  setClip({enabled,axis,t,flip}={}){
+    if(typeof enabled==='boolean')this.clip.enabled=enabled;
+    if(axis==='x'||axis==='y'||axis==='z')this.clip.axis=axis;
+    if(Number.isFinite(t))this.clip.t=clamp(t,0,1);
+    if(typeof flip==='boolean')this.clip.flip=flip;
+  }
   resetCamera(){const view=VIEWS[this.view||'whole'];this.target=[...view.target];if(this.registrationOffsets){const key={brain:'brain',heart:'heart',lungs:'lung-left',kidneys:'kidney-left'}[this.view];if(key)this.target=this.target.map((v,i)=>v+this.registrationOffsets[key][i]);if(['lungs','kidneys'].includes(this.view))this.target[0]=-.22;}this.distance=this.registeredVasculature&&['whole','systemic'].includes(this.view)?13.5:view.distance;this.yaw=-.035;this.pitch=.04;this._fitCamera();}
   _fitCamera(){
     const aspect=(this.canvas.clientWidth||600)/(this.canvas.clientHeight||600);

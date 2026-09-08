@@ -22,7 +22,7 @@ The development server binds to `127.0.0.1`. The static `dist/` directory can be
 
 ## Explore
 
-- **Actual 3D circulation:** orbit and zoom the heart, paired lungs, brain and kidneys; follow moving arterial and venous blood through shared vessel paths. Toggle anatomical layers and switch among oxygenation, pressure and flow colors.
+- **Actual 3D circulation:** orbit and zoom the heart, paired lungs, brain and kidneys; follow moving arterial and venous blood through shared vessel paths. Toggle anatomical layers and switch among oxygenation, pressure and flow colors. A sagittal, axial or coronal cutaway plane in Display settings slices open the live geometry (organs, vessels and particles alike) to reveal internal structure; the exposed cut surface is illustrative shading, not segmented internal anatomy.
 - **Eight starting states:** healthy circulation, distributive shock, cardiogenic shock, hypovolemia, mechanical obstruction, ARDS, brain injury and right ventricular failure.
 - **Interventions:** ten named vasoactive presets (norepinephrine, dobutamine, epinephrine, phenylephrine, vasopressin, milrinone, nitroprusside, nitroglycerin, esmolol and atropine), retained fluid and boluses, a gradual-acting diuretic, respiratory-support presets (bronchodilator, inhaled nitric oxide, prone positioning), sedation depth, and a full ventilator simulator with volume-control, pressure-control and pressure-support/CPAP modes (FiO₂, PEEP, respiratory rate, and a mode-specific drive control). Set intrinsic heart rate and core temperature in Patient settings; baseline ICP is in the Cerebral tab. Inputs are conceptual educational model values.
 - **Custom physiology:** predicted body weight, hemoglobin, contractility, vascular tone, circulating volume, metabolic demand, core temperature and cerebral autoregulation.
@@ -32,7 +32,7 @@ The development server binds to `127.0.0.1`. The static `dist/` directory can be
 - **Bedside calculation practice:** perfusion pressure and the venous downstream gradient, GCS component scoring with non-testable handling, and calculated osmolarity with explicit units and equations. Worksheets are separate from model controls. Case progress lasts until page reload; export a Markdown debrief to keep answers, feedback and sources.
 - **Save and export:** CSV observations, full JSON session exports, local browser storage and JSON setup import. Restore/import loads a fresh simulation with saved settings; it does not replay recorded history. JSON/CSV retain unrounded observations; displayed readings are rounded for teaching. See the [session schema and unit-bearing CSV columns](docs/physiology.md#session-and-export-contract).
 
-Dialogs pause simulated time and resume the prior play/pause state when closed. `Space` plays/pauses, `1–6` selects a view, `R` resets the camera, `B` captures a baseline and `L` toggles labels. Focus the 3D canvas and use arrow keys to orbit, `+`/`−` to zoom. Reduced-motion users start paused. On smaller screens, Display settings contains the layer controls and a link to Patient settings.
+Dialogs pause simulated time and resume the prior play/pause state when closed. `Space` plays/pauses, `1–6` selects a view, `R` resets the camera, `B` captures a baseline, `L` toggles labels and `C` toggles the cutaway cross-section. Focus the 3D canvas and use arrow keys to orbit, `+`/`−` to zoom. Reduced-motion users start paused. On smaller screens, Display settings contains the layer controls and a link to Patient settings.
 
 ## Model and limits
 

@@ -13,6 +13,7 @@ dialog{padding:0;border:1px solid #34495c;border-radius:12px;background:#0e1926;
 
 /* v2 UI contract surfaces; app integration owns state and event wiring. */
 .opacity-controls{border-top:1px solid var(--line);margin-top:18px;padding-top:17px}
+.clip-axis-buttons{display:flex;gap:8px;margin:14px 0 6px}.clip-axis-buttons .button{flex:1;font-size:11px;padding:9px 6px;min-height:34px}.clip-axis-buttons .icon-button{flex:0 0 auto;width:34px}.clip-plane-row .slider{margin:14px 0 4px}.crosssection-controls .control-explainer{margin:14px 0 0}
 .opacity-controls .control-row{padding:13px 0 12px}
 .opacity-controls .control-value input{width:76px;font-size:18px}
 .opacity-controls .control-value>span{display:inline;color:var(--muted)}
